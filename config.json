@@ -113,8 +113,8 @@
     },
     {
       "title": "WebDok",
-      "description": "Digital bookkeeping and business management software with transaction workflows, financial reporting, user administration, operational analytics, and decision-ready dashboards.",
-      "tech": ["Fintech", "Analytics", "Reporting", "RBAC"],
+      "description": "A complex data aggregation, digital bookkeeping, and business management platform that collects and processes information through multi-source scraping pipelines. It includes a centralized worker management panel, queue processing, job monitoring, transaction workflows, financial reporting, user administration, operational analytics, and administrative dashboards.",
+      "tech": ["Multi-source Scraping", "Worker Management", "Queue Processing", "Data Processing", "Monitoring Dashboard", "Financial Reporting"],
       "url": "#",
       "public": false
     },
