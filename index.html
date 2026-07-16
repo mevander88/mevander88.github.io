@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07090d">
+  <meta name="color-scheme" content="dark">
+  <meta name="author" content="" id="metaAuthor">
+  <meta name="description" content="" id="metaDescription">
+  <meta name="keywords" content="" id="metaKeywords">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="" id="canonicalUrl">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="" id="ogUrl">
+  <meta property="og:title" content="" id="ogTitle">
+  <meta property="og:description" content="" id="ogDescription">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="" id="ogSiteName">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="" id="twitterTitle">
+  <meta name="twitter:description" content="" id="twitterDescription">
+  <title>Developer Portfolio</title>
+  <script type="application/ld+json" id="structuredData">{}</script>
+
+  <style>
+    :root {
+      --bg: #07090d;
+      --bg-elevated: #0c1016;
+      --panel: rgba(16, 20, 28, .72);
+      --panel-solid: #10141c;
+      --line: rgba(255,255,255,.09);
+      --line-bright: rgba(255,255,255,.16);
+      --text: #f5f7fa;
+      --muted: #9ba5b4;
+      --muted-2: #697386;
+      --green: #74f7b8;
+      --green-2: #20c982;
+      --cyan: #61d8ff;
+      --amber: #ffc86a;
+      --pink: #ff8aa5;
+      --max: 1180px;
+      --nav-h: 72px;
+      --radius: 8px;
+      --shadow: 0 30px 80px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scrollbar-color: #394252 var(--bg); }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -3;
+      background:
+        radial-gradient(ellipse 75% 45% at 78% 0%, rgba(32,201,130,.12), transparent 70%),
+        radial-gradient(ellipse 60% 38% at 15% 20%, rgba(97,216,255,.09), transparent 72%),
+        linear-gradient(180deg, #07090d 0%, #090d13 45%, #07090d 100%);
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 20;
+      opacity: .025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    button { color: inherit; }
+    img, svg { display: block; max-width: 100%; }
+    ::selection { background: rgba(116,247,184,.26); color: #fff; }
+    :focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+
+    .skip-link {
+      position: fixed; top: 8px; left: 8px; z-index: 1000; padding: 10px 14px;
+      background: var(--text); color: var(--bg); transform: translateY(-150%); transition: transform .2s;
+    }
+    .skip-link:focus { transform: none; }
+    #progress { position: fixed; inset: 0 auto auto 0; height: 2px; width: 0; z-index: 1001; background: linear-gradient(90deg,var(--green),var(--cyan)); }
+    #particles { position: fixed; inset: 0; z-index: -2; pointer-events: none; opacity: .56; }
+    .cursor-glow {
+      position: fixed; width: 360px; height: 360px; border-radius: 50%; z-index: -1; pointer-events: none;
+      background: radial-gradient(circle, rgba(116,247,184,.07), transparent 67%);
+      transform: translate(-50%,-50%); left: -400px; top: -400px;
+    }
+    .container { width: min(calc(100% - 40px), var(--max)); margin-inline: auto; }
+    .section { position: relative; padding: 112px 0; }
+    .section-sm { padding: 80px 0; }
+    .eyebrow {
+      display: inline-flex; gap: 9px; align-items: center; color: var(--green);
+      font: 700 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; text-transform: uppercase; letter-spacing: .12em;
+    }
+    .eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; }
+    .section-head { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,460px); align-items: end; gap: 32px; margin-bottom: 48px; }
+    .section-title { margin: 12px 0 0; max-width: 720px; font-size: clamp(35px, 5vw, 64px); line-height: 1.02; font-weight: 680; letter-spacing: 0; }
+    .section-copy { margin: 0; color: var(--muted); max-width: 620px; }
+    .gradient-text { color: transparent; background: linear-gradient(110deg,#fff 10%,var(--green) 55%,var(--cyan)); background-clip: text; -webkit-background-clip: text; }
+    .muted { color: var(--muted); }
+
+    .site-nav {
+      position: fixed; inset: 0 0 auto; z-index: 100; height: var(--nav-h);
+      border-bottom: 1px solid transparent; transition: background .25s,border-color .25s;
+    }
+    .site-nav.scrolled { background: rgba(7,9,13,.78); border-color: var(--line); backdrop-filter: blur(18px); }
+    .nav-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 760; }
+    .brand-mark {
+      width: 34px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid rgba(116,247,184,.35);
+      background: rgba(116,247,184,.08); color: var(--green); font: 800 14px ui-monospace,monospace;
+    }
+    .brand-mark svg { width: 18px; height: 18px; }
+    .brand-status { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+    .nav-links { display: flex; align-items: center; gap: 5px; }
+    .nav-links a { padding: 8px 11px; color: var(--muted); font-size: 13px; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-cta { margin-left: 12px; }
+    .menu-btn { display: none; width: 40px; height: 40px; place-items: center; border: 1px solid var(--line); background: var(--panel); cursor: pointer; }
+
+    .btn {
+      min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 0 17px; border: 1px solid var(--line-bright); background: rgba(255,255,255,.045);
+      color: var(--text); font-weight: 650; font-size: 14px; cursor: pointer; transition: transform .2s,background .2s,border-color .2s,box-shadow .2s;
+    }
+    .btn svg { width: 17px; height: 17px; }
+    .btn:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.28); background: rgba(255,255,255,.075); }
+    .btn-primary { color: #06120d; border-color: var(--green); background: var(--green); box-shadow: 0 10px 32px rgba(32,201,130,.16); }
+    .btn-primary:hover { background: #96ffcb; border-color: #96ffcb; box-shadow: 0 14px 40px rgba(32,201,130,.25); }
+    .icon-btn { width: 42px; height: 42px; padding: 0; }
+
+    .hero { min-height: 100svh; padding: calc(var(--nav-h) + 70px) 0 60px; display: flex; align-items: center; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(420px,.95fr); gap: 72px; align-items: center; }
+    .availability {
+      width: fit-content; display: flex; align-items: center; gap: 10px; padding: 7px 11px 7px 8px;
+      border: 1px solid rgba(116,247,184,.18); background: rgba(116,247,184,.055); color: #c6fce2; font-size: 12px;
+    }
+    .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(116,247,184,.5); animation: pulse 2s infinite; }
+    @keyframes pulse { 70% { box-shadow: 0 0 0 8px rgba(116,247,184,0); } 100% { box-shadow: 0 0 0 0 rgba(116,247,184,0); } }
+    h1 { margin: 26px 0 22px; font-size: clamp(48px, 7.2vw, 94px); line-height: .94; font-weight: 710; letter-spacing: 0; }
+    .hero-role { min-height: 30px; color: var(--green); font: 600 clamp(15px,2vw,20px)/1.5 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .hero-role::before { content: "> "; color: var(--muted-2); }
+    .caret { display: inline-block; width: 9px; height: 1.05em; margin-left: 3px; vertical-align: -.15em; background: var(--green); animation: blink 1s step-end infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero-copy { max-width: 680px; margin: 20px 0 30px; font-size: 17px; color: var(--muted); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 36px; color: var(--muted); font-size: 13px; }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-meta svg { width: 15px; color: var(--green); }
+
+    .system-visual { position: relative; min-height: 520px; perspective: 1000px; }
+    .terminal {
+      position: absolute; inset: 25px 0 auto auto; width: min(100%,500px); overflow: hidden;
+      border: 1px solid var(--line-bright); background: rgba(10,13,18,.84); backdrop-filter: blur(22px); box-shadow: var(--shadow);
+      transform: rotateY(-4deg) rotateX(2deg);
+    }
+    .terminal-bar { height: 42px; display: flex; align-items: center; justify-content: space-between; padding: 0 13px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.025); }
+    .terminal-dots { display: flex; gap: 7px; }
+    .terminal-dots i { width: 8px; height: 8px; border-radius: 50%; background: #3c4350; }
+    .terminal-dots i:first-child { background: var(--pink); }
+    .terminal-dots i:nth-child(2) { background: var(--amber); }
+    .terminal-dots i:last-child { background: var(--green); }
+    .terminal-label { color: var(--muted-2); font: 11px ui-monospace,monospace; }
+    .terminal-body { min-height: 350px; padding: 22px; font: 13px/1.85 ui-monospace,SFMono-Regular,Menlo,monospace; color: #afbac8; }
+    .code-key { color: #ff9fba; } .code-name { color: var(--cyan); } .code-str { color: #b9f697; } .code-comment { color: #596574; }
+    .code-indent { padding-left: 20px; }
+    .terminal-status { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--line); }
+    .terminal-status div { padding: 14px; border-right: 1px solid var(--line); }
+    .terminal-status div:last-child { border: 0; }
+    .terminal-status strong { display: block; font: 700 15px ui-monospace,monospace; color: var(--green); }
+    .terminal-status span { color: var(--muted-2); font-size: 10px; text-transform: uppercase; }
+    .orbit {
+      position: absolute; width: 126px; height: 126px; right: -22px; bottom: 9px; border: 1px solid rgba(97,216,255,.24);
+      border-radius: 50%; animation: spin 14s linear infinite;
+    }
+    .orbit::before { content: ""; position: absolute; width: 10px; height: 10px; top: 12px; left: 14px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 20px var(--cyan); }
+    .orbit::after { content: ""; position: absolute; inset: 22px; border: 1px dashed rgba(116,247,184,.22); border-radius: 50%; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .floating-chip { position: absolute; z-index: 2; padding: 10px 13px; border: 1px solid var(--line-bright); background: rgba(16,20,28,.86); backdrop-filter: blur(12px); font: 700 11px ui-monospace,monospace; box-shadow: 0 18px 44px rgba(0,0,0,.28); animation: float 5s ease-in-out infinite; }
+    .chip-go { left: -18px; top: 105px; color: var(--cyan); }
+    .chip-next { left: 16px; bottom: 34px; color: #fff; animation-delay: -2s; }
+    .chip-cloud { right: -22px; top: 115px; color: var(--amber); animation-delay: -3s; }
+    @keyframes float { 50% { transform: translateY(-9px); } }
+    .scroll-hint { position: absolute; left: 50%; bottom: 20px; display: flex; align-items: center; gap: 10px; color: var(--muted-2); font: 10px ui-monospace,monospace; text-transform: uppercase; letter-spacing: .12em; transform: translateX(-50%); }
+    .scroll-hint i { width: 1px; height: 34px; background: linear-gradient(var(--green),transparent); animation: scrollLine 1.8s infinite; transform-origin: top; }
+    @keyframes scrollLine { 0% { transform: scaleY(0); } 50%,100% { transform: scaleY(1); } }
+
+    .ticker { overflow: hidden; border-block: 1px solid var(--line); background: rgba(255,255,255,.018); }
+    .ticker-track { display: flex; width: max-content; animation: marquee 28s linear infinite; }
+    .ticker-set { display: flex; gap: 48px; align-items: center; padding: 19px 24px; }
+    .ticker-set span { display: inline-flex; gap: 12px; align-items: center; white-space: nowrap; color: #7f8997; font: 650 12px ui-monospace,monospace; text-transform: uppercase; }
+    .ticker-set span::before { content: ""; width: 4px; height: 4px; background: var(--green); transform: rotate(45deg); }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; }
+    .about-aside { position: sticky; top: 110px; height: fit-content; }
+    .profile-code { margin: 28px 0 0; padding: 18px; border-left: 1px solid var(--green); background: rgba(116,247,184,.035); font: 12px/1.8 ui-monospace,monospace; color: var(--muted); }
+    .profile-code strong { color: var(--green); }
+    .about-content > p { margin: 0 0 22px; font-size: clamp(20px,2.6vw,30px); line-height: 1.42; color: #dce1e8; }
+    .about-content > p + p { font-size: 16px; color: var(--muted); }
+    .capability-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; margin-top: 40px; background: var(--line); border: 1px solid var(--line); }
+    .capability { min-height: 130px; padding: 22px; background: var(--bg-elevated); }
+    .capability svg { width: 22px; color: var(--green); margin-bottom: 20px; }
+    .capability h3 { margin: 0 0 5px; font-size: 15px; }
+    .capability p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--line); background: var(--line); gap: 1px; }
+    .stat { padding: 34px 25px; background: rgba(9,13,19,.94); }
+    .stat-value { display: block; font: 660 clamp(40px,6vw,68px)/1 ui-sans-serif,system-ui; color: var(--text); }
+    .stat-value b { color: var(--green); font-weight: inherit; }
+    .stat-label { display: block; margin-top: 12px; color: var(--muted); font: 11px ui-monospace,monospace; text-transform: uppercase; letter-spacing: .08em; }
+
+    .project-list { border-top: 1px solid var(--line); }
+    .project {
+      position: relative; display: grid; grid-template-columns: 70px minmax(0,1fr) minmax(300px,.9fr) 48px;
+      gap: 26px; align-items: center; padding: 34px 12px; border-bottom: 1px solid var(--line); overflow: hidden; transition: background .3s;
+    }
+    .project::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,rgba(116,247,184,.055),transparent 65%); opacity: 0; transition: opacity .3s; }
+    .project:hover::before { opacity: 1; }
+    .project-index { align-self: start; color: var(--muted-2); font: 12px ui-monospace,monospace; }
+    .project-main, .project-desc, .project-arrow { position: relative; z-index: 1; }
+    .project h3 { margin: 0 0 10px; font-size: clamp(23px,3vw,35px); line-height: 1.1; font-weight: 620; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { padding: 4px 8px; border: 1px solid var(--line); color: var(--muted); background: rgba(255,255,255,.025); font: 10px ui-monospace,monospace; }
+    .project-desc { margin: 0; color: var(--muted); font-size: 14px; }
+    .project-arrow { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--line); transition: transform .25s,border-color .25s,color .25s; }
+    .project:hover .project-arrow { transform: translate(3px,-3px); color: var(--green); border-color: rgba(116,247,184,.35); }
+    .project-arrow svg { width: 17px; }
+
+    .skills-layout { display: grid; grid-template-columns: 280px minmax(0,1fr); gap: 42px; }
+    .skill-tabs { display: flex; flex-direction: column; gap: 4px; position: sticky; top: 100px; height: fit-content; }
+    .skill-tab { min-height: 45px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; border: 1px solid transparent; background: transparent; color: var(--muted); cursor: pointer; text-align: left; transition: .2s; }
+    .skill-tab:hover { color: #fff; }
+    .skill-tab.active { color: #fff; border-color: var(--line); background: rgba(255,255,255,.04); }
+    .skill-tab span { font-size: 13px; font-weight: 620; }
+    .skill-tab small { color: var(--muted-2); font: 10px ui-monospace,monospace; }
+    .skill-panel { display: none; grid-template-columns: repeat(3,1fr); gap: 10px; }
+    .skill-panel.active { display: grid; animation: fadeUp .35s ease both; }
+    .skill-card { min-height: 116px; padding: 18px; border: 1px solid var(--line); background: rgba(255,255,255,.022); transition: border-color .2s,transform .2s,background .2s; }
+    .skill-card:hover { transform: translateY(-3px); border-color: rgba(116,247,184,.25); background: rgba(116,247,184,.035); }
+    .skill-icon { width: 32px; height: 32px; display: grid; place-items: center; margin-bottom: 18px; border: 1px solid var(--line); color: var(--green); font: 750 10px ui-monospace,monospace; }
+    .skill-card strong { display: block; font-size: 13px; }
+    .skill-card small { color: var(--muted-2); font: 10px ui-monospace,monospace; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--line); background: var(--line); gap: 1px; }
+    .service { min-height: 205px; padding: 23px; background: #0a0e14; transition: background .25s; }
+    .service:hover { background: #0e1519; }
+    .service-top { display: flex; justify-content: space-between; }
+    .service svg { width: 22px; color: var(--green); }
+    .service-index { color: var(--muted-2); font: 10px ui-monospace,monospace; }
+    .service h3 { margin: 54px 0 8px; font-size: 17px; }
+    .service p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .timeline { position: relative; margin-top: 25px; }
+    .timeline::before { content: ""; position: absolute; left: 176px; top: 14px; bottom: 14px; width: 1px; background: linear-gradient(var(--green),var(--line),transparent); }
+    .timeline-item { display: grid; grid-template-columns: 145px minmax(0,1fr); gap: 66px; padding: 0 0 70px; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-period { color: var(--green); font: 11px ui-monospace,monospace; text-align: right; }
+    .timeline-content { position: relative; }
+    .timeline-content::before { content: ""; position: absolute; left: -40px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 2px solid var(--green); box-shadow: 0 0 15px rgba(116,247,184,.4); }
+    .timeline-content h3 { margin: 0 0 4px; font-size: 27px; }
+    .timeline-content .company { color: var(--muted); font-size: 13px; }
+    .timeline-points { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 23px; }
+    .timeline-points span { padding: 10px 12px; border: 1px solid var(--line); background: rgba(255,255,255,.02); color: #adb7c5; font-size: 12px; }
+
+    .principles-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+    .principle { position: relative; min-height: 180px; padding: 22px; overflow: hidden; border: 1px solid var(--line); background: rgba(255,255,255,.02); }
+    .principle::after { content: ""; position: absolute; width: 70px; height: 1px; right: -20px; bottom: 25px; background: var(--green); transform: rotate(-42deg); opacity: .35; transition: width .25s; }
+    .principle:hover::after { width: 110px; }
+    .principle svg { width: 22px; color: var(--green); }
+    .principle h3 { margin: 64px 0 0; font-size: 16px; }
+    .principle span { color: var(--muted-2); font: 10px ui-monospace,monospace; text-transform: uppercase; }
+
+    .contact { padding-bottom: 60px; }
+    .contact-panel { position: relative; overflow: hidden; padding: 70px; border: 1px solid var(--line-bright); background: rgba(13,18,24,.84); box-shadow: var(--shadow); }
+    .contact-panel::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(120deg,rgba(116,247,184,.08),transparent 42%,rgba(97,216,255,.05)); }
+    .contact-grid { position: relative; display: grid; grid-template-columns: 1.25fr .75fr; gap: 70px; }
+    .contact-title { margin: 14px 0 18px; font-size: clamp(42px,6vw,76px); line-height: .98; font-weight: 670; }
+    .contact-copy { max-width: 550px; color: var(--muted); }
+    .contact-actions { display: flex; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
+    .contact-list { display: flex; flex-direction: column; justify-content: center; }
+    .contact-row { display: grid; grid-template-columns: 28px minmax(0,1fr) auto; align-items: center; gap: 12px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .contact-row:first-child { border-top: 1px solid var(--line); }
+    .contact-row svg { width: 17px; color: var(--green); }
+    .contact-row small { display: block; color: var(--muted-2); font: 9px ui-monospace,monospace; text-transform: uppercase; }
+    .contact-row strong { display: block; overflow-wrap: anywhere; font-size: 13px; }
+    .contact-row .arrow { color: var(--muted-2); }
+
+    footer { padding: 26px 0; border-top: 1px solid var(--line); color: var(--muted-2); font-size: 11px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; align-items: center; }
+    .footer-inner span { font-family: ui-monospace,monospace; }
+    .back-top { position: fixed; right: 20px; bottom: 20px; z-index: 80; opacity: 0; visibility: hidden; transform: translateY(8px); transition: .25s; }
+    .back-top.show { opacity: 1; visibility: visible; transform: none; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+    @media (max-width: 1020px) {
+      .nav-links { display: none; position: absolute; top: var(--nav-h); left: 20px; right: 20px; flex-direction: column; align-items: stretch; padding: 12px; border: 1px solid var(--line); background: rgba(10,13,18,.97); backdrop-filter: blur(20px); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px; }
+      .nav-cta { margin: 5px 0 0; }
+      .menu-btn { display: grid; }
+      .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+      .hero { padding-top: 140px; }
+      .hero-copy { max-width: 760px; }
+      .system-visual { width: min(100%,620px); min-height: 500px; margin-inline: auto; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-aside { position: static; }
+      .services-grid, .principles-grid { grid-template-columns: repeat(2,1fr); }
+      .project { grid-template-columns: 45px minmax(0,1fr) 42px; }
+      .project-desc { grid-column: 2; }
+      .project-arrow { grid-column: 3; grid-row: 1; }
+      .contact-panel { padding: 50px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 45px; }
+    }
+    @media (max-width: 760px) {
+      :root { --nav-h: 64px; }
+      .container { width: min(calc(100% - 28px),var(--max)); }
+      .section { padding: 82px 0; }
+      .section-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 34px; }
+      .section-title { font-size: 40px; }
+      h1 { font-size: clamp(48px,16vw,70px); }
+      .hero { padding-top: 115px; min-height: auto; }
+      .hero-grid { gap: 30px; }
+      .hero-meta { gap: 13px; flex-direction: column; }
+      .system-visual { min-height: 415px; }
+      .terminal { inset: 12px 0 auto; transform: none; }
+      .terminal-body { min-height: 276px; padding: 17px; font-size: 11px; }
+      .terminal-status div { padding: 10px; }
+      .floating-chip, .orbit, .scroll-hint { display: none; }
+      .capability-grid, .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat { padding: 26px 18px; }
+      .project { grid-template-columns: 32px minmax(0,1fr); gap: 14px; padding: 27px 2px; }
+      .project-desc { grid-column: 2; }
+      .project-arrow { display: none; }
+      .skills-layout { grid-template-columns: 1fr; gap: 25px; }
+      .skill-tabs { position: static; flex-direction: row; overflow-x: auto; padding-bottom: 5px; }
+      .skill-tab { flex: 0 0 auto; }
+      .skill-tab small { display: none; }
+      .skill-panel { grid-template-columns: repeat(2,1fr); }
+      .services-grid, .principles-grid { grid-template-columns: 1fr 1fr; }
+      .service { min-height: 180px; }
+      .timeline::before { left: 5px; }
+      .timeline-item { grid-template-columns: 1fr; gap: 12px; padding-left: 35px; }
+      .timeline-period { text-align: left; }
+      .timeline-content::before { left: -34px; }
+      .timeline-points { grid-template-columns: 1fr 1fr; }
+      .contact-panel { padding: 35px 22px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .brand .brand-name { display: none; }
+      .capability-grid, .stats-grid, .services-grid, .principles-grid { grid-template-columns: 1fr; }
+      .skill-panel { grid-template-columns: 1fr 1fr; }
+      .skill-card { min-height: 105px; padding: 14px; }
+      .timeline-points { grid-template-columns: 1fr; }
+      .contact-title { font-size: 41px; }
+      .contact-actions .btn { width: 100%; }
+    }
+    @media (hover: none), (pointer: coarse) { .cursor-glow { display: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="progress" aria-hidden="true"></div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="site-nav" id="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="Latif, home">
+        <span class="brand-mark"><i data-lucide="code-2" aria-hidden="true"></i></span>
+        <span class="brand-name" id="brandName"></span>
+        <span class="brand-status" title="Available for work"></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#stack">Stack</a>
+        <a href="#services">Services</a>
+        <a href="#experience">Experience</a>
+        <a class="btn btn-primary nav-cta" href="#contact">Start a project <i data-lucide="arrow-up-right"></i></a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation"><i data-lucide="menu"></i></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="availability reveal"><span class="pulse"></span><span id="availabilityText"></span></div>
+          <h1 class="reveal" id="heroName"></h1>
+          <div class="hero-role reveal"><span id="typed"></span><span class="caret"></span></div>
+          <p class="hero-copy reveal" id="heroDescription"></p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary magnetic" href="#work"><span id="primaryAction">Explore my work</span> <i data-lucide="arrow-down-right"></i></a>
+            <a class="btn magnetic" id="heroEmailLink" href="#"><span id="secondaryAction">Let's talk</span> <i data-lucide="send"></i></a>
+            <a class="btn icon-btn" id="heroGithubLink" href="#" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub"><i data-lucide="github"></i></a>
+          </div>
+          <div class="hero-meta reveal">
+            <span><i data-lucide="map-pin"></i><span id="shortLocation"></span></span>
+            <span><i data-lucide="clock-3"></i><span id="timezone"></span></span>
+            <span><i data-lucide="briefcase-business"></i><span id="workModes"></span></span>
+          </div>
+        </div>
+        <div class="system-visual reveal" id="parallaxVisual" aria-label="Developer environment illustration">
+          <div class="floating-chip chip-go">GO / FIBER</div>
+          <div class="floating-chip chip-next">NEXT.JS 15</div>
+          <div class="floating-chip chip-cloud">AWS / DOCKER</div>
+          <div class="terminal">
+            <div class="terminal-bar">
+              <div class="terminal-dots"><i></i><i></i><i></i></div>
+              <span class="terminal-label" id="terminalLabel"></span>
+              <i data-lucide="panel-top" style="width:14px;color:#596574"></i>
+            </div>
+            <div class="terminal-body" aria-hidden="true">
+              <div><span class="code-key">interface</span> <span class="code-name">EngineeringSystem</span> {</div>
+              <div class="code-indent">scale: <span class="code-str">"millions of requests"</span>;</div>
+              <div class="code-indent">latency: <span class="code-str">"consistently low"</span>;</div>
+              <div class="code-indent">reliability: <span class="code-name">Observable</span>;</div>
+              <div>}</div>
+              <br>
+              <div><span class="code-key">const</span> solution = <span class="code-key">await</span> build({</div>
+              <div class="code-indent">architecture: <span class="code-str">"clean"</span>,</div>
+              <div class="code-indent">delivery: <span class="code-str">"iterative"</span>,</div>
+              <div class="code-indent">ownership: <span class="code-str">"end-to-end"</span></div>
+              <div>});</div>
+              <br>
+              <div class="code-comment">// Systems that stay fast as they grow.</div>
+              <div><span class="code-name">deploy</span>(solution); <span style="color:var(--green)">✓</span></div>
+            </div>
+            <div class="terminal-status">
+              <div><strong>99.99%</strong><span>Uptime target</span></div>
+              <div><strong>&lt;100ms</strong><span>API latency</span></div>
+              <div><strong>24/7</strong><span>Observability</span></div>
+            </div>
+          </div>
+          <div class="orbit"></div>
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true"><i></i> Scroll to inspect</div>
+    </section>
+
+    <div class="ticker" aria-label="Core technologies">
+      <div class="ticker-track" id="tickerTrack"></div>
+    </div>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <aside class="about-aside reveal">
+          <span class="eyebrow" id="aboutEyebrow"></span>
+          <h2 class="section-title" id="aboutTitle"></h2>
+          <div class="profile-code" id="profileCode"></div>
+        </aside>
+        <div class="about-content">
+          <p class="reveal" id="aboutIntro"></p>
+          <p class="reveal" id="aboutDescription"></p>
+          <div class="capability-grid reveal" id="capabilityGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm" aria-label="Career statistics">
+      <div class="container stats-grid reveal" id="statsGrid"></div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Selected work</span><h2 class="section-title">Complex systems, made usable.</h2></div>
+          <p class="section-copy">A selection of platforms and infrastructure projects where product thinking meets robust engineering.</p>
+        </div>
+        <div class="project-list" id="projectList"></div>
+      </div>
+    </section>
+
+    <section class="section" id="stack">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Technical arsenal</span><h2 class="section-title">Tools selected for the problem.</h2></div>
+          <p class="section-copy">Depth across the product stack, with the judgment to choose simple, maintainable technology over novelty.</p>
+        </div>
+        <div class="skills-layout reveal">
+          <div class="skill-tabs" role="tablist" aria-label="Technology categories" id="skillTabs"></div>
+          <div id="skillPanels"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Capabilities</span><h2 class="section-title">From first decision to production.</h2></div>
+          <p class="section-copy">Focused engineering support for teams that need to ship, scale, automate, or modernize critical software.</p>
+        </div>
+        <div class="services-grid reveal" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Experience</span><h2 class="section-title">Engineering with ownership.</h2></div>
+          <p class="section-copy">Hands-on delivery and technical leadership across the complete software lifecycle.</p>
+        </div>
+        <div class="timeline" id="experienceTimeline"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Working principles</span><h2 class="section-title">The standard behind the code.</h2></div>
+          <p class="section-copy">Good engineering is not only what ships today. It is what remains understandable, secure, and adaptable tomorrow.</p>
+        </div>
+        <div class="principles-grid reveal" id="principlesGrid"></div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div class="contact-grid">
+            <div>
+              <span class="eyebrow" id="contactEyebrow"></span>
+              <h2 class="contact-title"><span id="contactTitle"></span><br><span class="gradient-text" id="contactAccentTitle"></span></h2>
+              <p class="contact-copy" id="contactDescription"></p>
+              <div class="contact-actions">
+                <a class="btn btn-primary magnetic" id="contactEmailButton" href="#">Send an email <i data-lucide="send"></i></a>
+                <a class="btn magnetic" id="contactPhoneButton" href="#">Call me <i data-lucide="phone"></i></a>
+              </div>
+            </div>
+            <div class="contact-list" id="contactList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> <span id="footerName"></span></span>
+      <span id="footerNote"></span>
+      <span>LAT -6.9175 / LNG 106.9272</span>
+    </div>
+  </footer>
+
+  <a class="btn icon-btn back-top" id="backTop" href="#home" aria-label="Back to top" title="Back to top"><i data-lucide="arrow-up"></i></a>
+
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+  <script>
+    document.documentElement.classList.remove("no-js");
+
+    let roles = [];
+
+    function setText(id, value) {
+      const element = document.getElementById(id);
+      if (element) element.textContent = value || "";
+    }
+
+    function renderConfig(config) {
+      const person = config.person;
+      roles = person.roles;
+      const pageTitle = person.name + " — " + person.headline;
+      const setMeta = (id, value) => {
+        const element = document.getElementById(id);
+        if (element) element.content = value;
+      };
+
+      document.documentElement.lang = config.site.language;
+      document.title = pageTitle;
+      setMeta("metaAuthor", person.name);
+      setMeta("metaDescription", config.seo.description);
+      setMeta("metaKeywords", config.seo.keywords.join(", "));
+      setMeta("ogUrl", config.site.url);
+      setMeta("ogTitle", pageTitle);
+      setMeta("ogDescription", config.seo.socialDescription);
+      setMeta("ogSiteName", config.site.brand);
+      setMeta("twitterTitle", pageTitle);
+      setMeta("twitterDescription", config.seo.socialDescription);
+      document.getElementById("canonicalUrl").href = config.site.url;
+      document.getElementById("structuredData").textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": config.site.url + "#person",
+            name: person.name,
+            alternateName: person.nickname,
+            url: config.site.url,
+            email: "mailto:" + person.email,
+            telephone: person.phoneLink,
+            jobTitle: person.roles,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: person.location,
+              addressCountry: "ID"
+            },
+            sameAs: [person.github],
+            knowsAbout: Object.values(config.skills).flat()
+          },
+          {
+            "@type": "WebSite",
+            "@id": config.site.url + "#website",
+            url: config.site.url,
+            name: person.name + " — Portfolio",
+            inLanguage: config.site.language,
+            about: {"@id": config.site.url + "#person"}
+          },
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {"@type": "ListItem", position: 1, name: "Home", item: config.site.url}
+            ]
+          }
+        ]
+      });
+      setText("brandName", config.site.brand);
+      setText("availabilityText", config.site.availability);
+      setText("terminalLabel", person.nickname.toLowerCase() + "@production — architecture.ts");
+      document.getElementById("heroName").innerHTML =
+        person.name.split(" ").slice(0, 1).join(" ") + '<br><span class="gradient-text">' +
+        person.name.split(" ").slice(1).join(" ") + ".</span>";
+      setText("heroDescription", config.hero.description);
+      setText("primaryAction", config.hero.primaryAction);
+      setText("secondaryAction", config.hero.secondaryAction);
+      setText("shortLocation", person.shortLocation);
+      setText("timezone", person.timezone);
+      setText("workModes", person.workModes);
+      document.getElementById("heroEmailLink").href = "mailto:" + person.email;
+      document.getElementById("heroGithubLink").href = person.github;
+      const tickerItems = Object.values(config.skills).flat().slice(0, 10);
+      const tickerMarkup = tickerItems.map(item => "<span>" + item + "</span>").join("");
+      document.getElementById("tickerTrack").innerHTML =
+        '<div class="ticker-set">' + tickerMarkup + '</div>' +
+        '<div class="ticker-set" aria-hidden="true">' + tickerMarkup + '</div>';
+
+      setText("aboutEyebrow", config.about.eyebrow);
+      setText("aboutTitle", config.about.title);
+      setText("aboutIntro", config.about.intro);
+      setText("aboutDescription", config.about.description);
+      document.getElementById("profileCode").innerHTML =
+        '<div><span class="muted">name:</span> <strong>"' + person.nickname + '"</strong></div>' +
+        '<div><span class="muted">experience:</span> <strong>"' + config.about.profile.experience + '"</strong></div>' +
+        '<div><span class="muted">focus:</span> <strong>"' + config.about.profile.focus + '"</strong></div>' +
+        '<div><span class="muted">status:</span> <strong>"' + config.about.profile.status + '"</strong></div>';
+      document.getElementById("capabilityGrid").innerHTML = config.about.capabilities.map(item =>
+        '<article class="capability"><i data-lucide="' + item.icon + '"></i><h3>' + item.title +
+        '</h3><p>' + item.description + '</p></article>'
+      ).join("");
+
+      document.getElementById("statsGrid").innerHTML = config.statistics.map(item =>
+        '<div class="stat"><span class="stat-value" data-count="' + item.value + '">0<b>' +
+        item.suffix + '</b></span><span class="stat-label">' + item.label + '</span></div>'
+      ).join("");
+
+      document.getElementById("projectList").innerHTML = config.projects.map((project, index) => {
+        const number = String(index + 1).padStart(2, "0");
+        const total = String(config.projects.length).padStart(2, "0");
+        const tags = project.tech.map(item => '<span class="tag">' + item + '</span>').join("");
+        const label = project.public ? "Open " + project.title : project.title + " is private";
+        const link = project.public
+          ? 'href="' + project.url + '" target="_blank" rel="noopener noreferrer"'
+          : 'href="#contact"';
+        return '<article class="project reveal"><span class="project-index">' + number + " / " + total +
+          '</span><div class="project-main"><h3>' + project.title + '</h3><div class="tags">' + tags +
+          '</div></div><p class="project-desc">' + project.description + '</p><a class="project-arrow" ' +
+          link + ' aria-label="' + label + '" title="' + label + '"><i data-lucide="' +
+          (project.public ? "arrow-up-right" : "lock-keyhole") + '"></i></a></article>';
+      }).join("");
+
+      renderSkills(config.skills);
+
+      document.getElementById("servicesGrid").innerHTML = config.services.map((item, index) =>
+        '<article class="service"><div class="service-top"><i data-lucide="' + item.icon +
+        '"></i><span class="service-index">' + String(index + 1).padStart(2, "0") +
+        '</span></div><h3>' + item.title + '</h3><p>' + item.description + '</p></article>'
+      ).join("");
+
+      document.getElementById("experienceTimeline").innerHTML = config.experience.map(item =>
+        '<article class="timeline-item reveal"><div class="timeline-period">' + item.period +
+        '</div><div class="timeline-content"><h3>' + item.title + '</h3><div class="company">' +
+        item.company + '</div><div class="timeline-points">' +
+        item.responsibilities.map(point => "<span>" + point + "</span>").join("") +
+        "</div></div></article>"
+      ).join("");
+
+      document.getElementById("principlesGrid").innerHTML = config.principles.map(item =>
+        '<article class="principle"><i data-lucide="' + item.icon + '"></i><h3>' + item.title +
+        '</h3><span>' + item.subtitle + '</span></article>'
+      ).join("");
+
+      setText("contactEyebrow", config.contact.eyebrow);
+      setText("contactTitle", config.contact.title);
+      setText("contactAccentTitle", config.contact.accentTitle);
+      setText("contactDescription", config.contact.description);
+      document.getElementById("contactEmailButton").href = "mailto:" + person.email;
+      document.getElementById("contactPhoneButton").href = "tel:" + person.phoneLink;
+      document.getElementById("contactList").innerHTML =
+        '<a class="contact-row" href="mailto:' + person.email + '"><i data-lucide="mail"></i><span><small>Email</small><strong>' + person.email + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>' +
+        '<a class="contact-row" href="tel:' + person.phoneLink + '"><i data-lucide="phone"></i><span><small>Phone</small><strong>' + person.phoneDisplay + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>' +
+        '<a class="contact-row" href="' + person.github + '" target="_blank" rel="noopener noreferrer"><i data-lucide="github"></i><span><small>GitHub</small><strong>' + person.githubLabel + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>' +
+        '<div class="contact-row"><i data-lucide="map-pin"></i><span><small>Location</small><strong>' + person.location + '</strong></span></div>';
+
+      setText("footerName", person.name);
+      setText("footerNote", config.site.footerNote);
+      setText("year", new Date().getFullYear());
+
+      if (window.lucide) lucide.createIcons();
+      observeReveals();
+      startTypewriter();
+    }
+
+    function renderSkills(skillData) {
+      const tabs = document.getElementById("skillTabs");
+      const panels = document.getElementById("skillPanels");
+      tabs.innerHTML = "";
+      panels.innerHTML = "";
+      Object.entries(skillData).forEach(([category, items], index) => {
+        const id = "skill-" + category.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+        const tab = document.createElement("button");
+        tab.className = "skill-tab" + (index === 0 ? " active" : "");
+        tab.type = "button";
+        tab.role = "tab";
+        tab.id = id + "-tab";
+        tab.setAttribute("aria-controls", id);
+        tab.setAttribute("aria-selected", index === 0 ? "true" : "false");
+        tab.innerHTML = "<span>" + category + "</span><small>" + String(items.length).padStart(2, "0") + "</small>";
+        const panel = document.createElement("div");
+        panel.className = "skill-panel" + (index === 0 ? " active" : "");
+        panel.id = id;
+        panel.role = "tabpanel";
+        panel.setAttribute("aria-labelledby", tab.id);
+        panel.innerHTML = items.map(item => {
+          const abbr = item.split(/[\s.-]/).map(word => word[0]).join("").slice(0, 3).toUpperCase();
+          return '<div class="skill-card"><div class="skill-icon">' + abbr + '</div><strong>' +
+            item + '</strong><small>Production ready</small></div>';
+        }).join("");
+        tab.addEventListener("click", () => {
+          document.querySelectorAll(".skill-tab").forEach(el => {
+            el.classList.remove("active");
+            el.setAttribute("aria-selected", "false");
+          });
+          document.querySelectorAll(".skill-panel").forEach(el => el.classList.remove("active"));
+          tab.classList.add("active");
+          tab.setAttribute("aria-selected", "true");
+          panel.classList.add("active");
+        });
+        tabs.appendChild(tab);
+        panels.appendChild(panel);
+      });
+    }
+
+    fetch("./config.json")
+      .then(response => {
+        if (!response.ok) throw new Error("Unable to load config.json");
+        return response.json();
+      })
+      .then(renderConfig)
+      .catch(error => {
+        console.error(error);
+        document.getElementById("heroDescription").textContent =
+          "Configuration could not be loaded. Run this portfolio through a local web server.";
+      });
+
+    window.addEventListener("load", () => {
+      if (window.lucide) lucide.createIcons();
+    });
+
+    const nav = document.getElementById("nav");
+    const progress = document.getElementById("progress");
+    const backTop = document.getElementById("backTop");
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    const sections = [...document.querySelectorAll("main section[id]")];
+    const navAnchors = [...document.querySelectorAll(".nav-links a[href^='#']")];
+
+    menuBtn.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    });
+    navAnchors.forEach(link => link.addEventListener("click", () => {
+      navLinks.classList.remove("open"); menuBtn.setAttribute("aria-expanded","false");
+    }));
+
+    function onScroll() {
+      const y = window.scrollY;
+      const max = document.documentElement.scrollHeight - innerHeight;
+      nav.classList.toggle("scrolled", y > 20);
+      backTop.classList.toggle("show", y > 650);
+      progress.style.width = (max > 0 ? y / max * 100 : 0) + "%";
+      let current = "";
+      sections.forEach(section => { if (y >= section.offsetTop - 160) current = section.id; });
+      navAnchors.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + current));
+    }
+    addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("visible");
+        if (entry.target.classList.contains("stats-grid")) animateCounters();
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: .12 });
+    function observeReveals() {
+      document.querySelectorAll(".reveal:not([data-observed])").forEach(el => {
+        el.dataset.observed = "true";
+        observer.observe(el);
+      });
+    }
+    observeReveals();
+
+    let counted = false;
+    function animateCounters() {
+      if (counted) return; counted = true;
+      document.querySelectorAll("[data-count]").forEach(el => {
+        const target = Number(el.dataset.count), suffix = el.querySelector("b").outerHTML;
+        const start = performance.now(), duration = 1300;
+        function frame(now) {
+          const p = Math.min((now-start)/duration,1);
+          const eased = 1-Math.pow(1-p,3);
+          el.innerHTML = Math.round(target*eased) + suffix;
+          if (p < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      });
+    }
+
+    const typed = document.getElementById("typed");
+    let roleIndex = 0, charIndex = 0, deleting = false;
+    function typeRole() {
+      const role = roles[roleIndex];
+      charIndex += deleting ? -1 : 1;
+      typed.textContent = role.slice(0,charIndex);
+      let delay = deleting ? 28 : 55;
+      if (!deleting && charIndex === role.length) { deleting = true; delay = 1700; }
+      else if (deleting && charIndex === 0) { deleting = false; roleIndex = (roleIndex+1)%roles.length; delay = 350; }
+      setTimeout(typeRole,delay);
+    }
+    let typewriterStarted = false;
+    function startTypewriter() {
+      if (typewriterStarted || !roles.length) return;
+      typewriterStarted = true;
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) typeRole();
+      else typed.textContent = roles[0];
+    }
+
+    const glow = document.querySelector(".cursor-glow");
+    addEventListener("pointermove", e => { glow.style.left = e.clientX + "px"; glow.style.top = e.clientY + "px"; }, {passive:true});
+
+    document.querySelectorAll(".magnetic").forEach(button => {
+      button.addEventListener("pointermove", e => {
+        const r = button.getBoundingClientRect();
+        button.style.transform = "translate(" + ((e.clientX-r.left-r.width/2)*.12) + "px," + ((e.clientY-r.top-r.height/2)*.16) + "px)";
+      });
+      button.addEventListener("pointerleave", () => button.style.transform = "");
+    });
+
+    const visual = document.getElementById("parallaxVisual");
+    visual.addEventListener("pointermove", e => {
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const r = visual.getBoundingClientRect(), x = (e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      visual.querySelector(".terminal").style.transform = "rotateY(" + (-4+x*5) + "deg) rotateX(" + (2-y*5) + "deg) translate(" + (x*5) + "px," + (y*5) + "px)";
+    });
+    visual.addEventListener("pointerleave", () => visual.querySelector(".terminal").style.transform = "");
+
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    let dots = [], dpr = Math.min(devicePixelRatio || 1, 2);
+    function resizeCanvas() {
+      canvas.width = innerWidth*dpr; canvas.height = innerHeight*dpr;
+      canvas.style.width = innerWidth+"px"; canvas.style.height = innerHeight+"px";
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      const count = Math.min(65, Math.floor(innerWidth/20));
+      dots = Array.from({length:count},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.12,vy:(Math.random()-.5)*.12,r:Math.random()*1.2+.25}));
+    }
+    function drawParticles() {
+      ctx.clearRect(0,0,innerWidth,innerHeight);
+      dots.forEach((d,i) => {
+        d.x+=d.vx; d.y+=d.vy;
+        if(d.x<0||d.x>innerWidth)d.vx*=-1; if(d.y<0||d.y>innerHeight)d.vy*=-1;
+        ctx.fillStyle="rgba(164,180,196,.36)"; ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,Math.PI*2);ctx.fill();
+        for(let j=i+1;j<dots.length;j++){const o=dots[j],dx=d.x-o.x,dy=d.y-o.y,dist=Math.hypot(dx,dy);if(dist<110){ctx.strokeStyle="rgba(116,247,184,"+((1-dist/110)*.06)+")";ctx.beginPath();ctx.moveTo(d.x,d.y);ctx.lineTo(o.x,o.y);ctx.stroke();}}
+      });
+      requestAnimationFrame(drawParticles);
+    }
+    resizeCanvas();
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) drawParticles();
+    addEventListener("resize",resizeCanvas);
+  </script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+{
+  "site": {
+    "language": "en",
+    "url": "https://latif.dev/",
+    "brand": "Latif Harkat",
+    "availability": "Available for select opportunities",
+    "footerNote": "Designed & engineered with intention."
+  },
+  "seo": {
+    "description": "Muhammad Latif Harkat is a Senior Full Stack Developer and IT Project Manager building scalable web platforms, automation systems, and high-performance infrastructure.",
+    "socialDescription": "Scalable platforms, reliable infrastructure, and automation systems engineered end to end.",
+    "keywords": [
+      "Muhammad Latif Harkat",
+      "Senior Full Stack Developer",
+      "IT Project Manager",
+      "Golang",
+      "Next.js",
+      "Laravel",
+      "DevOps",
+      "Sukabumi",
+      "Indonesia"
+    ]
+  },
+  "person": {
+    "name": "Muhammad Latif Harkat",
+    "nickname": "Latif",
+    "headline": "Senior Full Stack Developer",
+    "roles": [
+      "Senior Full Stack Developer",
+      "IT Project Manager",
+      "Backend & Automation Engineer",
+      "Systems Architecture Lead"
+    ],
+    "location": "Sukabumi, West Java, Indonesia",
+    "shortLocation": "Sukabumi, West Java",
+    "timezone": "GMT+7",
+    "workModes": "Remote · Hybrid · On-site",
+    "experience": "5+ years",
+    "email": "latipharkat48@gmail.com",
+    "phoneDisplay": "+62 878-1673-9146",
+    "phoneLink": "+6287816739146",
+    "github": "https://github.com/mevander88",
+    "githubLabel": "github.com/mevander88"
+  },
+  "hero": {
+    "description": "I engineer scalable digital products from interface to infrastructure — combining rigorous architecture, high-performance backends, automation, and technical leadership.",
+    "primaryAction": "Explore my work",
+    "secondaryAction": "Let's talk"
+  },
+  "about": {
+    "eyebrow": "About me",
+    "title": "Built for the whole system.",
+    "intro": "I am a Full Stack Developer with more than five years of experience designing and delivering scalable software across the frontend, backend, cloud, automation, and distributed systems.",
+    "description": "My work spans large-scale web products, enterprise systems, high-performance APIs, real-time operations, infrastructure, and data-heavy workflows. I translate ambiguous business goals into dependable technical systems, then guide teams through architecture, implementation, deployment, and continuous improvement.",
+    "profile": {
+      "experience": "5+ years",
+      "focus": "impact at scale",
+      "status": "available"
+    },
+    "capabilities": [
+      {
+        "icon": "network",
+        "title": "Architecture & Scale",
+        "description": "Distributed services, clean boundaries, resilient data flows, and systems designed for growth."
+      },
+      {
+        "icon": "gauge",
+        "title": "Performance Engineering",
+        "description": "Profiling, caching, query optimization, concurrency, and fast backend services."
+      },
+      {
+        "icon": "workflow",
+        "title": "Automation & Operations",
+        "description": "Browser, ADB, scraping, task orchestration, workers, and reliable processing pipelines."
+      },
+      {
+        "icon": "users",
+        "title": "Technical Leadership",
+        "description": "Project planning, architecture decisions, reviews, agile delivery, and team alignment."
+      }
+    ]
+  },
+  "statistics": [
+    { "value": 5, "suffix": "+", "label": "Years experience" },
+    { "value": 50, "suffix": "+", "label": "Projects completed" },
+    { "value": 20, "suffix": "+", "label": "Technologies" },
+    { "value": 100, "suffix": "%", "label": "Commitment to quality" }
+  ],
+  "projects": [
+    {
+      "title": "Anime Streaming Platform",
+      "description": "A modern streaming experience with a scalable backend, search-focused discovery, technical SEO, responsive playback surfaces, and globally optimized content delivery.",
+      "tech": ["Next.js", "GoFiber", "PostgreSQL", "Redis", "Cloudflare"],
+      "url": "#",
+      "public": false
+    },
+    {
+      "title": "MutasiOPS",
+      "description": "Enterprise financial mutation automation connected to multiple Android devices, built for high concurrency, real-time monitoring, reliable workflows, and efficient transaction processing.",
+      "tech": ["ADB Automation", "Multi-device", "Real-time", "Workers", "Queues"],
+      "url": "#",
+      "public": false
+    },
+    {
+      "title": "WebDok",
+      "description": "Digital bookkeeping and business management software with transaction workflows, financial reporting, user administration, operational analytics, and decision-ready dashboards.",
+      "tech": ["Fintech", "Analytics", "Reporting", "RBAC"],
+      "url": "#",
+      "public": false
+    },
+    {
+      "title": "Automation & Security Tools",
+      "description": "A practical toolkit for infrastructure management: automation utilities, monitoring software, internal security research tools, OSINT workflows, and productivity systems.",
+      "tech": ["OSINT", "Monitoring", "Network", "Automation"],
+      "url": "https://github.com/mevander88",
+      "public": true
+    }
+  ],
+  "skills": {
+    "Programming Languages": ["Python", "PHP", "Golang", "JavaScript", "TypeScript", "Java", "SQL"],
+    "Frontend Frameworks": ["Next.js", "React.js", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"],
+    "Backend Frameworks": ["GoFiber", "Laravel", "CodeIgniter", "Node.js", "Express.js"],
+    "Databases": ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
+    "Cloud & DevOps": ["AWS", "Docker", "Linux", "Nginx", "Apache", "Cloudflare", "Git", "GitHub", "CI/CD"],
+    "Architecture": ["REST API", "GraphQL", "gRPC", "WebSocket", "Microservices", "Clean Architecture", "Domain Driven Design"],
+    "Automation": ["Web Scraping", "Browser Automation", "ADB Automation", "Bot Development", "Task Automation", "Data Processing", "API Integration"],
+    "Minecraft Development": ["PocketMine-MP", "Paper", "Spigot", "Bukkit", "Plugin Development", "Server Optimization"]
+  },
+  "services": [
+    {
+      "icon": "panels-top-left",
+      "title": "Product Engineering",
+      "description": "Full-stack web products, enterprise applications, and interfaces built for real workflows."
+    },
+    {
+      "icon": "server-cog",
+      "title": "Backend & APIs",
+      "description": "High-performance services, REST APIs, integrations, queues, and real-time systems."
+    },
+    {
+      "icon": "blocks",
+      "title": "System Architecture",
+      "description": "Technical discovery, domain modeling, database design, and scalable architecture."
+    },
+    {
+      "icon": "cloud-cog",
+      "title": "Cloud & DevOps",
+      "description": "Deployment, CI/CD, Linux infrastructure, observability, and performance tuning."
+    },
+    {
+      "icon": "bot",
+      "title": "Automation",
+      "description": "Web scraping, bots, browser automation, ADB orchestration, and task processing."
+    },
+    {
+      "icon": "scan-search",
+      "title": "Optimization",
+      "description": "Database profiling, caching strategy, bottleneck removal, and reliability upgrades."
+    },
+    {
+      "icon": "boxes",
+      "title": "Minecraft Systems",
+      "description": "Server development, plugins, infrastructure, gameplay systems, and optimization."
+    },
+    {
+      "icon": "messages-square",
+      "title": "Technical Consulting",
+      "description": "Architecture review, delivery planning, code review, and engineering leadership."
+    }
+  ],
+  "experience": [
+    {
+      "period": "2021 — PRESENT",
+      "title": "Senior Full Stack Developer",
+      "company": "Independent & product-focused engineering",
+      "responsibilities": [
+        "Enterprise applications",
+        "Scalable architecture",
+        "Backend optimization",
+        "Frontend engineering",
+        "Cloud deployment",
+        "Automation systems",
+        "Database optimization",
+        "API development",
+        "Technical leadership"
+      ]
+    },
+    {
+      "period": "LEADERSHIP",
+      "title": "IT Project Manager",
+      "company": "Technical strategy & delivery management",
+      "responsibilities": [
+        "Team leadership",
+        "Project planning",
+        "System analysis",
+        "Architecture decisions",
+        "Code review",
+        "Agile management",
+        "Risk management",
+        "Deployment strategy",
+        "Stakeholder alignment"
+      ]
+    }
+  ],
+  "principles": [
+    { "icon": "maximize-2", "title": "Scalable Architecture", "subtitle": "Growth without rewrites" },
+    { "icon": "braces", "title": "Clean Code", "subtitle": "Clarity compounds" },
+    { "icon": "zap", "title": "High Performance", "subtitle": "Measured, then improved" },
+    { "icon": "shield-check", "title": "Security Focus", "subtitle": "Designed into the system" },
+    { "icon": "puzzle", "title": "Problem Solver", "subtitle": "Root cause over symptoms" },
+    { "icon": "book-open-check", "title": "Fast Learner", "subtitle": "Adapt without churn" },
+    { "icon": "badge-check", "title": "Reliable Delivery", "subtitle": "Ownership end to end" },
+    { "icon": "sparkles", "title": "Modern Technology", "subtitle": "Useful, not fashionable" }
+  ],
+  "contact": {
+    "eyebrow": "Start a conversation",
+    "title": "Have a hard problem?",
+    "accentTitle": "Let's solve it.",
+    "description": "Available for freelance, contract, remote, hybrid, and full-time opportunities. Tell me what you are building, what is blocking it, and what success needs to look like."
+  }
+}
