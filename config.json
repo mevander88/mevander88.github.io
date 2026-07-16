@@ -89,10 +89,10 @@
     ]
   },
   "statistics": [
-    { "value": 6, "suffix": "", "label": "Programming languages" },
-    { "value": 9, "suffix": "", "label": "Backend technologies" },
-    { "value": 4, "suffix": "", "label": "Database systems" },
-    { "value": 8, "suffix": "", "label": "Engineering disciplines" }
+    { "value": 6, "suffix": "", "label": "Programming languages", "icon": "code-2" },
+    { "value": 9, "suffix": "", "label": "Backend technologies", "icon": "server-cog" },
+    { "value": 4, "suffix": "", "label": "Database systems", "icon": "database" },
+    { "value": 8, "suffix": "", "label": "Engineering disciplines", "icon": "layers-3" }
   ],
   "achievements": [
     {
