@@ -2,15 +2,15 @@
   "site": {
     "language": "en",
     "url": "https://mevander88.github.io/",
-    "brand": "Marquis Evander",
+    "brand": "Muhammad Latif Harkat",
     "availability": "Available for select opportunities",
     "footerNote": "Designed & engineered with intention."
   },
   "seo": {
-    "description": "Marquis Evander is a Software Engineer from Indonesia specializing in full-stack development, scalable backend systems, DevOps, cybersecurity, automation, and system architecture.",
+    "description": "Muhammad Latif Harkat is a Software Engineer from Indonesia specializing in full-stack development, scalable backend systems, DevOps, cybersecurity, automation, and system architecture.",
     "socialDescription": "Software Engineer building scalable applications, high-performance APIs, infrastructure, and security automation.",
     "keywords": [
-      "Marquis Evander",
+      "Muhammad Latif Harkat",
       "Software Engineer",
       "Fullstack Engineer",
       "Backend Developer",
@@ -24,8 +24,8 @@
     ]
   },
   "person": {
-    "name": "Marquis Evander",
-    "nickname": "Marquis",
+    "name": "Muhammad Latif Harkat",
+    "nickname": "Latif",
     "headline": "Software Engineer",
     "roles": [
       "Software Engineer from Indonesia",
@@ -39,7 +39,7 @@
     "timezone": "GMT+7",
     "workModes": "Remote · Hybrid · On-site",
     "experience": "",
-    "email": "",
+    "email": "latipharkat48@gmail.com",
     "phoneDisplay": "",
     "phoneLink": "",
     "github": "https://github.com/mevander88",
