@@ -250,6 +250,9 @@
     .skill-card { min-height: 116px; padding: 18px; border: 1px solid var(--line); background: rgba(255,255,255,.022); transition: border-color .2s,transform .2s,background .2s; }
     .skill-card:hover { transform: translateY(-3px); border-color: rgba(116,247,184,.25); background: rgba(116,247,184,.035); }
     .skill-icon { width: 32px; height: 32px; display: grid; place-items: center; margin-bottom: 18px; border: 1px solid var(--line); color: var(--green); font: 750 10px ui-monospace,monospace; }
+    .skill-icon img { width: 19px; height: 19px; object-fit: contain; }
+    .skill-icon img[src*="/openai.svg"] { filter: invert(1); }
+    .skill-icon.has-logo span { display: none; }
     .skill-card strong { display: block; font-size: 13px; }
     .skill-card small { color: var(--muted-2); font: 10px ui-monospace,monospace; }
 
@@ -693,7 +696,7 @@
           (project.public ? "arrow-up-right" : "lock-keyhole") + '"></i></a></article>';
       }).join("");
 
-      renderSkills(config.skills);
+      renderSkills(config.skills, config.skillLogos || {});
 
       document.getElementById("servicesGrid").innerHTML = config.services.map((item, index) =>
         '<article class="service"><div class="service-top"><i data-lucide="' + item.icon +
@@ -745,7 +748,7 @@
       startTypewriter();
     }
 
-    function renderSkills(skillData) {
+    function renderSkills(skillData, skillLogos) {
       const tabs = document.getElementById("skillTabs");
       const panels = document.getElementById("skillPanels");
       tabs.innerHTML = "";
@@ -767,7 +770,11 @@
         panel.setAttribute("aria-labelledby", tab.id);
         panel.innerHTML = items.map(item => {
           const abbr = item.split(/[\s.-]/).map(word => word[0]).join("").slice(0, 3).toUpperCase();
-          return '<div class="skill-card"><div class="skill-icon">' + abbr + '</div><strong>' +
+          const logo = skillLogos[item];
+          const icon = '<div class="skill-icon' + (logo ? " has-logo" : "") + '">' +
+            (logo ? '<img src="' + logo + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : "") +
+            '<span>' + abbr + '</span></div>';
+          return '<div class="skill-card">' + icon + '<strong>' +
             item + '</strong><small>Production ready</small></div>';
         }).join("");
         tab.addEventListener("click", () => {
@@ -782,6 +789,12 @@
         });
         tabs.appendChild(tab);
         panels.appendChild(panel);
+      });
+      panels.querySelectorAll(".skill-icon img").forEach(image => {
+        image.addEventListener("error", () => {
+          image.parentElement.classList.remove("has-logo");
+          image.remove();
+        }, {once: true});
       });
     }
 
