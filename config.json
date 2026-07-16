@@ -188,35 +188,51 @@
   ],
   "experience": [
     {
-      "period": "CORE FOCUS",
-      "title": "Fullstack & Backend Engineering",
-      "company": "Production-ready application development",
+      "period": "PROJECT MANAGEMENT",
+      "title": "Project Manager",
+      "company": "PT Sero Mula Mandiri",
       "responsibilities": [
-        "Scalable frontend architecture",
-        "Scalable backend systems",
-        "Golang services",
-        "Python backends",
-        "PHP applications",
-        "Node.js services",
-        "High-performance APIs",
-        "Database optimization",
-        "Caching with Redis"
+        "Project planning",
+        "Development coordination",
+        "Requirement analysis",
+        "Technical documentation",
+        "Task management",
+        "Progress monitoring",
+        "Quality assurance",
+        "Deployment coordination",
+        "Stakeholder communication"
       ]
     },
     {
-      "period": "SPECIALIZATION",
-      "title": "Infrastructure, Automation & Security",
-      "company": "Reliable systems and defensive tooling",
+      "period": "FULL STACK DEVELOPMENT",
+      "title": "Full Stack Developer",
+      "company": "PT Mitra Pulsa Nasional",
       "responsibilities": [
-        "Docker",
-        "CI/CD automation",
+        "Frontend development",
+        "Backend development",
+        "REST API development",
+        "Database integration",
+        "System maintenance",
+        "Performance optimization",
+        "Bug fixing",
+        "Deployment",
+        "Technical support"
+      ]
+    },
+    {
+      "period": "FREELANCE",
+      "title": "Freelance Full Stack Developer",
+      "company": "Independent Software Development",
+      "responsibilities": [
+        "Client requirement analysis",
+        "Full-stack web development",
+        "Backend system development",
+        "API integration",
+        "Database design",
+        "Automation solutions",
         "Cloud deployment",
-        "Infrastructure",
-        "Web security",
-        "API security",
-        "Security research",
-        "ADB automation",
-        "Scrcpy debugging"
+        "Application maintenance",
+        "Technical consulting"
       ]
     }
   ],
