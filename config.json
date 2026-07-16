@@ -4,7 +4,12 @@
     "url": "https://mevander88.github.io/",
     "brand": "Muhammad Latif Harkat",
     "availability": "Available for select opportunities",
-    "footerNote": "Designed & engineered with intention."
+    "footerNote": "Designed & engineered with intention.",
+    "cv": {
+      "url": "./Muhammad-Latif-Harkat-CV.pdf",
+      "fileName": "Muhammad-Latif-Harkat-CV.pdf",
+      "label": "Download CV"
+    }
   },
   "seo": {
     "description": "Muhammad Latif Harkat is a Software Engineer from Indonesia specializing in full-stack development, scalable backend systems, DevOps, cybersecurity, automation, and system architecture.",

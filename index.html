@@ -467,6 +467,7 @@
           <div class="hero-actions reveal">
             <a class="btn btn-primary magnetic" href="#work"><span id="primaryAction">Explore my work</span> <i data-lucide="arrow-down-right"></i></a>
             <a class="btn magnetic" id="heroEmailLink" href="#"><span id="secondaryAction">Let's talk</span> <i data-lucide="send"></i></a>
+            <a class="btn magnetic" id="heroCvLink" href="#" download><span id="heroCvLabel">Download CV</span> <i data-lucide="file-down"></i></a>
             <a class="btn icon-btn" id="heroGithubLink" href="#" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub"><i data-lucide="github"></i></a>
           </div>
           <div class="hero-meta reveal">
@@ -600,6 +601,7 @@
               <div class="contact-actions">
                 <a class="btn btn-primary magnetic" id="contactEmailButton" href="#">Send an email <i data-lucide="send"></i></a>
                 <a class="btn magnetic" id="contactPhoneButton" href="#">Call me <i data-lucide="phone"></i></a>
+                <a class="btn magnetic" id="contactCvLink" href="#" download>Download CV <i data-lucide="file-down"></i></a>
               </div>
             </div>
             <div class="contact-list" id="contactList"></div>
@@ -706,6 +708,9 @@
         document.getElementById("heroEmailLink").rel = "noopener noreferrer";
       }
       document.getElementById("heroGithubLink").href = person.github;
+      document.getElementById("heroCvLink").href = config.site.cv.url;
+      document.getElementById("heroCvLink").download = config.site.cv.fileName;
+      setText("heroCvLabel", config.site.cv.label);
       const tickerItems = Object.values(config.skills).flat().slice(0, 10);
       const tickerMarkup = tickerItems.map(item => "<span>" + item + "</span>").join("");
       document.getElementById("tickerTrack").innerHTML =
@@ -773,6 +778,10 @@
       setText("contactDescription", config.contact.description);
       const emailButton = document.getElementById("contactEmailButton");
       const phoneButton = document.getElementById("contactPhoneButton");
+      const contactCvLink = document.getElementById("contactCvLink");
+      contactCvLink.href = config.site.cv.url;
+      contactCvLink.download = config.site.cv.fileName;
+      contactCvLink.firstChild.textContent = config.site.cv.label + " ";
       emailButton.hidden = !person.email;
       phoneButton.hidden = !person.phoneLink;
       if (person.email) emailButton.href = "mailto:" + person.email;
