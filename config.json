@@ -1,90 +1,93 @@
 {
   "site": {
     "language": "en",
-    "url": "https://latif.dev/",
-    "brand": "Latif Harkat",
+    "url": "https://mevander88.github.io/",
+    "brand": "Marquis Evander",
     "availability": "Available for select opportunities",
     "footerNote": "Designed & engineered with intention."
   },
   "seo": {
-    "description": "Muhammad Latif Harkat is a Senior Full Stack Developer and IT Project Manager building scalable web platforms, automation systems, and high-performance infrastructure.",
-    "socialDescription": "Scalable platforms, reliable infrastructure, and automation systems engineered end to end.",
+    "description": "Marquis Evander is a Software Engineer from Indonesia specializing in full-stack development, scalable backend systems, DevOps, cybersecurity, automation, and system architecture.",
+    "socialDescription": "Software Engineer building scalable applications, high-performance APIs, infrastructure, and security automation.",
     "keywords": [
-      "Muhammad Latif Harkat",
-      "Senior Full Stack Developer",
-      "IT Project Manager",
+      "Marquis Evander",
+      "Software Engineer",
+      "Fullstack Engineer",
+      "Backend Developer",
       "Golang",
       "Next.js",
-      "Laravel",
+      "Python",
+      "FastAPI",
+      "Cybersecurity",
       "DevOps",
-      "Sukabumi",
       "Indonesia"
     ]
   },
   "person": {
-    "name": "Muhammad Latif Harkat",
-    "nickname": "Latif",
-    "headline": "Senior Full Stack Developer",
+    "name": "Marquis Evander",
+    "nickname": "Marquis",
+    "headline": "Software Engineer",
     "roles": [
-      "Senior Full Stack Developer",
-      "IT Project Manager",
-      "Backend & Automation Engineer",
-      "Systems Architecture Lead"
+      "Software Engineer from Indonesia",
+      "Fullstack Engineer & Backend Developer",
+      "Next.js · Golang · Python · PHP",
+      "FastAPI · Laravel · Django · Redis",
+      "DevOps · Cybersecurity · System Architecture"
     ],
-    "location": "Sukabumi, West Java, Indonesia",
-    "shortLocation": "Sukabumi, West Java",
+    "location": "Indonesia",
+    "shortLocation": "Indonesia",
     "timezone": "GMT+7",
     "workModes": "Remote · Hybrid · On-site",
-    "experience": "5+ years",
-    "email": "latipharkat48@gmail.com",
-    "phoneDisplay": "+62 878-1673-9146",
-    "phoneLink": "+6287816739146",
+    "experience": "",
+    "email": "",
+    "phoneDisplay": "",
+    "phoneLink": "",
     "github": "https://github.com/mevander88",
     "githubLabel": "github.com/mevander88"
   },
   "hero": {
-    "description": "I engineer scalable digital products from interface to infrastructure — combining rigorous architecture, high-performance backends, automation, and technical leadership.",
+    "description": "I build scalable full-stack applications and backend systems with a focus on high-performance APIs, infrastructure, deployment, automation, cybersecurity, and maintainable architecture.",
     "primaryAction": "Explore my work",
-    "secondaryAction": "Let's talk"
+    "secondaryAction": "View GitHub"
   },
   "about": {
     "eyebrow": "About me",
-    "title": "Built for the whole system.",
-    "intro": "I am a Full Stack Developer with more than five years of experience designing and delivering scalable software across the frontend, backend, cloud, automation, and distributed systems.",
-    "description": "My work spans large-scale web products, enterprise systems, high-performance APIs, real-time operations, infrastructure, and data-heavy workflows. I translate ambiguous business goals into dependable technical systems, then guide teams through architecture, implementation, deployment, and continuous improvement.",
+    "title": "Code. Build. Scale.",
+    "intro": "I am a Software Engineer from Indonesia focused on full-stack development and scalable frontend and backend architecture.",
+    "description": "I engineer backend systems with Golang, Python, PHP, and Node.js; design REST APIs, microservices, and service-oriented systems; optimize databases and caching; automate DevOps workflows; and build defensive security and Android automation tools.",
     "profile": {
-      "experience": "5+ years",
-      "focus": "impact at scale",
+      "experience": "production focused",
+      "focus": "scalable systems",
       "status": "available"
     },
     "capabilities": [
       {
         "icon": "network",
-        "title": "Architecture & Scale",
-        "description": "Distributed services, clean boundaries, resilient data flows, and systems designed for growth."
+        "title": "Fullstack Engineering",
+        "description": "Scalable frontend and backend architecture for clean, maintainable, production-ready applications."
       },
       {
         "icon": "gauge",
-        "title": "Performance Engineering",
-        "description": "Profiling, caching, query optimization, concurrency, and fast backend services."
+        "title": "Backend Engineering",
+        "description": "High-performance APIs and backend systems using Golang, Python, PHP, and Node.js."
       },
       {
         "icon": "workflow",
-        "title": "Automation & Operations",
-        "description": "Browser, ADB, scraping, task orchestration, workers, and reliable processing pipelines."
+        "title": "DevOps & Automation",
+        "description": "CI/CD workflows, containers, cloud deployment, infrastructure, ADB, and task automation."
       },
       {
-        "icon": "users",
-        "title": "Technical Leadership",
-        "description": "Project planning, architecture decisions, reviews, agile delivery, and team alignment."
+        "icon": "shield-check",
+        "title": "Security Engineering",
+        "description": "Web and API security, network analysis, vulnerability assessment, and defensive security tooling."
       }
     ]
   },
   "statistics": [
-    { "value": 5, "suffix": "+", "label": "Years experience" },
-    { "value": 50, "suffix": "+", "label": "Projects completed" },
-    { "value": 20, "suffix": "+", "label": "Technologies" },
-    { "value": 100, "suffix": "%", "label": "Commitment to quality" }
+    { "value": 6, "suffix": "", "label": "Programming languages" },
+    { "value": 9, "suffix": "", "label": "Backend technologies" },
+    { "value": 4, "suffix": "", "label": "Database systems" },
+    { "value": 8, "suffix": "", "label": "Engineering disciplines" }
   ],
   "projects": [
     {
@@ -117,14 +120,15 @@
     }
   ],
   "skills": {
-    "Programming Languages": ["Python", "PHP", "Golang", "JavaScript", "TypeScript", "Java", "SQL"],
-    "Frontend Frameworks": ["Next.js", "React.js", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"],
-    "Backend Frameworks": ["GoFiber", "Laravel", "CodeIgniter", "Node.js", "Express.js"],
+    "Programming Languages": ["JavaScript", "TypeScript", "Python", "PHP", "C#", "Go"],
+    "Frontend": ["React", "Next.js", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"],
+    "Backend": ["Node.js", "Express", "Flask", "FastAPI", "Django", "Laravel", "CodeIgniter", "ASP.NET", "Golang (GoFiber)"],
     "Databases": ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
-    "Cloud & DevOps": ["AWS", "Docker", "Linux", "Nginx", "Apache", "Cloudflare", "Git", "GitHub", "CI/CD"],
-    "Architecture": ["REST API", "GraphQL", "gRPC", "WebSocket", "Microservices", "Clean Architecture", "Domain Driven Design"],
-    "Automation": ["Web Scraping", "Browser Automation", "ADB Automation", "Bot Development", "Task Automation", "Data Processing", "API Integration"],
-    "Minecraft Development": ["PocketMine-MP", "Paper", "Spigot", "Bukkit", "Plugin Development", "Server Optimization"]
+    "DevOps": ["Docker", "Nginx", "Linux", "GitHub Actions", "CI/CD", "PM2", "Cloud Deployment"],
+    "Cybersecurity": ["Web Security", "API Security", "Network Analysis", "Automation Tools", "Security Research", "Vulnerability Assessment"],
+    "Tools": ["Git", "Postman", "VSCode", "ADB", "Scrcpy"],
+    "Architecture": ["REST API", "Microservices", "Clean Architecture", "Service-Oriented Architecture"],
+    "Specialization": ["Scalable Backend Systems", "High-Performance APIs", "Infrastructure and Deployment", "Automation and Security Tooling"]
   },
   "services": [
     {
@@ -158,9 +162,9 @@
       "description": "Database profiling, caching strategy, bottleneck removal, and reliability upgrades."
     },
     {
-      "icon": "boxes",
-      "title": "Minecraft Systems",
-      "description": "Server development, plugins, infrastructure, gameplay systems, and optimization."
+      "icon": "shield-check",
+      "title": "Cybersecurity",
+      "description": "Web and API security, network analysis, security research, and vulnerability assessment."
     },
     {
       "icon": "messages-square",
@@ -170,35 +174,35 @@
   ],
   "experience": [
     {
-      "period": "2021 — PRESENT",
-      "title": "Senior Full Stack Developer",
-      "company": "Independent & product-focused engineering",
+      "period": "CORE FOCUS",
+      "title": "Fullstack & Backend Engineering",
+      "company": "Production-ready application development",
       "responsibilities": [
-        "Enterprise applications",
-        "Scalable architecture",
-        "Backend optimization",
-        "Frontend engineering",
-        "Cloud deployment",
-        "Automation systems",
+        "Scalable frontend architecture",
+        "Scalable backend systems",
+        "Golang services",
+        "Python backends",
+        "PHP applications",
+        "Node.js services",
+        "High-performance APIs",
         "Database optimization",
-        "API development",
-        "Technical leadership"
+        "Caching with Redis"
       ]
     },
     {
-      "period": "LEADERSHIP",
-      "title": "IT Project Manager",
-      "company": "Technical strategy & delivery management",
+      "period": "SPECIALIZATION",
+      "title": "Infrastructure, Automation & Security",
+      "company": "Reliable systems and defensive tooling",
       "responsibilities": [
-        "Team leadership",
-        "Project planning",
-        "System analysis",
-        "Architecture decisions",
-        "Code review",
-        "Agile management",
-        "Risk management",
-        "Deployment strategy",
-        "Stakeholder alignment"
+        "Docker",
+        "CI/CD automation",
+        "Cloud deployment",
+        "Infrastructure",
+        "Web security",
+        "API security",
+        "Security research",
+        "ADB automation",
+        "Scrcpy debugging"
       ]
     }
   ],
@@ -213,9 +217,9 @@
     { "icon": "sparkles", "title": "Modern Technology", "subtitle": "Useful, not fashionable" }
   ],
   "contact": {
-    "eyebrow": "Start a conversation",
-    "title": "Have a hard problem?",
-    "accentTitle": "Let's solve it.",
-    "description": "Available for freelance, contract, remote, hybrid, and full-time opportunities. Tell me what you are building, what is blocking it, and what success needs to look like."
+    "eyebrow": "Connect",
+    "title": "Explore my work.",
+    "accentTitle": "Build what scales.",
+    "description": "Connect through GitHub to explore my software engineering work across full-stack development, backend systems, DevOps, automation, cybersecurity, and system architecture."
   }
 }

@@ -386,7 +386,7 @@
 
   <header class="site-nav" id="nav">
     <div class="container nav-inner">
-      <a class="brand" href="#home" aria-label="Latif, home">
+      <a class="brand" id="brandLink" href="#home" aria-label="Home">
         <span class="brand-mark"><i data-lucide="code-2" aria-hidden="true"></i></span>
         <span class="brand-name" id="brandName"></span>
         <span class="brand-status" title="Available for work"></span>
@@ -560,7 +560,7 @@
     <div class="container footer-inner">
       <span>© <span id="year"></span> <span id="footerName"></span></span>
       <span id="footerNote"></span>
-      <span>LAT -6.9175 / LNG 106.9272</span>
+      <span id="footerLocation"></span>
     </div>
   </footer>
 
@@ -607,8 +607,8 @@
             name: person.name,
             alternateName: person.nickname,
             url: config.site.url,
-            email: "mailto:" + person.email,
-            telephone: person.phoneLink,
+            ...(person.email ? {email: "mailto:" + person.email} : {}),
+            ...(person.phoneLink ? {telephone: person.phoneLink} : {}),
             jobTitle: person.roles,
             address: {
               "@type": "PostalAddress",
@@ -635,6 +635,7 @@
         ]
       });
       setText("brandName", config.site.brand);
+      document.getElementById("brandLink").setAttribute("aria-label", config.site.brand + ", home");
       setText("availabilityText", config.site.availability);
       setText("terminalLabel", person.nickname.toLowerCase() + "@production — architecture.ts");
       document.getElementById("heroName").innerHTML =
@@ -646,7 +647,11 @@
       setText("shortLocation", person.shortLocation);
       setText("timezone", person.timezone);
       setText("workModes", person.workModes);
-      document.getElementById("heroEmailLink").href = "mailto:" + person.email;
+      document.getElementById("heroEmailLink").href = person.email ? "mailto:" + person.email : person.github;
+      if (!person.email) {
+        document.getElementById("heroEmailLink").target = "_blank";
+        document.getElementById("heroEmailLink").rel = "noopener noreferrer";
+      }
       document.getElementById("heroGithubLink").href = person.github;
       const tickerItems = Object.values(config.skills).flat().slice(0, 10);
       const tickerMarkup = tickerItems.map(item => "<span>" + item + "</span>").join("");
@@ -713,16 +718,26 @@
       setText("contactTitle", config.contact.title);
       setText("contactAccentTitle", config.contact.accentTitle);
       setText("contactDescription", config.contact.description);
-      document.getElementById("contactEmailButton").href = "mailto:" + person.email;
-      document.getElementById("contactPhoneButton").href = "tel:" + person.phoneLink;
-      document.getElementById("contactList").innerHTML =
-        '<a class="contact-row" href="mailto:' + person.email + '"><i data-lucide="mail"></i><span><small>Email</small><strong>' + person.email + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>' +
-        '<a class="contact-row" href="tel:' + person.phoneLink + '"><i data-lucide="phone"></i><span><small>Phone</small><strong>' + person.phoneDisplay + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>' +
-        '<a class="contact-row" href="' + person.github + '" target="_blank" rel="noopener noreferrer"><i data-lucide="github"></i><span><small>GitHub</small><strong>' + person.githubLabel + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>' +
-        '<div class="contact-row"><i data-lucide="map-pin"></i><span><small>Location</small><strong>' + person.location + '</strong></span></div>';
+      const emailButton = document.getElementById("contactEmailButton");
+      const phoneButton = document.getElementById("contactPhoneButton");
+      emailButton.hidden = !person.email;
+      phoneButton.hidden = !person.phoneLink;
+      if (person.email) emailButton.href = "mailto:" + person.email;
+      if (person.phoneLink) phoneButton.href = "tel:" + person.phoneLink;
+      const contactRows = [];
+      if (person.email) {
+        contactRows.push('<a class="contact-row" href="mailto:' + person.email + '"><i data-lucide="mail"></i><span><small>Email</small><strong>' + person.email + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>');
+      }
+      if (person.phoneLink) {
+        contactRows.push('<a class="contact-row" href="tel:' + person.phoneLink + '"><i data-lucide="phone"></i><span><small>Phone</small><strong>' + person.phoneDisplay + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>');
+      }
+      contactRows.push('<a class="contact-row" href="' + person.github + '" target="_blank" rel="noopener noreferrer"><i data-lucide="github"></i><span><small>GitHub</small><strong>' + person.githubLabel + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>');
+      contactRows.push('<div class="contact-row"><i data-lucide="map-pin"></i><span><small>Location</small><strong>' + person.location + '</strong></span></div>');
+      document.getElementById("contactList").innerHTML = contactRows.join("");
 
       setText("footerName", person.name);
       setText("footerNote", config.site.footerNote);
+      setText("footerLocation", person.location);
       setText("year", new Date().getFullYear());
 
       if (window.lucide) lucide.createIcons();
