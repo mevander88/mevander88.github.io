@@ -265,6 +265,36 @@
     .stat-value b { color: var(--green); font-weight: inherit; }
     .stat-label { display: block; margin-top: 12px; color: var(--muted); font: 11px ui-monospace,monospace; text-transform: uppercase; letter-spacing: .08em; }
 
+    .achievement-panel {
+      position: relative; display: grid; grid-template-columns: minmax(0,1.15fr) minmax(360px,.85fr);
+      gap: 48px; align-items: center; overflow: hidden; padding: 48px;
+      border: 1px solid rgba(116,247,184,.2);
+      background:
+        linear-gradient(125deg,rgba(116,247,184,.08),transparent 38%),
+        linear-gradient(310deg,rgba(97,216,255,.07),transparent 38%),
+        rgba(12,16,22,.88);
+      box-shadow: 0 28px 80px rgba(0,0,0,.24);
+    }
+    .achievement-panel::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(90deg,transparent,#000 45%,#000);
+    }
+    .achievement-copy, .achievement-metrics { position: relative; z-index: 1; }
+    .achievement-platform { display: flex; align-items: center; gap: 10px; color: var(--green); font: 700 10px ui-monospace,monospace; text-transform: uppercase; letter-spacing: .1em; }
+    .achievement-platform svg { width: 19px; }
+    .achievement-copy h3 { margin: 15px 0 12px; font-size: clamp(30px,4vw,50px); line-height: 1.02; }
+    .achievement-copy p { margin: 0; max-width: 620px; color: var(--muted); }
+    .achievement-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 22px; }
+    .achievement-meta span { padding: 6px 9px; border: 1px solid var(--line); background: rgba(7,9,13,.4); color: #aeb8c6; font: 9px ui-monospace,monospace; text-transform: uppercase; }
+    .achievement-metrics { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+    .achievement-metric { min-height: 164px; padding: 24px; border: 1px solid var(--line-bright); background: rgba(7,9,13,.55); backdrop-filter: blur(10px); }
+    .achievement-metric strong { display: block; color: transparent; background: linear-gradient(110deg,#fff,var(--green),var(--cyan)); background-clip: text; -webkit-background-clip: text; font-size: clamp(42px,6vw,66px); line-height: 1; }
+    .achievement-metric span { display: block; margin-top: 16px; color: var(--muted); font: 10px ui-monospace,monospace; text-transform: uppercase; }
+
     .project-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
     .project {
       --project-accent: var(--green);
@@ -403,6 +433,7 @@
       .project { min-height: 300px; }
       .contact-panel { padding: 50px; }
       .contact-grid { grid-template-columns: 1fr; gap: 45px; }
+      .achievement-panel { grid-template-columns: 1fr; }
     }
     @media (max-width: 760px) {
       :root { --nav-h: 64px; }
@@ -421,6 +452,7 @@
       .floating-chip, .orbit, .scroll-hint { display: none; }
       .capability-grid, .stats-grid { grid-template-columns: 1fr 1fr; }
       .stat { padding: 26px 18px; }
+      .achievement-panel { padding: 28px 22px; gap: 30px; }
       .project { grid-template-columns: minmax(0,1fr) 40px; gap: 18px 12px; min-height: 0; padding: 22px; }
       .project-main, .project-desc { grid-column: 1 / -1; }
       .project-arrow { display: grid; grid-column: 2; grid-row: 1; width: 38px; height: 38px; }
@@ -442,6 +474,8 @@
     @media (max-width: 480px) {
       .brand .brand-name { display: none; }
       .availability-meta { display: none; }
+      .achievement-metrics { grid-template-columns: 1fr; }
+      .achievement-metric { min-height: 130px; }
       .capability-grid, .stats-grid, .services-grid, .principles-grid { grid-template-columns: 1fr; }
       .skill-panel { grid-template-columns: 1fr 1fr; }
       .skill-card { min-height: 105px; padding: 14px; }
@@ -565,6 +599,10 @@
 
     <section class="section-sm" aria-label="Career statistics">
       <div class="container stats-grid reveal" id="statsGrid"></div>
+    </section>
+
+    <section class="section-sm" id="achievements" aria-label="Key achievements">
+      <div class="container" id="achievementsList"></div>
     </section>
 
     <section class="section" id="work">
@@ -765,6 +803,21 @@
       document.getElementById("statsGrid").innerHTML = config.statistics.map(item =>
         '<div class="stat"><span class="stat-value" data-count="' + item.value + '">0<b>' +
         item.suffix + '</b></span><span class="stat-label">' + item.label + '</span></div>'
+      ).join("");
+
+      document.getElementById("achievementsList").innerHTML = config.achievements.map(item =>
+        '<article class="achievement-panel reveal">' +
+          '<div class="achievement-copy">' +
+            '<div class="achievement-platform"><i data-lucide="search-check"></i>' + item.platform + '</div>' +
+            '<h3>' + item.title + '</h3>' +
+            '<p>' + item.description + '</p>' +
+            '<div class="achievement-meta"><span>' + item.period + '</span><span>' + item.source + '</span></div>' +
+          '</div>' +
+          '<div class="achievement-metrics">' +
+            item.metrics.map(metric => '<div class="achievement-metric"><strong>' + metric.value +
+              '</strong><span>' + metric.label + '</span></div>').join("") +
+          '</div>' +
+        '</article>'
       ).join("");
 
       document.getElementById("projectList").innerHTML = config.projects.map((project, index) => {

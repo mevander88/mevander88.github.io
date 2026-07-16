@@ -94,6 +94,19 @@
     { "value": 4, "suffix": "", "label": "Database systems" },
     { "value": 8, "suffix": "", "label": "Engineering disciplines" }
   ],
+  "achievements": [
+    {
+      "platform": "Google Search Console",
+      "title": "Organic SEO Growth",
+      "description": "Generated more than 200,000 organic search impressions and 15,000 clicks within 28 days through professional SEO research, technical optimization, content strategy, and backlink development.",
+      "period": "28 days",
+      "source": "SEO & Backlinks",
+      "metrics": [
+        { "value": "200K+", "label": "Search impressions" },
+        { "value": "15K+", "label": "Organic clicks" }
+      ]
+    }
+  ],
   "projects": [
     {
       "title": "Anime Streaming & Comic Platform",
@@ -152,6 +165,7 @@
     "Databases": ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
     "DevOps": ["Docker", "Nginx", "Linux", "GitHub Actions", "CI/CD", "PM2", "Cloud Deployment"],
     "Cybersecurity": ["Web Security", "API Security", "Network Analysis", "Automation Tools", "Security Research", "Vulnerability Assessment"],
+    "Professional SEO": ["SEO Research", "Technical SEO", "Keyword Research", "On-Page SEO", "Backlink Strategy", "Google Search Console", "Content Strategy", "Programmatic SEO"],
     "Tools": ["Codex", "Git", "Postman", "Burp Suite", "VSCode", "WSL", "ADB", "Scrcpy"],
     "Architecture": ["REST API", "Microservices", "Clean Architecture", "Service-Oriented Architecture"],
     "Specialization": ["Scalable Backend Systems", "High-Performance APIs", "Infrastructure and Deployment", "Automation and Security Tooling"]
@@ -193,7 +207,8 @@
     "VSCode": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
     "WSL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg",
     "ADB": "https://cdn.simpleicons.org/android/3DDC84",
-    "Codex": "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/openai.svg"
+    "Codex": "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/openai.svg",
+    "Google Search Console": "https://cdn.simpleicons.org/googlesearchconsole/458CF5"
   },
   "services": [
     {
