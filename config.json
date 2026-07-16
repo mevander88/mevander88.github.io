@@ -91,9 +91,16 @@
   ],
   "projects": [
     {
-      "title": "Anime Streaming Platform",
-      "description": "A modern streaming experience with a scalable backend, search-focused discovery, technical SEO, responsive playback surfaces, and globally optimized content delivery.",
-      "tech": ["Next.js", "GoFiber", "PostgreSQL", "Redis", "Cloudflare"],
+      "title": "Anime Streaming & Comic Platform",
+      "description": "A complex web platform for streaming anime and reading comics, supported by automated scraping and data-processing pipelines. The system includes content discovery, search, comments, likes, user interactions, caching, SEO optimization, and scalable media delivery.",
+      "tech": ["Next.js", "GoFiber", "PostgreSQL", "Redis", "Web Scraping", "User Interaction"],
+      "url": "#",
+      "public": false
+    },
+    {
+      "title": "Anime & Comic Android Application",
+      "description": "An Android application for streaming anime and reading comics through a high-performance GoFiber API. It consumes processed scraping data and supports search, content discovery, comments, likes, user activity, synchronized data, and Redis-backed performance optimization.",
+      "tech": ["Android", "GoFiber", "PostgreSQL", "Redis", "REST API", "Web Scraping"],
       "url": "#",
       "public": false
     },
