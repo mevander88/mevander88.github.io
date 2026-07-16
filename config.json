@@ -117,6 +117,20 @@
       "tech": ["OSINT", "Monitoring", "Network", "Automation"],
       "url": "https://github.com/mevander88",
       "public": true
+    },
+    {
+      "title": "WA Blast Platform",
+      "description": "A WhatsApp broadcast and campaign management platform designed for bulk message delivery, contact segmentation, message scheduling, delivery monitoring, and scalable queue-based processing.",
+      "tech": ["WhatsApp Integration", "Queue Processing", "Campaign Management", "REST API", "Redis"],
+      "url": "#",
+      "public": false
+    },
+    {
+      "title": "PLTS Management System",
+      "description": "A solar power plant management system for monitoring operational data, managing assets and maintenance activities, analyzing performance, and presenting technical insights through centralized dashboards.",
+      "tech": ["PLTS Monitoring", "Asset Management", "Analytics Dashboard", "Maintenance", "Data Processing"],
+      "url": "#",
+      "public": false
     }
   ],
   "skills": {
