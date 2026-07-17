@@ -1698,17 +1698,20 @@
     const archKey=new THREE.PointLight(0x61d8ff,28,18,2); archKey.position.set(-4,4,6); archScene.add(archKey);
     const archFill=new THREE.PointLight(0x8b7cff,22,16,2); archFill.position.set(4,-2,5); archScene.add(archFill);
 
-    const archPointer={x:0,y:0,targetX:0,targetY:0};
+    const archPointer={x:0,y:0,targetX:0,targetY:0,active:false};
     let archAutoAngle=.42;
     let archZoom=11.5,archTargetZoom=11.5,archVisible=false;
     archStage.addEventListener("pointermove",event=>{
       const rect=archStage.getBoundingClientRect();
       const horizontal=Math.max(-1,Math.min(1,(event.clientX-rect.left)/rect.width*2-1));
       const vertical=Math.max(-1,Math.min(1,(event.clientY-rect.top)/rect.height*2-1));
-      archPointer.targetX=horizontal*.72;
-      archPointer.targetY=vertical*.34;
+      archPointer.active=true;
+      archPointer.targetX=horizontal*.95;
+      archPointer.targetY=vertical*.55;
+      archStage.dataset.pointerFollow=horizontal.toFixed(2)+","+vertical.toFixed(2);
     },{passive:true});
     archStage.addEventListener("pointerleave",()=>{
+      archPointer.active=false;
       archPointer.targetX=0; archPointer.targetY=0;
     },{passive:true});
     function resizeArchitecture(){
@@ -1725,9 +1728,11 @@
       if(document.hidden||!archVisible||now-archLastFrame<archRenderInterval)return; archLastFrame=now;
       archPointer.x+=(archPointer.targetX-archPointer.x)*.11; archPointer.y+=(archPointer.targetY-archPointer.y)*.11;
       archZoom+=(archTargetZoom-archZoom)*.09; archCamera.position.z=archZoom;
-      if(!reduceMotion)archAutoAngle+=.008;
-      archWorld.rotation.x=-.28+archPointer.y; archWorld.rotation.y=archAutoAngle+archPointer.x;
-      archKey.position.x=-4+archPointer.x*2.2; archKey.position.y=4-archPointer.y*1.6;
+      if(!reduceMotion&&!archPointer.active)archAutoAngle+=.0035;
+      archWorld.rotation.x=-.28+archPointer.y*.85; archWorld.rotation.y=archAutoAngle+archPointer.x;
+      archWorld.position.x=archPointer.x*.52; archWorld.position.y=.42-archPointer.y*.24;
+      archCamera.position.x=-archPointer.x*.34; archCamera.position.y=.2+archPointer.y*.2;
+      archKey.position.x=-4+archPointer.x*3; archKey.position.y=4-archPointer.y*2.2;
       archCore.rotation.x+=.045; archCore.rotation.y+=.065;
       archNodes.forEach((icon,index)=>{
         const signal=(Math.sin(now*.007+index*.82)+1)*.5,target=icon.userData.baseScale*(1+signal*.055);
