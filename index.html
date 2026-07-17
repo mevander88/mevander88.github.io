@@ -205,6 +205,11 @@
 
     .system-visual { position: relative; min-height: 520px; perspective: 1000px; }
     #hero3d { position: absolute; inset: -70px -80px -70px -120px; width: calc(100% + 200px); height: calc(100% + 140px); z-index: 0; pointer-events: none; filter: drop-shadow(0 30px 55px rgba(32,201,130,.12)); }
+    .scene-hud { position: absolute; z-index: 3; left: -34px; top: 22px; display: grid; gap: 7px; pointer-events: none; }
+    .scene-hud-title { display: flex; align-items: center; gap: 8px; color: var(--green); font: 700 9px ui-monospace,monospace; text-transform: uppercase; letter-spacing: .1em; }
+    .scene-hud-title::before { content: ""; width: 18px; height: 1px; background: var(--green); box-shadow: 0 0 9px var(--green); }
+    .scene-hud-data { display: flex; gap: 5px; }
+    .scene-hud-data span { padding: 5px 7px; border: 1px solid var(--line); background: rgba(7,9,13,.58); backdrop-filter: blur(8px); color: var(--muted); font: 8px ui-monospace,monospace; text-transform: uppercase; }
     .system-visual::before {
       content: ""; position: absolute; z-index: 0; inset: 5% -10% 4% -18%; pointer-events: none;
       background: conic-gradient(from 115deg at 48% 50%,transparent,rgba(116,247,184,.07),transparent 22%,rgba(97,216,255,.06),transparent 48%);
@@ -213,7 +218,7 @@
     }
     @keyframes visualAura { to { transform: rotate(360deg); } }
     .terminal {
-      position: absolute; z-index: 2; inset: 62px -18px auto auto; width: min(88%,430px); overflow: hidden;
+      position: absolute; z-index: 2; inset: 106px 14px auto auto; width: min(72%,380px); overflow: hidden;
       border: 1px solid var(--line-bright); background: rgba(10,13,18,.84); backdrop-filter: blur(22px); box-shadow: var(--shadow);
       transform: rotateY(-4deg) rotateX(2deg);
     }
@@ -224,11 +229,11 @@
     .terminal-dots i:nth-child(2) { background: var(--amber); }
     .terminal-dots i:last-child { background: var(--green); }
     .terminal-label { color: var(--muted-2); font: 11px ui-monospace,monospace; }
-    .terminal-body { min-height: 350px; padding: 22px; font: 13px/1.85 ui-monospace,SFMono-Regular,Menlo,monospace; color: #afbac8; }
+    .terminal-body { min-height: 252px; padding: 18px; font: 11px/1.68 ui-monospace,SFMono-Regular,Menlo,monospace; color: #afbac8; }
     .code-key { color: #ff9fba; } .code-name { color: var(--cyan); } .code-str { color: #b9f697; } .code-comment { color: #596574; }
     .code-indent { padding-left: 20px; }
     .terminal-status { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--line); }
-    .terminal-status div { padding: 14px; border-right: 1px solid var(--line); }
+    .terminal-status div { padding: 10px; border-right: 1px solid var(--line); }
     .terminal-status div:last-child { border: 0; }
     .terminal-status strong { display: block; font: 700 15px ui-monospace,monospace; color: var(--green); }
     .terminal-status span { color: var(--muted-2); font-size: 10px; text-transform: uppercase; }
@@ -240,9 +245,9 @@
     .orbit::after { content: ""; position: absolute; inset: 22px; border: 1px dashed rgba(116,247,184,.22); border-radius: 50%; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .floating-chip { position: absolute; z-index: 4; padding: 10px 13px; border: 1px solid var(--line-bright); background: rgba(16,20,28,.78); backdrop-filter: blur(12px); font: 700 11px ui-monospace,monospace; box-shadow: 0 18px 44px rgba(0,0,0,.28); animation: float 5s ease-in-out infinite; }
-    .chip-go { left: -18px; top: 105px; color: var(--cyan); }
+    .chip-go { left: -18px; top: 156px; color: var(--cyan); }
     .chip-next { left: 16px; bottom: 34px; color: #fff; animation-delay: -2s; }
-    .chip-cloud { right: -22px; top: 115px; color: var(--amber); animation-delay: -3s; }
+    .chip-cloud { right: 5px; top: 52px; color: var(--amber); animation-delay: -3s; }
     @keyframes float { 50% { transform: translateY(-9px); } }
     .scroll-hint { position: absolute; left: 50%; bottom: 20px; display: flex; align-items: center; gap: 10px; color: var(--muted-2); font: 10px ui-monospace,monospace; text-transform: uppercase; letter-spacing: .12em; transform: translateX(-50%); }
     .scroll-hint i { width: 1px; height: 34px; background: linear-gradient(var(--green),transparent); animation: scrollLine 1.8s infinite; transform-origin: top; }
@@ -470,6 +475,7 @@
       .hero { padding-top: 140px; }
       .hero-copy { max-width: 760px; }
       .system-visual { width: min(100%,620px); min-height: 500px; margin-inline: auto; }
+      .scene-hud { left: 0; }
       #hero3d { inset: -50px -40px; width: calc(100% + 80px); height: calc(100% + 100px); }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .about-aside { position: static; }
@@ -490,13 +496,15 @@
       .hero { padding-top: 115px; min-height: auto; }
       .hero-grid { gap: 30px; }
       .hero-meta { gap: 13px; flex-direction: column; }
-      .system-visual { min-height: 415px; }
+      .system-visual { min-height: 540px; }
       .system-visual { overflow: hidden; }
       .system-visual::before { inset: 0; }
-      #hero3d { inset: -30px 0; width: 100%; height: calc(100% + 60px); opacity: .78; }
-      .terminal { inset: 12px 0 auto; transform: none; }
-      .terminal-body { min-height: 276px; padding: 17px; font-size: 11px; }
-      .terminal-status div { padding: 10px; }
+      #hero3d { inset: -20px 0; width: 100%; height: calc(100% + 40px); opacity: .86; }
+      .scene-hud { left: 12px; top: 14px; }
+      .terminal { inset: auto 12px 14px; width: calc(100% - 24px); transform: none; }
+      .terminal-body { min-height: 210px; padding: 14px; font-size: 10px; line-height: 1.58; }
+      .terminal-status div { padding: 8px; }
+      .terminal-status strong { font-size: 12px; }
       .floating-chip, .orbit, .scroll-hint { display: none; }
       .capability-grid, .stats-grid { grid-template-columns: 1fr 1fr; }
       .stat { padding: 26px 18px; }
@@ -591,6 +599,10 @@
         </div>
         <div class="system-visual reveal" id="parallaxVisual" aria-label="Developer environment illustration">
           <canvas id="hero3d" aria-hidden="true"></canvas>
+          <div class="scene-hud" aria-hidden="true">
+            <div class="scene-hud-title">Live system graph</div>
+            <div class="scene-hud-data"><span>54 nodes</span><span>3 orbits</span><span>WebGL</span></div>
+          </div>
           <div class="floating-chip chip-go">GO / FIBER</div>
           <div class="floating-chip chip-next">NEXT.JS 15</div>
           <div class="floating-chip chip-cloud">AWS / DOCKER</div>
@@ -1228,8 +1240,8 @@
 
     const coreGeometry = new THREE.IcosahedronGeometry(1.62,2);
     const core = new THREE.Mesh(coreGeometry,new THREE.MeshPhysicalMaterial({
-      color:0x102b26,metalness:.25,roughness:.22,transmission:.56,transparent:true,opacity:.72,
-      emissive:0x06251b,emissiveIntensity:.8,side:THREE.DoubleSide
+      color:0x102b26,metalness:.25,roughness:.22,transmission:.62,transparent:true,opacity:.46,depthWrite:false,
+      emissive:0x06251b,emissiveIntensity:.72,side:THREE.DoubleSide
     }));
     world.add(core);
 
@@ -1246,6 +1258,12 @@
     );
     world.add(inner);
 
+    const knot = new THREE.Mesh(
+      new THREE.TorusKnotGeometry(.58,.15,96,12,2,3),
+      new THREE.MeshBasicMaterial({color:0x61d8ff,wireframe:true,transparent:true,opacity:.56,blending:THREE.AdditiveBlending})
+    );
+    world.add(knot);
+
     const rings = new THREE.Group();
     [2.08,2.45,2.82].forEach((radius,index) => {
       const ring = new THREE.Mesh(
@@ -1256,6 +1274,18 @@
       rings.add(ring);
     });
     world.add(rings);
+
+    const satellites = new THREE.Group();
+    const satelliteColors = [0x74f7b8,0x61d8ff,0xffc86a,0xff8aa5];
+    satelliteColors.forEach((color,index) => {
+      const satellite = new THREE.Mesh(
+        new THREE.SphereGeometry(.075+index*.008,14,14),
+        new THREE.MeshBasicMaterial({color,transparent:true,opacity:.95,blending:THREE.AdditiveBlending})
+      );
+      satellite.userData = {radius:2.15+index*.22,speed:.34+index*.07,offset:index*1.55,tilt:(index-.8)*.35};
+      satellites.add(satellite);
+    });
+    world.add(satellites);
 
     const nodeCount = 54;
     const positions = new Float32Array(nodeCount*3);
@@ -1296,11 +1326,16 @@
       target.y = (event.clientY/innerHeight-.5)*-.55;
     },{passive:true});
 
+    let baseWorldY=.15;
     function resize3d(){
       const rect = canvas.getBoundingClientRect();
       if(!rect.width||!rect.height)return;
       renderer.setSize(rect.width,rect.height,false);
       camera.aspect = rect.width/rect.height;
+      const mobile = rect.width < 500;
+      world.position.x = mobile ? 0 : -1.15;
+      baseWorldY = mobile ? 1.08 : .15;
+      camera.position.z = mobile ? 9.6 : 8.6;
       camera.updateProjectionMatrix();
     }
     const resizeObserver = new ResizeObserver(resize3d);
@@ -1317,10 +1352,15 @@
         world.rotation.x = Math.sin(t*.34)*.1+pointer.y;
         wire.rotation.y = -t*.045;
         inner.rotation.set(t*.16,-t*.21,t*.09);
+        knot.rotation.set(-t*.12,t*.18,t*.08);
         rings.rotation.z = t*.025;
+        satellites.children.forEach(satellite => {
+          const data=satellite.userData,angle=t*data.speed+data.offset;
+          satellite.position.set(Math.cos(angle)*data.radius,Math.sin(angle)*data.radius*.58,Math.sin(angle*.72+data.tilt)*1.25);
+        });
         nodes.rotation.y = -t*.035;
         network.rotation.y = nodes.rotation.y;
-        world.position.y = .15+Math.sin(t*.7)*.08-window.scrollY*.00012;
+        world.position.y = baseWorldY+Math.sin(t*.7)*.08-window.scrollY*.00012;
       }
       renderer.render(scene,camera);
       requestAnimationFrame(render3d);
