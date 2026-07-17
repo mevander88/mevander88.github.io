@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://latifharkat.my.id/sitemap.xml
