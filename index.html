@@ -426,6 +426,18 @@
     .timeline-points { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 23px; }
     .timeline-points span { padding: 10px 12px; border: 1px solid var(--line); background: rgba(255,255,255,.02); color: #adb7c5; font-size: 12px; }
 
+    .education-list { display: grid; gap: 12px; }
+    .education-card { position: relative; display: grid; grid-template-columns: 72px minmax(0,1fr) auto; gap: 24px; align-items: center; padding: 30px; overflow: hidden; border: 1px solid var(--line); background: linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.012)); }
+    .education-card::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg,rgba(97,216,255,.07),transparent 36%,rgba(116,247,184,.045)); }
+    .education-icon { position: relative; z-index: 1; width: 64px; height: 64px; display: grid; place-items: center; border: 1px solid rgba(97,216,255,.25); background: rgba(97,216,255,.06); color: var(--cyan); }
+    .education-icon svg { width: 27px; height: 27px; }
+    .education-content, .education-meta { position: relative; z-index: 1; }
+    .education-content h3 { margin: 0 0 4px; font-size: clamp(21px,3vw,29px); }
+    .education-degree { color: var(--green); font-size: 13px; font-weight: 650; }
+    .education-description { margin: 12px 0 0; max-width: 720px; color: var(--muted); font-size: 13px; }
+    .education-meta { display: grid; justify-items: end; gap: 7px; }
+    .education-meta span { padding: 6px 9px; border: 1px solid var(--line); background: rgba(7,9,13,.44); color: var(--muted); font: 9px ui-monospace,monospace; text-transform: uppercase; }
+
     .principles-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
     .principle { position: relative; min-height: 190px; padding: 22px; overflow: hidden; border: 1px solid var(--line); background: linear-gradient(150deg,rgba(255,255,255,.042),rgba(255,255,255,.012)); transition: transform .25s,border-color .25s; }
     .principle:hover { transform: translateY(-4px); border-color: rgba(97,216,255,.22); }
@@ -534,6 +546,9 @@
       .timeline-period { text-align: left; }
       .timeline-content::before { left: -34px; }
       .timeline-points { grid-template-columns: 1fr 1fr; }
+      .education-card { grid-template-columns: 54px minmax(0,1fr); gap: 16px; padding: 22px; }
+      .education-icon { width: 52px; height: 52px; }
+      .education-meta { grid-column: 2; justify-items: start; display: flex; flex-wrap: wrap; }
       .contact-panel { padding: 35px 22px; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
     }
@@ -718,6 +733,16 @@
           <p class="section-copy">Hands-on delivery and technical leadership across the complete software lifecycle.</p>
         </div>
         <div class="timeline" id="experienceTimeline"></div>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">Education</span><h2 class="section-title">Where the foundation started.</h2></div>
+          <p class="section-copy">Formal technical education focused on software development, systems, and application engineering.</p>
+        </div>
+        <div class="education-list" id="educationList"></div>
       </div>
     </section>
 
@@ -927,6 +952,16 @@
         item.company + '</div><div class="timeline-points">' +
         item.responsibilities.map(point => "<span>" + point + "</span>").join("") +
         "</div></div></article>"
+      ).join("");
+
+      document.getElementById("educationList").innerHTML = config.education.map(item =>
+        '<article class="education-card reveal">' +
+          '<div class="education-icon"><i data-lucide="graduation-cap"></i></div>' +
+          '<div class="education-content"><h3>' + item.school + '</h3>' +
+            '<div class="education-degree">' + item.degree + ' — ' + item.field + '</div>' +
+            '<p class="education-description">' + item.description + '</p></div>' +
+          '<div class="education-meta"><span>' + item.originalField + '</span><span>' + item.location + '</span></div>' +
+        '</article>'
       ).join("");
 
       document.getElementById("principlesGrid").innerHTML = config.principles.map(item =>

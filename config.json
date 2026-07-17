@@ -302,6 +302,16 @@
       ]
     }
   ],
+  "education": [
+    {
+      "school": "SMK Informatika CBI",
+      "degree": "Vocational High School",
+      "field": "Software Engineering",
+      "originalField": "Rekayasa Perangkat Lunak",
+      "location": "Indonesia",
+      "description": "Studied software development fundamentals, programming, database systems, web development, system analysis, and application engineering."
+    }
+  ],
   "principles": [
     { "icon": "maximize-2", "title": "Scalable Architecture", "subtitle": "Growth without rewrites" },
     { "icon": "braces", "title": "Clean Code", "subtitle": "Clarity compounds" },
