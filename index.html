@@ -550,7 +550,7 @@
     @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
     .architecture-stage {
-      position: relative; min-height: 620px; overflow: hidden; border-block: 1px solid var(--line);
+      position: relative; min-height: 560px; overflow: hidden; border-block: 1px solid var(--line);
       background:
         linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
         linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
@@ -598,7 +598,7 @@
       .contact-panel { padding: 44px 38px; }
     }
     @media (max-width: 760px) {
-      .architecture-stage { min-height: 520px; }
+      .architecture-stage { min-height: 480px; }
       .architecture-hud { inset: 12px 12px auto; }
       .architecture-legend { inset: auto 12px 12px; }
       .architecture-legend span { padding: 5px 7px; font-size: 9px; }
@@ -1616,8 +1616,8 @@
     const archScene = new THREE.Scene();
     const archCamera = new THREE.PerspectiveCamera(38,1,.1,60);
     archCamera.position.set(0,.2,11.5);
-    const archRenderer = new THREE.WebGLRenderer({canvas:archCanvas,alpha:true,antialias:!lowPower3d,powerPreference:"high-performance"});
-    archRenderer.setPixelRatio(Math.min(devicePixelRatio,lowPower3d ? 1 : 1.25));
+    const archRenderer = new THREE.WebGLRenderer({canvas:archCanvas,alpha:true,antialias:false,powerPreference:"high-performance"});
+    archRenderer.setPixelRatio(Math.min(devicePixelRatio,lowPower3d ? .85 : 1.1));
     archRenderer.setClearColor(0x000000,0);
     archRenderer.outputColorSpace = THREE.SRGBColorSpace;
 
@@ -1640,16 +1640,12 @@
       {name:"Cloud Infrastructure",type:"infra",icon:"cloud",shape:"cloud",position:[0,-2.95,0],wide:true}
     ];
 
-    function archGeometry(definition){
-      if(definition.primary)return new THREE.IcosahedronGeometry(.72,2);
-      if(definition.shape==="cloud")return new THREE.DodecahedronGeometry(.68,1);
-      const geometry=new THREE.CylinderGeometry(.58,.58,.26,6,1);
-      geometry.rotateX(Math.PI/2);
-      return geometry;
-    }
     function archIconTexture(kind,color){
       const iconCanvas=document.createElement("canvas"); iconCanvas.width=iconCanvas.height=192;
       const context=iconCanvas.getContext("2d"),line=(x1,y1,x2,y2)=>{context.beginPath();context.moveTo(x1,y1);context.lineTo(x2,y2);context.stroke()};
+      const cssColor="#"+color.toString(16).padStart(6,"0"),glow=context.createRadialGradient(96,96,8,96,96,88);
+      glow.addColorStop(0,cssColor+"66"); glow.addColorStop(.55,cssColor+"22"); glow.addColorStop(1,cssColor+"00");
+      context.fillStyle=glow; context.fillRect(0,0,192,192);
       context.strokeStyle="#ffffff"; context.fillStyle="#ffffff"; context.lineWidth=12; context.lineCap="round"; context.lineJoin="round";
       if(kind==="browser"){context.strokeRect(39,51,114,90);line(39,76,153,76);[55,71,87].forEach(x=>{context.beginPath();context.arc(x,64,3,0,7);context.fill()})}
       else if(kind==="mobile"){context.strokeRect(58,30,76,132);line(82,143,110,143)}
@@ -1664,20 +1660,12 @@
     }
     function createArchNode(definition){
       const color=archColors[definition.type];
-      const geometry=archGeometry(definition);
-      const material=new THREE.MeshPhysicalMaterial({
-        color:new THREE.Color(color).multiplyScalar(.24),emissive:color,emissiveIntensity:definition.primary ? .5 : .16,
-        metalness:.42,roughness:.2,transparent:true,opacity:.96,clearcoat:.75,clearcoatRoughness:.18
-      });
-      const mesh=new THREE.Mesh(geometry,material);
-      mesh.position.set(...definition.position);
-      mesh.userData={...definition,baseEmissive:material.emissiveIntensity};
-      const edge=new THREE.LineSegments(new THREE.EdgesGeometry(geometry),new THREE.LineBasicMaterial({color,transparent:true,opacity:.42}));
-      mesh.add(edge); archWorld.add(mesh); archNodes.push(mesh); archNodeMap.set(definition.name,mesh);
       const iconMaterial=new THREE.SpriteMaterial({map:archIconTexture(definition.icon,color),transparent:true,depthTest:false,depthWrite:false,opacity:.96});
-      const icon=new THREE.Sprite(iconMaterial); icon.position.set(...definition.position); icon.position.z+=.33; icon.renderOrder=8;
-      const iconSize=definition.primary ? .92 : .64; icon.scale.set(iconSize,iconSize,1); archWorld.add(icon);
-      return mesh;
+      const icon=new THREE.Sprite(iconMaterial); icon.position.set(...definition.position); icon.renderOrder=8;
+      const iconSize=definition.primary ? 1.12 : definition.wide ? .92 : .82;
+      icon.scale.set(iconSize,iconSize,1); icon.userData={...definition,baseScale:iconSize};
+      archWorld.add(icon); archNodes.push(icon); archNodeMap.set(definition.name,icon);
+      return icon;
     }
     archDefinitions.forEach(createArchNode);
 
@@ -1692,21 +1680,24 @@
     });
     const archLineGeometry=new THREE.BufferGeometry();
     archLineGeometry.setAttribute("position",new THREE.Float32BufferAttribute(archLinePositions,3));
-    const archLines=new THREE.LineSegments(archLineGeometry,new THREE.LineBasicMaterial({color:0x61d8ff,transparent:true,opacity:.16,blending:THREE.AdditiveBlending}));
+    const archLines=new THREE.LineSegments(archLineGeometry,new THREE.LineBasicMaterial({color:0x61d8ff,transparent:true,opacity:.14,blending:THREE.AdditiveBlending}));
     archWorld.add(archLines);
 
     [-.12,-2.35].forEach((y,index)=>{
-      const ring=new THREE.Mesh(new THREE.TorusGeometry(3.82-index*.32,.01,5,80),new THREE.MeshBasicMaterial({color:[0x61d8ff,0x8b7cff][index],transparent:true,opacity:.1}));
+      const ring=new THREE.Mesh(new THREE.TorusGeometry(3.82-index*.32,.008,4,56),new THREE.MeshBasicMaterial({color:[0x61d8ff,0x8b7cff][index],transparent:true,opacity:.075}));
       ring.position.y=y; ring.rotation.x=Math.PI/2; archWorld.add(ring);
     });
-    const archCore=new THREE.Mesh(new THREE.IcosahedronGeometry(.28,2),new THREE.MeshPhysicalMaterial({color:0xffffff,emissive:0x74f7b8,emissiveIntensity:1.5,metalness:.25,roughness:.1}));
+    const archCoreGeometry=new THREE.IcosahedronGeometry(.62,1);
+    const archCore=new THREE.Mesh(archCoreGeometry,new THREE.MeshPhysicalMaterial({color:0x0b241d,emissive:0x20c982,emissiveIntensity:.75,metalness:.3,roughness:.2,transparent:true,opacity:.72}));
     archCore.position.set(0,.75,.45); archWorld.add(archCore);
+    const archCoreWire=new THREE.LineSegments(new THREE.EdgesGeometry(archCoreGeometry,18),new THREE.LineBasicMaterial({color:0x74f7b8,transparent:true,opacity:.48,blending:THREE.AdditiveBlending}));
+    archCore.add(archCoreWire);
     const archAmbient=new THREE.HemisphereLight(0xbfffee,0x030507,1.8); archScene.add(archAmbient);
     const archKey=new THREE.PointLight(0x61d8ff,28,18,2); archKey.position.set(-4,4,6); archScene.add(archKey);
     const archFill=new THREE.PointLight(0x8b7cff,22,16,2); archFill.position.set(4,-2,5); archScene.add(archFill);
 
     const archRotation={x:-.28,y:.42,targetX:-.28,targetY:.42};
-    let archZoom=11.5,archTargetZoom=11.5,archVisible=false,archSelected=archNodeMap.get("API Gateway");
+    let archZoom=11.5,archTargetZoom=11.5,archVisible=false;
     function resizeArchitecture(){
       const rect=archStage.getBoundingClientRect(); if(!rect.width||!rect.height)return;
       archRenderer.setSize(rect.width,rect.height,false); archCamera.aspect=rect.width/rect.height;
@@ -1714,20 +1705,20 @@
     }
     new ResizeObserver(resizeArchitecture).observe(archStage); resizeArchitecture();
     new IntersectionObserver(entries=>{archVisible=entries[0]?.isIntersecting??false},{rootMargin:"120px 0px"}).observe(archStage);
+    const archRenderInterval=1000/(lowPower3d?18:30);
     let archLastFrame=0;
     function renderArchitecture(now=0){
       requestAnimationFrame(renderArchitecture);
-      if(document.hidden||!archVisible||now-archLastFrame<renderInterval)return; archLastFrame=now;
+      if(document.hidden||!archVisible||now-archLastFrame<archRenderInterval)return; archLastFrame=now;
       archRotation.x+=(archRotation.targetX-archRotation.x)*.09; archRotation.y+=(archRotation.targetY-archRotation.y)*.09;
       archZoom+=(archTargetZoom-archZoom)*.09; archCamera.position.z=archZoom;
-      if(!reduceMotion)archRotation.targetY+=.005;
+      if(!reduceMotion)archRotation.targetY+=.008;
       archWorld.rotation.x=archRotation.x; archWorld.rotation.y=archRotation.y;
       archCore.rotation.x+=.045; archCore.rotation.y+=.065;
-      archNodes.forEach((mesh,index)=>{
-        const selected=mesh===archSelected,signal=(Math.sin(now*.006+index*.85)+1)*.5;
-        const target=(selected?1.06:1)+signal*.014,scale=mesh.scale.x+(target-mesh.scale.x)*.13; mesh.scale.setScalar(scale);
-        const emission=mesh.userData.baseEmissive+signal*.1+(selected ? .26 : 0);
-        mesh.material.emissiveIntensity+=(emission-mesh.material.emissiveIntensity)*.14;
+      archNodes.forEach((icon,index)=>{
+        const signal=(Math.sin(now*.007+index*.82)+1)*.5,target=icon.userData.baseScale*(1+signal*.055);
+        const scale=icon.scale.x+(target-icon.scale.x)*.16; icon.scale.set(scale,scale,1);
+        icon.material.opacity=.76+signal*.24;
       });
       archLines.material.opacity=.12+(Math.sin(now*.004)+1)*.045;
       archRenderer.render(archScene,archCamera);
