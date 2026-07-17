@@ -1637,23 +1637,48 @@
     const archNodeMap = new Map();
     const archColors = {client:0x61d8ff,service:0x74f7b8,data:0x8b7cff,infra:0xffc86a};
     const archDefinitions = [
-      {name:"Next.js Web",type:"client",position:[-3,1.75,.1]},
-      {name:"Android / Flutter",type:"client",position:[3,1.75,-.1]},
-      {name:"API Gateway",type:"service",position:[0,.75,.45],primary:true},
-      {name:"GoFiber API",type:"service",position:[-2,-.45,.15]},
-      {name:"Automation Worker",type:"service",position:[2,-.45,-.15]},
-      {name:"PostgreSQL",type:"data",position:[-2.7,-1.9,.25]},
-      {name:"Redis Cache",type:"data",position:[0,-1.9,.65]},
-      {name:"Queue",type:"data",position:[2.7,-1.9,-.25]},
-      {name:"Cloud Infrastructure",type:"infra",position:[0,-3.25,0],wide:true}
+      {name:"Next.js Web",type:"client",icon:"browser",shape:"screen",position:[-3,1.75,.1]},
+      {name:"Android / Flutter",type:"client",icon:"mobile",shape:"mobile",position:[3,1.75,-.1]},
+      {name:"API Gateway",type:"service",icon:"hub",shape:"core",position:[0,.75,.45],primary:true},
+      {name:"GoFiber API",type:"service",icon:"code",shape:"capsule",position:[-2,-.45,.15]},
+      {name:"Automation Worker",type:"service",icon:"gear",shape:"octa",position:[2,-.45,-.15]},
+      {name:"PostgreSQL",type:"data",icon:"database",shape:"database",position:[-2.7,-1.9,.25]},
+      {name:"Redis Cache",type:"data",icon:"layers",shape:"diamond",position:[0,-1.9,.65]},
+      {name:"Queue",type:"data",icon:"queue",shape:"ring",position:[2.7,-1.9,-.25]},
+      {name:"Cloud Infrastructure",type:"infra",icon:"cloud",shape:"cloud",position:[0,-2.95,0],wide:true}
     ];
 
+    function archGeometry(definition){
+      if(definition.shape==="core")return new THREE.DodecahedronGeometry(.68,0);
+      if(definition.shape==="capsule")return new THREE.CapsuleGeometry(.35,.85,4,12);
+      if(definition.shape==="octa")return new THREE.OctahedronGeometry(.72,0);
+      if(definition.shape==="database")return new THREE.CylinderGeometry(.68,.68,.62,18,2);
+      if(definition.shape==="diamond")return new THREE.OctahedronGeometry(.7,0);
+      if(definition.shape==="ring")return new THREE.TorusGeometry(.55,.19,10,28);
+      if(definition.shape==="cloud")return new THREE.IcosahedronGeometry(.82,1);
+      if(definition.shape==="mobile")return new THREE.BoxGeometry(.72,1.15,.24);
+      return new THREE.BoxGeometry(1.45,.82,.22);
+    }
+    function archIconTexture(kind,color){
+      const iconCanvas=document.createElement("canvas"); iconCanvas.width=iconCanvas.height=192;
+      const context=iconCanvas.getContext("2d"),line=(x1,y1,x2,y2)=>{context.beginPath();context.moveTo(x1,y1);context.lineTo(x2,y2);context.stroke()};
+      context.strokeStyle="#ffffff"; context.fillStyle="#ffffff"; context.lineWidth=12; context.lineCap="round"; context.lineJoin="round";
+      if(kind==="browser"){context.strokeRect(39,51,114,90);line(39,76,153,76);[55,71,87].forEach(x=>{context.beginPath();context.arc(x,64,3,0,7);context.fill()})}
+      else if(kind==="mobile"){context.strokeRect(58,30,76,132);line(82,143,110,143)}
+      else if(kind==="hub"){[[96,48],[52,127],[140,127]].forEach(([x,y])=>{context.beginPath();context.arc(x,y,13,0,7);context.stroke()});line(89,60,59,114);line(103,60,133,114);line(65,127,127,127)}
+      else if(kind==="code"){context.beginPath();context.moveTo(70,58);context.lineTo(35,96);context.lineTo(70,134);context.moveTo(122,58);context.lineTo(157,96);context.lineTo(122,134);context.stroke();line(108,46,84,146)}
+      else if(kind==="gear"){context.beginPath();context.arc(96,96,34,0,7);context.stroke();context.beginPath();context.arc(96,96,11,0,7);context.stroke();for(let i=0;i<8;i++){const a=i*Math.PI/4;line(96+Math.cos(a)*43,96+Math.sin(a)*43,96+Math.cos(a)*61,96+Math.sin(a)*61)}}
+      else if(kind==="database"){context.beginPath();context.ellipse(96,52,52,21,0,0,7);context.stroke();context.beginPath();context.moveTo(44,52);context.lineTo(44,137);context.bezierCurveTo(44,164,148,164,148,137);context.lineTo(148,52);context.stroke();context.beginPath();context.ellipse(96,94,52,21,0,0,Math.PI);context.stroke()}
+      else if(kind==="layers"){[[96,48],[96,82],[96,116]].forEach(([x,y])=>{context.beginPath();context.moveTo(x,y);context.lineTo(150,y+23);context.lineTo(x,y+46);context.lineTo(42,y+23);context.closePath();context.stroke()})}
+      else if(kind==="queue"){line(42,64,145,64);line(126,45,145,64);line(126,83,145,64);line(150,126,47,126);line(66,107,47,126);line(66,145,47,126)}
+      else {context.beginPath();context.moveTo(48,125);context.bezierCurveTo(25,125,27,88,57,87);context.bezierCurveTo(63,51,116,45,130,78);context.bezierCurveTo(166,72,173,125,145,125);context.closePath();context.stroke()}
+      const texture=new THREE.CanvasTexture(iconCanvas); texture.colorSpace=THREE.SRGBColorSpace; texture.minFilter=THREE.LinearFilter; return texture;
+    }
     function createArchNode(definition){
       const color=archColors[definition.type];
-      const size=definition.primary ? [1.45,.72,.72] : definition.wide ? [2.2,.55,.7] : [1.55,.58,.62];
-      const geometry=new THREE.BoxGeometry(...size);
+      const geometry=archGeometry(definition);
       const material=new THREE.MeshPhysicalMaterial({
-        color:new THREE.Color(color).multiplyScalar(.34),emissive:color,emissiveIntensity:definition.primary?.42:.2,
+        color:new THREE.Color(color).multiplyScalar(.34),emissive:color,emissiveIntensity:definition.primary ? .42 : .2,
         metalness:.46,roughness:.28,transparent:true,opacity:.88,clearcoat:.6,clearcoatRoughness:.28
       });
       const mesh=new THREE.Mesh(geometry,material);
@@ -1661,6 +1686,9 @@
       mesh.userData={...definition,baseEmissive:material.emissiveIntensity};
       const edge=new THREE.LineSegments(new THREE.EdgesGeometry(geometry),new THREE.LineBasicMaterial({color,transparent:true,opacity:.72}));
       mesh.add(edge); archWorld.add(mesh); archNodes.push(mesh); archNodeMap.set(definition.name,mesh);
+      const iconMaterial=new THREE.SpriteMaterial({map:archIconTexture(definition.icon,color),transparent:true,depthTest:false,depthWrite:false,opacity:.96});
+      const icon=new THREE.Sprite(iconMaterial); icon.position.set(...definition.position); icon.position.z+=definition.shape==="ring" ? .28 : .48; icon.renderOrder=8;
+      const iconSize=definition.primary ? 1.02 : definition.wide ? .88 : .72; icon.scale.set(iconSize,iconSize,1); archWorld.add(icon);
       return mesh;
     }
     archDefinitions.forEach(createArchNode);
