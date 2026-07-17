@@ -555,18 +555,13 @@
         linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
         linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
         radial-gradient(circle at 50% 50%,rgba(54,228,199,.08),transparent 48%),#080b10;
-      background-size: 42px 42px,42px 42px,auto,auto; cursor: grab; touch-action: none;
+      background-size: 42px 42px,42px 42px,auto,auto; touch-action: pan-y;
     }
-    .architecture-stage.dragging { cursor: grabbing; }
-    #architecture3d { position: absolute; inset: 0; width: 100%; height: 100%; outline: none; }
-    #architecture3d:focus-visible { outline: 2px solid var(--green); outline-offset: -3px; }
-    .architecture-hud { position: absolute; inset: 18px 18px auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; pointer-events: none; }
+    #architecture3d { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .architecture-hud { position: absolute; inset: 18px 18px auto; display: flex; align-items: flex-start; gap: 16px; pointer-events: none; }
     .architecture-status { min-width: 190px; padding: 12px 14px; border: 1px solid var(--line); background: rgba(7,9,13,.72); backdrop-filter: blur(14px); }
     .architecture-status small { display: block; color: var(--muted-2); font: 700 10px/1.2 ui-monospace,monospace; text-transform: uppercase; }
     .architecture-status strong { display: block; margin-top: 5px; color: var(--green); font: 700 13px/1.3 ui-monospace,monospace; }
-    .architecture-reset { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--line); background: rgba(7,9,13,.72); color: var(--muted); cursor: pointer; pointer-events: auto; }
-    .architecture-reset:hover { color: var(--green); border-color: rgba(116,247,184,.35); }
-    .architecture-reset svg { width: 17px; height: 17px; }
     .architecture-legend { position: absolute; inset: auto 18px 18px; display: flex; flex-wrap: wrap; gap: 8px; pointer-events: none; }
     .architecture-legend span { display: inline-flex; align-items: center; gap: 7px; padding: 6px 9px; border: 1px solid var(--line); background: rgba(7,9,13,.66); color: var(--muted); font: 650 10px/1.2 ui-monospace,monospace; }
     .architecture-legend i { width: 7px; height: 7px; border-radius: 50%; background: var(--node-color); box-shadow: 0 0 12px var(--node-color); }
@@ -832,10 +827,9 @@
         </div>
       </div>
       <div class="architecture-stage reveal" id="architectureStage">
-        <canvas id="architecture3d" tabindex="0" aria-label="Interactive three-dimensional software architecture model"></canvas>
+        <canvas id="architecture3d" aria-label="Animated three-dimensional software architecture model"></canvas>
         <div class="architecture-hud">
-          <div class="architecture-status"><small id="architectureSelected">Node aktif</small><strong id="architectureNodeName">API Gateway</strong></div>
-          <button class="architecture-reset" id="architectureReset" type="button" aria-label="Atur ulang tampilan 3D" title="Atur ulang tampilan 3D"><i data-lucide="rotate-ccw"></i></button>
+          <div class="architecture-status"><small id="architectureSelected">Arsitektur live</small><strong id="architectureNodeName">9 nodes / 11 connections</strong></div>
         </div>
         <div class="architecture-legend" aria-hidden="true">
           <span style="--node-color:#61d8ff"><i></i>CLIENT</span><span style="--node-color:#74f7b8"><i></i>SERVICE</span><span style="--node-color:#8b7cff"><i></i>DATA</span><span style="--node-color:#ffc86a"><i></i>INFRA</span>
@@ -962,8 +956,6 @@
       switchButton.title = switchLabel;
       document.getElementById("backTop").setAttribute("aria-label", ui.backToTop);
       document.getElementById("backTop").title = ui.backToTop;
-      document.getElementById("architectureReset").setAttribute("aria-label", ui.architectureReset);
-      document.getElementById("architectureReset").title = ui.architectureReset;
     }
 
     function renderConfig(config) {
@@ -1718,60 +1710,7 @@
     const archFill=new THREE.PointLight(0x8b7cff,22,16,2); archFill.position.set(4,-2,5); archScene.add(archFill);
 
     const archRotation={x:-.28,y:.42,targetX:-.28,targetY:.42};
-    let archZoom=11.5,archTargetZoom=11.5,archDragging=false,archMoved=0,archLastX=0,archLastY=0,archVisible=false,archSelected=archNodeMap.get("API Gateway"),archPinchDistance=0;
-    const archPointers=new Map();
-    const archRaycaster=new THREE.Raycaster();
-    const archPointer=new THREE.Vector2();
-    function selectArchNode(mesh){
-      archSelected=mesh;
-      document.getElementById("architectureNodeName").textContent=mesh.userData.name;
-    }
-    function pickArchNode(event){
-      const rect=archCanvas.getBoundingClientRect();
-      archPointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);
-      archRaycaster.setFromCamera(archPointer,archCamera);
-      const hit=archRaycaster.intersectObjects(archNodes,false)[0];
-      if(hit)selectArchNode(hit.object);
-    }
-    archCanvas.addEventListener("pointerdown",event=>{
-      archDragging=true; archMoved=0; archLastX=event.clientX; archLastY=event.clientY;
-      archPointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
-      if(archPointers.size===2){const [a,b]=[...archPointers.values()];archPinchDistance=Math.hypot(a.x-b.x,a.y-b.y)}
-      archCanvas.setPointerCapture(event.pointerId); archStage.classList.add("dragging");
-    });
-    archCanvas.addEventListener("pointermove",event=>{
-      if(!archDragging)return;
-      archPointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
-      if(archPointers.size===2){
-        const [a,b]=[...archPointers.values()],distance=Math.hypot(a.x-b.x,a.y-b.y);
-        if(archPinchDistance)archTargetZoom=Math.max(8,Math.min(15,archTargetZoom+(archPinchDistance-distance)*.018));
-        archPinchDistance=distance; archMoved+=10; return;
-      }
-      const dx=event.clientX-archLastX,dy=event.clientY-archLastY; archMoved+=Math.abs(dx)+Math.abs(dy);
-      archRotation.targetY+=dx*.008; archRotation.targetX=Math.max(-1.05,Math.min(.55,archRotation.targetX+dy*.006));
-      archLastX=event.clientX; archLastY=event.clientY;
-    });
-    function releaseArchPointer(event){
-      if(!archDragging)return; archPointers.delete(event.pointerId); archPinchDistance=0;
-      if(archPointers.size)return;
-      archDragging=false; archStage.classList.remove("dragging"); if(archMoved<8)pickArchNode(event);
-    }
-    archCanvas.addEventListener("pointerup",releaseArchPointer);
-    archCanvas.addEventListener("pointercancel",event=>{archPointers.delete(event.pointerId);if(!archPointers.size){archDragging=false;archStage.classList.remove("dragging")}});
-    archCanvas.addEventListener("wheel",event=>{event.preventDefault();archTargetZoom=Math.max(8,Math.min(15,archTargetZoom+event.deltaY*.008));},{passive:false});
-    archCanvas.addEventListener("keydown",event=>{
-      if(event.key==="ArrowLeft")archRotation.targetY-=.16;
-      else if(event.key==="ArrowRight")archRotation.targetY+=.16;
-      else if(event.key==="ArrowUp")archRotation.targetX-=.12;
-      else if(event.key==="ArrowDown")archRotation.targetX+=.12;
-      else if(event.key==="+"||event.key==="=")archTargetZoom=Math.max(8,archTargetZoom-.7);
-      else if(event.key==="-")archTargetZoom=Math.min(15,archTargetZoom+.7);
-      else return;
-      event.preventDefault();
-    });
-    document.getElementById("architectureReset").addEventListener("click",()=>{
-      archRotation.targetX=-.28; archRotation.targetY=.42; archTargetZoom=11.5; selectArchNode(archNodeMap.get("API Gateway"));
-    });
+    let archZoom=11.5,archTargetZoom=11.5,archVisible=false,archSelected=archNodeMap.get("API Gateway");
     function resizeArchitecture(){
       const rect=archStage.getBoundingClientRect(); if(!rect.width||!rect.height)return;
       archRenderer.setSize(rect.width,rect.height,false); archCamera.aspect=rect.width/rect.height;
@@ -1785,7 +1724,7 @@
       if(document.hidden||!archVisible||now-archLastFrame<renderInterval)return; archLastFrame=now;
       archRotation.x+=(archRotation.targetX-archRotation.x)*.09; archRotation.y+=(archRotation.targetY-archRotation.y)*.09;
       archZoom+=(archTargetZoom-archZoom)*.09; archCamera.position.z=archZoom;
-      if(!reduceMotion&&!archDragging)archRotation.targetY+=.00045;
+      if(!reduceMotion)archRotation.targetY+=.00075;
       archWorld.rotation.x=archRotation.x; archWorld.rotation.y=archRotation.y;
       archCore.rotation.x+=.018; archCore.rotation.y+=.025;
       archNodes.forEach(mesh=>{
