@@ -141,7 +141,6 @@
       background: rgba(116,247,184,.08); color: var(--green); font: 800 14px ui-monospace,monospace;
     }
     .brand-mark svg { width: 18px; height: 18px; }
-    .brand-status { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
     .nav-links { display: flex; align-items: center; gap: 5px; }
     .nav-links a { padding: 8px 11px; color: var(--muted); font-size: 13px; transition: color .2s; }
     .nav-links a:hover, .nav-links a.active { color: #fff; }
@@ -181,7 +180,6 @@
       border: 1px solid rgba(116,247,184,.25); background: rgba(7,15,12,.58); color: var(--green);
     }
     .availability-signal svg { width: 14px; height: 14px; }
-    .availability .pulse { position: absolute; right: -2px; top: -2px; width: 6px; height: 6px; }
     .availability-copy { position: relative; z-index: 1; display: grid; line-height: 1.25; }
     .availability-copy small { color: var(--green); font: 700 8px ui-monospace,monospace; text-transform: uppercase; letter-spacing: .1em; }
     .availability-copy strong { color: #eafff4; font-size: 11px; font-weight: 650; }
@@ -190,8 +188,6 @@
       color: var(--muted); font: 8px ui-monospace,monospace; text-transform: uppercase;
     }
     @keyframes availabilityScan { 0%,55% { left: -45%; } 82%,100% { left: 120%; } }
-    .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(116,247,184,.5); animation: pulse 2s infinite; }
-    @keyframes pulse { 70% { box-shadow: 0 0 0 8px rgba(116,247,184,0); } 100% { box-shadow: 0 0 0 0 rgba(116,247,184,0); } }
     h1 { margin: 26px 0 22px; font-size: clamp(48px, 7.2vw, 94px); line-height: .94; font-weight: 710; letter-spacing: 0; }
     .hero-role { min-height: 30px; color: var(--green); font: 600 clamp(15px,2vw,20px)/1.5 ui-monospace,SFMono-Regular,Menlo,monospace; }
     .hero-role::before { content: "> "; color: var(--muted-2); }
@@ -533,7 +529,6 @@
       <a class="brand" id="brandLink" href="#home" aria-label="Home">
         <span class="brand-mark"><i data-lucide="code-2" aria-hidden="true"></i></span>
         <span class="brand-name" id="brandName"></span>
-        <span class="brand-status" title="Available for work"></span>
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Main navigation">
         <a href="#about">About</a>
@@ -552,7 +547,7 @@
       <div class="container hero-grid">
         <div>
           <div class="availability reveal">
-            <span class="availability-signal"><i data-lucide="briefcase-business"></i><span class="pulse"></span></span>
+            <span class="availability-signal"><i data-lucide="briefcase-business"></i></span>
             <span class="availability-copy"><small>Open to work</small><strong id="availabilityText"></strong></span>
             <span class="availability-meta" id="availabilityMeta"></span>
           </div>
