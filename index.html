@@ -92,10 +92,13 @@
     #progress { position: fixed; inset: 0 auto auto 0; height: 2px; width: 0; z-index: 1001; background: linear-gradient(90deg,var(--green),var(--cyan)); }
     #particles { position: fixed; inset: 0; z-index: -2; pointer-events: none; opacity: .56; }
     .cursor-glow {
-      position: fixed; width: 360px; height: 360px; border-radius: 50%; z-index: -1; pointer-events: none;
-      background: radial-gradient(circle, rgba(116,247,184,.07), transparent 67%);
-      transform: translate(-50%,-50%); left: -400px; top: -400px;
+      position: fixed; width: 300px; height: 300px; border-radius: 50%; z-index: 90; pointer-events: none;
+      background: radial-gradient(circle,rgba(116,247,184,.13) 0%,rgba(97,216,255,.065) 26%,transparent 68%);
+      mix-blend-mode: screen; transform: translate3d(-50%,-50%,0) scale(.86); left: -400px; top: -400px;
+      opacity: 0; will-change: left,top,transform,opacity; transition: opacity .22s ease,transform .3s ease;
     }
+    .cursor-glow.visible { opacity: 1; transform: translate3d(-50%,-50%,0) scale(1); }
+    .cursor-glow.pressed { opacity: .92; transform: translate3d(-50%,-50%,0) scale(.72); }
     .container { width: min(calc(100% - 40px), var(--max)); margin-inline: auto; }
     .section { position: relative; padding: 112px 0; }
     .section-sm { padding: 80px 0; }
@@ -528,7 +531,9 @@
       .contact-title { font-size: 41px; }
       .contact-actions .btn { width: 100%; }
     }
-    @media (hover: none), (pointer: coarse) { .cursor-glow { display: none; } }
+    @media (hover: none), (pointer: coarse) {
+      .cursor-glow { width: 210px; height: 210px; background: radial-gradient(circle,rgba(116,247,184,.18),rgba(97,216,255,.07) 30%,transparent 70%); }
+    }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
@@ -1105,7 +1110,62 @@
     }
 
     const glow = document.querySelector(".cursor-glow");
-    addEventListener("pointermove", e => { glow.style.left = e.clientX + "px"; glow.style.top = e.clientY + "px"; }, {passive:true});
+    const glowPosition = {x: innerWidth / 2, y: innerHeight / 2};
+    const glowTarget = {x: glowPosition.x, y: glowPosition.y};
+    let glowFrame = 0;
+    let touchGlowTimer;
+    function animateGlow() {
+      glowPosition.x += (glowTarget.x - glowPosition.x) * .2;
+      glowPosition.y += (glowTarget.y - glowPosition.y) * .2;
+      glow.style.left = glowPosition.x + "px";
+      glow.style.top = glowPosition.y + "px";
+      if (Math.abs(glowTarget.x - glowPosition.x) > .1 || Math.abs(glowTarget.y - glowPosition.y) > .1) {
+        glowFrame = requestAnimationFrame(animateGlow);
+      } else {
+        glowFrame = 0;
+      }
+    }
+    function moveGlow(x, y) {
+      glowTarget.x = x;
+      glowTarget.y = y;
+      if (!glowFrame) glowFrame = requestAnimationFrame(animateGlow);
+    }
+    function showTouchGlow(x, y) {
+      moveGlow(x, y);
+      glow.classList.add("visible", "pressed");
+      clearTimeout(touchGlowTimer);
+      touchGlowTimer = setTimeout(() => glow.classList.remove("visible", "pressed"), 2200);
+    }
+    addEventListener("pointermove", event => {
+      moveGlow(event.clientX, event.clientY);
+      if (event.pointerType === "mouse" || event.pointerType === "pen") glow.classList.add("visible");
+      else showTouchGlow(event.clientX, event.clientY);
+    }, {passive:true});
+    addEventListener("pointerdown", event => {
+      moveGlow(event.clientX, event.clientY);
+      glow.classList.add("visible", "pressed");
+      if (event.pointerType === "touch") showTouchGlow(event.clientX, event.clientY);
+    }, {passive:true});
+    addEventListener("pointerup", event => {
+      glow.classList.remove("pressed");
+      if (event.pointerType === "touch") {
+        clearTimeout(touchGlowTimer);
+        touchGlowTimer = setTimeout(() => glow.classList.remove("visible"), 2200);
+      }
+    }, {passive:true});
+    addEventListener("touchstart", event => {
+      const touch = event.touches[0];
+      if (touch) showTouchGlow(touch.clientX, touch.clientY);
+    }, {passive:true});
+    addEventListener("touchmove", event => {
+      const touch = event.touches[0];
+      if (touch) showTouchGlow(touch.clientX, touch.clientY);
+    }, {passive:true});
+    addEventListener("touchend", () => {
+      glow.classList.remove("pressed");
+      clearTimeout(touchGlowTimer);
+      touchGlowTimer = setTimeout(() => glow.classList.remove("visible"), 2200);
+    }, {passive:true});
 
     document.querySelectorAll(".magnetic").forEach(button => {
       button.addEventListener("pointermove", e => {
