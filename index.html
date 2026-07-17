@@ -161,7 +161,7 @@
     .btn-primary:hover { background: #96ffcb; border-color: #96ffcb; box-shadow: 0 14px 40px rgba(32,201,130,.25); }
     .icon-btn { width: 42px; height: 42px; padding: 0; }
 
-    .hero { min-height: 100svh; padding: calc(var(--nav-h) + 70px) 0 60px; display: flex; align-items: center; }
+    .hero { min-height: 100svh; padding: calc(var(--nav-h) + 70px) 0 60px; display: flex; align-items: center; overflow: clip; }
     .hero-grid { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(420px,.95fr); gap: 72px; align-items: center; }
     .hero-grid > * { min-width: 0; }
     .availability {
@@ -471,12 +471,14 @@
       .nav-links a { padding: 12px; }
       .nav-cta { margin: 5px 0 0; }
       .menu-btn { display: grid; }
+      .scroll-hint { display: none; }
       .hero-grid { grid-template-columns: 1fr; gap: 50px; }
       .hero { padding-top: 140px; }
       .hero-copy { max-width: 760px; }
       .system-visual { width: min(100%,620px); min-height: 500px; margin-inline: auto; }
       .scene-hud { left: 0; }
       #hero3d { inset: -50px -40px; width: calc(100% + 80px); height: calc(100% + 100px); }
+      .terminal { inset: 78px 14px auto auto; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .about-aside { position: static; }
       .services-grid, .principles-grid { grid-template-columns: repeat(2,1fr); }
@@ -485,6 +487,14 @@
       .contact-panel { padding: 50px; }
       .contact-grid { grid-template-columns: 1fr; gap: 45px; }
       .achievement-panel { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 761px) and (max-width: 900px) {
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .skills-layout { grid-template-columns: 1fr; gap: 25px; }
+      .skill-tabs { position: static; flex-direction: row; overflow-x: auto; padding-bottom: 5px; scrollbar-width: thin; }
+      .skill-tab { flex: 0 0 auto; }
+      .skill-panel { grid-template-columns: repeat(3,1fr); }
+      .contact-panel { padding: 44px 38px; }
     }
     @media (max-width: 760px) {
       :root { --nav-h: 64px; }
