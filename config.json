@@ -89,7 +89,7 @@
     ]
   },
   "statistics": [
-    { "value": 7, "suffix": "", "label": "Programming languages", "icon": "code-2" },
+    { "value": 8, "suffix": "", "label": "Programming languages", "icon": "code-2" },
     { "value": 9, "suffix": "", "label": "Backend technologies", "icon": "server-cog" },
     { "value": 4, "suffix": "", "label": "Database systems", "icon": "database" },
     { "value": 8, "suffix": "", "label": "Engineering disciplines", "icon": "layers-3" }
@@ -159,8 +159,9 @@
     }
   ],
   "skills": {
-    "Programming Languages": ["JavaScript", "TypeScript", "Python", "PHP", "C#", "Go", "Java"],
+    "Programming Languages": ["JavaScript", "TypeScript", "Python", "PHP", "C#", "Go", "Java", "Kotlin"],
     "Frontend": ["React", "Next.js", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"],
+    "Mobile Development": ["Kotlin", "Flutter", "Android", "Firebase"],
     "Backend": ["Node.js", "Express", "Flask", "FastAPI", "Django", "Laravel", "CodeIgniter", "ASP.NET", "Golang (GoFiber)"],
     "Databases": ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
     "DevOps": ["Docker", "Nginx", "Linux", "GitHub Actions", "CI/CD", "PM2", "Cloud Deployment"],
@@ -178,6 +179,10 @@
     "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
     "Go": "https://cdn.simpleicons.org/go/00ADD8",
     "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    "Kotlin": "https://cdn.simpleicons.org/kotlin/7F52FF",
+    "Flutter": "https://cdn.simpleicons.org/flutter/02569B",
+    "Android": "https://cdn.simpleicons.org/android/3DDC84",
+    "Firebase": "https://cdn.simpleicons.org/firebase/FFCA28",
     "React": "https://cdn.simpleicons.org/react/61DAFB",
     "Next.js": "https://cdn.simpleicons.org/nextdotjs/FFFFFF",
     "HTML5": "https://cdn.simpleicons.org/html5/E34F26",
