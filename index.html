@@ -25,6 +25,13 @@
   <meta name="twitter:description" content="" id="twitterDescription">
   <title>Developer Portfolio</title>
   <script type="application/ld+json" id="structuredData">{}</script>
+  <script>
+    try {
+      if (!sessionStorage.getItem("portfolioIntroSeen")) document.documentElement.classList.add("intro-pending");
+    } catch (error) {
+      document.documentElement.classList.add("intro-pending");
+    }
+  </script>
 
   <style>
     :root {
@@ -87,6 +94,39 @@
     img, svg { display: block; max-width: 100%; }
     ::selection { background: rgba(116,247,184,.26); color: #fff; }
     :focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+
+    .intro-loader {
+      position: fixed; inset: 0; z-index: 2000; display: none; place-items: center; overflow: hidden;
+      background: #07090d; opacity: 1; visibility: visible;
+    }
+    .intro-pending body { overflow: hidden; }
+    .intro-pending .intro-loader { display: grid; }
+    .intro-loader::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 48%,rgba(54,228,199,.11),transparent 32%);
+      animation: introField 2.6s ease both;
+    }
+    .intro-mark { width: clamp(150px,24vw,230px); overflow: visible; }
+    .intro-shell, .intro-terminal, .intro-route, .intro-baseline { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .intro-shell { stroke: #36e4c7; stroke-width: 8; stroke-dasharray: 690; stroke-dashoffset: 690; animation: introDraw .72s .12s cubic-bezier(.6,0,.2,1) forwards; }
+    .intro-terminal { stroke: #36e4c7; stroke-width: 10; stroke-dasharray: 92; stroke-dashoffset: 92; animation: introDraw .34s .72s ease forwards; }
+    .intro-cursor { fill: #36e4c7; opacity: 0; animation: introCursor .55s 1s steps(1,end) 2; }
+    .intro-arrow { fill: #fff; opacity: 0; transform-origin: 128px 124px; animation: introDeploy .48s 1.12s cubic-bezier(.2,.8,.2,1) forwards; }
+    .intro-route { stroke: #121a24; stroke-width: 15; stroke-dasharray: 210; stroke-dashoffset: 210; animation: introDraw .46s 1.42s ease forwards; }
+    .intro-baseline { stroke: #fff; stroke-width: 8; stroke-dasharray: 36; stroke-dashoffset: 36; animation: introDraw .25s 1.72s ease forwards; }
+    .intro-node { opacity: 0; transform-box: fill-box; transform-origin: center; animation: introNode .38s cubic-bezier(.2,.9,.3,1.25) forwards; }
+    .intro-node.center { animation-delay: 1.34s; }
+    .intro-node.left { animation-delay: 1.62s; }
+    .intro-node.right { animation-delay: 1.82s; }
+    .intro-scan { fill: url(#introScanGradient); transform: translateY(-115px); opacity: 0; animation: introScan .72s 1.9s ease-out forwards; }
+    .intro-loader.done { display: grid; animation: introExit .58s cubic-bezier(.7,0,.2,1) forwards; }
+    @keyframes introDraw { to { stroke-dashoffset: 0; } }
+    @keyframes introCursor { 0%,49% { opacity: 1; } 50%,100% { opacity: .18; } }
+    @keyframes introDeploy { 0% { opacity: 0; transform: translateY(16px) scale(.7); } 100% { opacity: 1; transform: none; } }
+    @keyframes introNode { 0% { opacity: 0; transform: scale(.25); } 100% { opacity: 1; transform: scale(1); } }
+    @keyframes introScan { 0% { opacity: 0; transform: translateY(-115px); } 30% { opacity: .7; } 100% { opacity: 0; transform: translateY(145px); } }
+    @keyframes introField { 0% { opacity: 0; transform: scale(.7); } 45% { opacity: 1; } 100% { opacity: .55; transform: scale(1.08); } }
+    @keyframes introExit { 0% { opacity: 1; clip-path: inset(0); } 100% { opacity: 0; clip-path: inset(49.8% 0); visibility: hidden; } }
 
     .skip-link {
       position: fixed; top: 8px; left: 8px; z-index: 1000; padding: 10px 14px;
@@ -586,12 +626,32 @@
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
+      .intro-loader *, .intro-loader::before { animation-duration: .01ms !important; animation-delay: 0ms !important; }
       *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
       .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
+  <div class="intro-loader" id="introLoader" role="status" aria-label="Loading portfolio">
+    <svg class="intro-mark" viewBox="0 0 256 256" aria-hidden="true">
+      <defs>
+        <linearGradient id="introScanGradient" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#36e4c7" stop-opacity="0"/><stop offset=".5" stop-color="#36e4c7"/><stop offset="1" stop-color="#8b7cff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path class="intro-shell" d="M128 20 222 72v91l-31 18v-26l15-9V83l-78-43-78 43v63l15 9v26l-31-18V72z"/>
+      <path class="intro-terminal" d="m76 91 18 18-18 18m34 0h25"/>
+      <path class="intro-arrow" d="m128 111 23 23-9 9-8-8v28h-12v-28l-8 8-9-9z"/>
+      <path class="intro-route" d="M128 177v13m0 0-57 31m57-31 57 31M71 221h114"/>
+      <g class="intro-node center"><path fill="#16a99d" d="m128 164 25 14-25 14-25-14z"/><path fill="#087c78" d="m103 178 25 14v29l-25-14z"/><path fill="#21d9ca" d="m153 178-25 14v29l25-14z"/></g>
+      <g class="intro-node left"><path fill="#82f178" d="m69 198 24 13-24 13-24-13z"/><path fill="#3fae39" d="m45 211 24 13v24l-24-13z"/><path fill="#62cd4e" d="m93 211-24 13v24l24-13z"/></g>
+      <g class="intro-node right"><path fill="#8b7cff" d="m187 198 24 13-24 13-24-13z"/><path fill="#5140b5" d="m163 211 24 13v24l-24-13z"/><path fill="#6552d5" d="m211 211-24 13v24l24-13z"/></g>
+      <path class="intro-baseline" d="M110 239h36"/>
+      <rect class="intro-cursor" x="110" y="122" width="25" height="8" rx="4"/>
+      <rect class="intro-scan" x="30" y="75" width="196" height="3" rx="1.5"/>
+    </svg>
+  </div>
   <a class="skip-link" href="#main">Skip to content</a>
   <div id="progress" aria-hidden="true"></div>
   <canvas id="particles" aria-hidden="true"></canvas>
@@ -807,6 +867,19 @@
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
   <script>
     document.documentElement.classList.remove("no-js");
+
+    const introLoader = document.getElementById("introLoader");
+    if (document.documentElement.classList.contains("intro-pending")) {
+      const introDelay = matchMedia("(prefers-reduced-motion: reduce)").matches ? 450 : 2850;
+      window.setTimeout(() => {
+        introLoader.classList.add("done");
+        document.documentElement.classList.remove("intro-pending");
+        try { sessionStorage.setItem("portfolioIntroSeen", "1"); } catch (error) {}
+        window.setTimeout(() => introLoader.remove(), 650);
+      }, introDelay);
+    } else {
+      introLoader.remove();
+    }
 
     let roles = [];
     let currentLanguage = sessionStorage.getItem("portfolioLanguage");
