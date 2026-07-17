@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="id" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -149,6 +149,10 @@
     .nav-links a:hover, .nav-links a.active { color: #fff; }
     .nav-cta { margin-left: 12px; }
     .menu-btn { display: none; width: 40px; height: 40px; place-items: center; border: 1px solid var(--line); background: var(--panel); cursor: pointer; }
+    .language-switch { min-width: 52px; height: 40px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 9px; border: 1px solid var(--line); background: rgba(255,255,255,.025); color: var(--muted); cursor: pointer; transition: color .2s,border-color .2s,background .2s; }
+    .language-switch:hover { color: var(--green); border-color: rgba(116,247,184,.28); background: rgba(116,247,184,.05); }
+    .language-switch svg { width: 15px; height: 15px; }
+    .language-switch span { font: 700 9px ui-monospace,monospace; }
 
     .btn {
       min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 9px;
@@ -596,13 +600,14 @@
         <span class="brand-name" id="brandName"></span>
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#stack">Stack</a>
-        <a href="#services">Services</a>
-        <a href="#experience">Experience</a>
-        <a class="btn btn-primary nav-cta" href="#contact">Start a project <i data-lucide="arrow-up-right"></i></a>
+        <a href="#about" id="navAbout">Tentang</a>
+        <a href="#work" id="navWork">Proyek</a>
+        <a href="#stack" id="navStack">Teknologi</a>
+        <a href="#services" id="navServices">Layanan</a>
+        <a href="#experience" id="navExperience">Pengalaman</a>
+        <a class="btn btn-primary nav-cta" href="#contact"><span id="navCta">Mulai proyek</span> <i data-lucide="arrow-up-right"></i></a>
       </nav>
+      <button class="language-switch" id="languageSwitch" type="button" aria-label="Switch language" title="Switch language"><i data-lucide="languages"></i><span id="languageCode">ID</span></button>
       <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation"><i data-lucide="menu"></i></button>
     </div>
   </header>
@@ -613,15 +618,15 @@
         <div>
           <div class="availability reveal">
             <span class="availability-signal"><i data-lucide="briefcase-business"></i></span>
-            <span class="availability-copy"><small>Open to work</small><strong id="availabilityText"></strong></span>
+            <span class="availability-copy"><small id="openToWork">Terbuka untuk kerja</small><strong id="availabilityText"></strong></span>
             <span class="availability-meta" id="availabilityMeta"></span>
           </div>
           <h1 class="reveal" id="heroName"></h1>
           <div class="hero-role reveal"><span id="typed"></span><span class="caret"></span></div>
           <p class="hero-copy reveal" id="heroDescription"></p>
           <div class="hero-actions reveal">
-            <a class="btn btn-primary magnetic" href="#work"><span id="primaryAction">Explore my work</span> <i data-lucide="arrow-down-right"></i></a>
-            <a class="btn magnetic" id="heroEmailLink" href="#"><span id="secondaryAction">Let's talk</span> <i data-lucide="send"></i></a>
+            <a class="btn btn-primary magnetic" href="#work"><span id="primaryAction">Lihat proyek saya</span> <i data-lucide="arrow-down-right"></i></a>
+            <a class="btn magnetic" id="heroEmailLink" href="#"><span id="secondaryAction">Lihat GitHub</span> <i data-lucide="send"></i></a>
             <a class="btn magnetic" id="heroCvLink" href="#" download><span id="heroCvLabel">Download CV</span> <i data-lucide="file-down"></i></a>
             <a class="btn icon-btn" id="heroGithubLink" href="#" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub"><i data-lucide="github"></i></a>
           </div>
@@ -671,7 +676,7 @@
           <div class="orbit"></div>
         </div>
       </div>
-      <div class="scroll-hint" aria-hidden="true"><i></i> Scroll to inspect</div>
+      <div class="scroll-hint" aria-hidden="true"><i></i><span id="scrollInspect">Scroll to inspect</span></div>
     </section>
 
     <div class="ticker" aria-label="Core technologies">
@@ -704,8 +709,8 @@
     <section class="section" id="work">
       <div class="container">
         <div class="section-head reveal">
-          <div><span class="eyebrow">Selected work</span><h2 class="section-title">Complex systems, made usable.</h2></div>
-          <p class="section-copy">A selection of platforms and infrastructure projects where product thinking meets robust engineering.</p>
+          <div><span class="eyebrow" id="selectedWorkEyebrow">Selected work</span><h2 class="section-title" id="selectedWorkTitle">Complex systems, made usable.</h2></div>
+          <p class="section-copy" id="selectedWorkCopy"></p>
         </div>
         <div class="project-list" id="projectList"></div>
       </div>
@@ -714,8 +719,8 @@
     <section class="section" id="stack">
       <div class="container">
         <div class="section-head reveal">
-          <div><span class="eyebrow">Technical arsenal</span><h2 class="section-title">Tools selected for the problem.</h2></div>
-          <p class="section-copy">Depth across the product stack, with the judgment to choose simple, maintainable technology over novelty.</p>
+          <div><span class="eyebrow" id="stackEyebrow">Technical arsenal</span><h2 class="section-title" id="stackTitle">Tools selected for the problem.</h2></div>
+          <p class="section-copy" id="stackCopy"></p>
         </div>
         <div class="skills-layout reveal">
           <div class="skill-tabs" role="tablist" aria-label="Technology categories" id="skillTabs"></div>
@@ -727,8 +732,8 @@
     <section class="section" id="services">
       <div class="container">
         <div class="section-head reveal">
-          <div><span class="eyebrow">Capabilities</span><h2 class="section-title">From first decision to production.</h2></div>
-          <p class="section-copy">Focused engineering support for teams that need to ship, scale, automate, or modernize critical software.</p>
+          <div><span class="eyebrow" id="servicesEyebrow">Capabilities</span><h2 class="section-title" id="servicesTitle">From first decision to production.</h2></div>
+          <p class="section-copy" id="servicesCopy"></p>
         </div>
         <div class="services-grid reveal" id="servicesGrid"></div>
       </div>
@@ -737,8 +742,8 @@
     <section class="section" id="experience">
       <div class="container">
         <div class="section-head reveal">
-          <div><span class="eyebrow">Experience</span><h2 class="section-title">Engineering with ownership.</h2></div>
-          <p class="section-copy">Hands-on delivery and technical leadership across the complete software lifecycle.</p>
+          <div><span class="eyebrow" id="experienceEyebrow">Experience</span><h2 class="section-title" id="experienceTitle">Engineering with ownership.</h2></div>
+          <p class="section-copy" id="experienceCopy"></p>
         </div>
         <div class="timeline" id="experienceTimeline"></div>
       </div>
@@ -747,8 +752,8 @@
     <section class="section" id="education">
       <div class="container">
         <div class="section-head reveal">
-          <div><span class="eyebrow">Education</span><h2 class="section-title">Where the foundation started.</h2></div>
-          <p class="section-copy">Formal technical education focused on software development, systems, and application engineering.</p>
+          <div><span class="eyebrow" id="educationEyebrow">Education</span><h2 class="section-title" id="educationTitle">Where the foundation started.</h2></div>
+          <p class="section-copy" id="educationCopy"></p>
         </div>
         <div class="education-list" id="educationList"></div>
       </div>
@@ -757,8 +762,8 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <div><span class="eyebrow">Working principles</span><h2 class="section-title">The standard behind the code.</h2></div>
-          <p class="section-copy">Good engineering is not only what ships today. It is what remains understandable, secure, and adaptable tomorrow.</p>
+          <div><span class="eyebrow" id="principlesEyebrow">Working principles</span><h2 class="section-title" id="principlesTitle">The standard behind the code.</h2></div>
+          <p class="section-copy" id="principlesCopy"></p>
         </div>
         <div class="principles-grid reveal" id="principlesGrid"></div>
       </div>
@@ -773,8 +778,8 @@
               <h2 class="contact-title"><span id="contactTitle"></span><br><span class="gradient-text" id="contactAccentTitle"></span></h2>
               <p class="contact-copy" id="contactDescription"></p>
               <div class="contact-actions">
-                <a class="btn btn-primary magnetic" id="contactEmailButton" href="#">Send an email <i data-lucide="send"></i></a>
-                <a class="btn magnetic" id="contactPhoneButton" href="#">Call me <i data-lucide="phone"></i></a>
+                <a class="btn btn-primary magnetic" id="contactEmailButton" href="#"><span id="sendEmail">Send an email</span> <i data-lucide="send"></i></a>
+                <a class="btn magnetic" id="contactPhoneButton" href="#"><span id="callMe">Call me</span> <i data-lucide="phone"></i></a>
                 <a class="btn magnetic" id="contactCvLink" href="#" download>Download CV <i data-lucide="file-down"></i></a>
               </div>
             </div>
@@ -800,10 +805,23 @@
     document.documentElement.classList.remove("no-js");
 
     let roles = [];
+    let currentLanguage = sessionStorage.getItem("portfolioLanguage");
+    if (!["id", "en"].includes(currentLanguage)) currentLanguage = "id";
 
     function setText(id, value) {
       const element = document.getElementById(id);
       if (element) element.textContent = value || "";
+    }
+
+    function renderUi(ui) {
+      ["navAbout","navWork","navStack","navServices","navExperience","navCta","openToWork","selectedWorkEyebrow","selectedWorkTitle","selectedWorkCopy","stackEyebrow","stackTitle","stackCopy","servicesEyebrow","servicesTitle","servicesCopy","experienceEyebrow","experienceTitle","experienceCopy","educationEyebrow","educationTitle","educationCopy","principlesEyebrow","principlesTitle","principlesCopy","sendEmail","callMe","scrollInspect"].forEach(id => setText(id, ui[id]));
+      setText("languageCode", currentLanguage.toUpperCase());
+      const switchButton = document.getElementById("languageSwitch");
+      const switchLabel = currentLanguage === "id" ? "Switch to English" : "Ganti ke Bahasa Indonesia";
+      switchButton.setAttribute("aria-label", switchLabel);
+      switchButton.title = switchLabel;
+      document.getElementById("backTop").setAttribute("aria-label", ui.backToTop);
+      document.getElementById("backTop").title = ui.backToTop;
     }
 
     function renderConfig(config) {
@@ -816,6 +834,7 @@
       };
 
       document.documentElement.lang = config.site.language;
+      renderUi(config.ui);
       document.title = pageTitle;
       setMeta("metaAuthor", person.name);
       setMeta("metaDescription", config.seo.description);
@@ -897,10 +916,10 @@
       setText("aboutIntro", config.about.intro);
       setText("aboutDescription", config.about.description);
       document.getElementById("profileCode").innerHTML =
-        '<div><span class="muted">name:</span> <strong>"' + person.nickname + '"</strong></div>' +
-        '<div><span class="muted">experience:</span> <strong>"' + config.about.profile.experience + '"</strong></div>' +
-        '<div><span class="muted">focus:</span> <strong>"' + config.about.profile.focus + '"</strong></div>' +
-        '<div><span class="muted">status:</span> <strong>"' + config.about.profile.status + '"</strong></div>';
+        '<div><span class="muted">' + config.ui.profileName + ':</span> <strong>"' + person.nickname + '"</strong></div>' +
+        '<div><span class="muted">' + config.ui.profileExperience + ':</span> <strong>"' + config.about.profile.experience + '"</strong></div>' +
+        '<div><span class="muted">' + config.ui.profileFocus + ':</span> <strong>"' + config.about.profile.focus + '"</strong></div>' +
+        '<div><span class="muted">' + config.ui.profileStatus + ':</span> <strong>"' + config.about.profile.status + '"</strong></div>';
       document.getElementById("capabilityGrid").innerHTML = config.about.capabilities.map(item =>
         '<article class="capability"><i data-lucide="' + item.icon + '"></i><h3>' + item.title +
         '</h3><p>' + item.description + '</p></article>'
@@ -915,6 +934,10 @@
           '<span class="stat-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>' +
         '</div>'
       ).join("");
+      counted = false;
+      const statsGrid = document.getElementById("statsGrid");
+      if (statsGrid.classList.contains("visible")) animateCounters();
+      else statsGrid.removeAttribute("data-observed");
 
       document.getElementById("achievementsList").innerHTML = config.achievements.map(item =>
         '<article class="achievement-panel reveal">' +
@@ -935,7 +958,7 @@
         const number = String(index + 1).padStart(2, "0");
         const total = String(config.projects.length).padStart(2, "0");
         const tags = project.tech.map(item => '<span class="tag">' + item + '</span>').join("");
-        const label = project.public ? "Open " + project.title : project.title + " is private";
+        const label = project.public ? config.ui.openProject + ": " + project.title : config.ui.privateProject + ": " + project.title;
         const link = project.public
           ? 'href="' + project.url + '" target="_blank" rel="noopener noreferrer"'
           : 'href="#contact"';
@@ -946,7 +969,7 @@
           (project.public ? "arrow-up-right" : "lock-keyhole") + '"></i></a></article>';
       }).join("");
 
-      renderSkills(config.skills, config.skillLogos || {});
+      renderSkills(config.skills, config.skillLogos || {}, config.ui.productionReady);
 
       document.getElementById("servicesGrid").innerHTML = config.services.map((item, index) =>
         '<article class="service"><div class="service-top"><i data-lucide="' + item.icon +
@@ -993,13 +1016,13 @@
       if (person.phoneLink) phoneButton.href = "tel:" + person.phoneLink;
       const contactRows = [];
       if (person.email) {
-        contactRows.push('<a class="contact-row" href="mailto:' + person.email + '"><i data-lucide="mail"></i><span><small>Email</small><strong>' + person.email + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>');
+        contactRows.push('<a class="contact-row" href="mailto:' + person.email + '"><i data-lucide="mail"></i><span><small>' + config.ui.emailLabel + '</small><strong>' + person.email + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>');
       }
       if (person.phoneLink) {
-        contactRows.push('<a class="contact-row" href="tel:' + person.phoneLink + '"><i data-lucide="phone"></i><span><small>Phone</small><strong>' + person.phoneDisplay + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>');
+        contactRows.push('<a class="contact-row" href="tel:' + person.phoneLink + '"><i data-lucide="phone"></i><span><small>' + config.ui.phoneLabel + '</small><strong>' + person.phoneDisplay + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>');
       }
-      contactRows.push('<a class="contact-row" href="' + person.github + '" target="_blank" rel="noopener noreferrer"><i data-lucide="github"></i><span><small>GitHub</small><strong>' + person.githubLabel + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>');
-      contactRows.push('<div class="contact-row"><i data-lucide="map-pin"></i><span><small>Location</small><strong>' + person.location + '</strong></span></div>');
+      contactRows.push('<a class="contact-row" href="' + person.github + '" target="_blank" rel="noopener noreferrer"><i data-lucide="github"></i><span><small>' + config.ui.githubLabel + '</small><strong>' + person.githubLabel + '</strong></span><i class="arrow" data-lucide="arrow-up-right"></i></a>');
+      contactRows.push('<div class="contact-row"><i data-lucide="map-pin"></i><span><small>' + config.ui.locationLabel + '</small><strong>' + person.location + '</strong></span></div>');
       document.getElementById("contactList").innerHTML = contactRows.join("");
 
       setText("footerName", person.name);
@@ -1029,7 +1052,7 @@
       });
     }
 
-    function renderSkills(skillData, skillLogos) {
+    function renderSkills(skillData, skillLogos, statusLabel) {
       const tabs = document.getElementById("skillTabs");
       const panels = document.getElementById("skillPanels");
       tabs.innerHTML = "";
@@ -1056,7 +1079,7 @@
             (logo ? '<img src="' + logo + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : "") +
             '<span>' + abbr + '</span></div>';
           return '<div class="skill-card">' + icon + '<strong>' +
-            item + '</strong><small>Production ready</small></div>';
+            item + '</strong><small>' + statusLabel + '</small></div>';
         }).join("");
         tab.addEventListener("click", () => {
           document.querySelectorAll(".skill-tab").forEach(el => {
@@ -1079,17 +1102,24 @@
       });
     }
 
-    fetch("./config.json", {cache: "no-store"})
-      .then(response => {
-        if (!response.ok) throw new Error("Unable to load config.json");
-        return response.json();
-      })
-      .then(renderConfig)
-      .catch(error => {
-        console.error(error);
-        document.getElementById("heroDescription").textContent =
-          "Configuration could not be loaded. Run this portfolio through a local web server.";
-      });
+    function loadPortfolio(language) {
+      currentLanguage = language;
+      const configFile = language === "id" ? "./config.id.json" : "./config.json";
+      return fetch(configFile, {cache: "no-store"})
+        .then(response => {
+          if (!response.ok) throw new Error("Unable to load " + configFile);
+          return response.json();
+        })
+        .then(renderConfig)
+        .catch(error => {
+          console.error(error);
+          document.getElementById("heroDescription").textContent = language === "id"
+            ? "Konfigurasi tidak dapat dimuat. Jalankan portfolio melalui web server."
+            : "Configuration could not be loaded. Run this portfolio through a web server.";
+        });
+    }
+
+    loadPortfolio(currentLanguage);
 
     window.addEventListener("load", () => {
       if (window.lucide) lucide.createIcons();
@@ -1099,9 +1129,16 @@
     const progress = document.getElementById("progress");
     const backTop = document.getElementById("backTop");
     const menuBtn = document.getElementById("menuBtn");
+    const languageSwitch = document.getElementById("languageSwitch");
     const navLinks = document.getElementById("navLinks");
     const sections = [...document.querySelectorAll("main section[id]")];
     const navAnchors = [...document.querySelectorAll(".nav-links a[href^='#']")];
+
+    languageSwitch.addEventListener("click", () => {
+      const nextLanguage = currentLanguage === "id" ? "en" : "id";
+      sessionStorage.setItem("portfolioLanguage", nextLanguage);
+      loadPortfolio(nextLanguage);
+    });
 
     menuBtn.addEventListener("click", () => {
       const open = navLinks.classList.toggle("open");
@@ -1158,6 +1195,7 @@
 
     const typed = document.getElementById("typed");
     let roleIndex = 0, charIndex = 0, deleting = false;
+    let typewriterTimer;
     function typeRole() {
       const role = roles[roleIndex];
       charIndex += deleting ? -1 : 1;
@@ -1165,12 +1203,12 @@
       let delay = deleting ? 28 : 55;
       if (!deleting && charIndex === role.length) { deleting = true; delay = 1700; }
       else if (deleting && charIndex === 0) { deleting = false; roleIndex = (roleIndex+1)%roles.length; delay = 350; }
-      setTimeout(typeRole,delay);
+      typewriterTimer = setTimeout(typeRole,delay);
     }
-    let typewriterStarted = false;
     function startTypewriter() {
-      if (typewriterStarted || !roles.length) return;
-      typewriterStarted = true;
+      clearTimeout(typewriterTimer);
+      roleIndex = 0; charIndex = 0; deleting = false; typed.textContent = "";
+      if (!roles.length) return;
       if (!matchMedia("(prefers-reduced-motion: reduce)").matches) typeRole();
       else typed.textContent = roles[0];
     }

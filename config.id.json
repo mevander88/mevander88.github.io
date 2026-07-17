@@ -1,0 +1,380 @@
+{
+  "site": {
+    "language": "id",
+    "url": "https://mevander88.github.io/",
+    "brand": "Muhammad Latif Harkat",
+    "availability": "Terbuka untuk peluang terpilih",
+    "footerNote": "Dirancang dan dikembangkan dengan penuh pertimbangan.",
+    "cv": {
+      "url": "./Muhammad-Latif-Harkat-CV.pdf",
+      "fileName": "Muhammad-Latif-Harkat-CV.pdf",
+      "label": "Download CV"
+    }
+  },
+  "ui": {
+    "navAbout": "Tentang",
+    "navWork": "Proyek",
+    "navStack": "Teknologi",
+    "navServices": "Layanan",
+    "navExperience": "Pengalaman",
+    "navCta": "Mulai proyek",
+    "openToWork": "Terbuka untuk kerja",
+    "locationLabel": "Lokasi",
+    "emailLabel": "Email",
+    "phoneLabel": "Telepon",
+    "githubLabel": "GitHub",
+    "aboutEyebrow": "Tentang saya",
+    "selectedWorkEyebrow": "Proyek pilihan",
+    "selectedWorkTitle": "Sistem kompleks yang mudah digunakan.",
+    "selectedWorkCopy": "Pilihan platform dan proyek infrastruktur yang memadukan pemikiran produk dengan engineering yang kuat.",
+    "stackEyebrow": "Kemampuan teknis",
+    "stackTitle": "Teknologi yang dipilih sesuai kebutuhan.",
+    "stackCopy": "Penguasaan menyeluruh di seluruh product stack, dengan pertimbangan untuk memilih teknologi yang sederhana dan mudah dipelihara.",
+    "servicesEyebrow": "Kapabilitas",
+    "servicesTitle": "Dari keputusan pertama hingga production.",
+    "servicesCopy": "Dukungan engineering untuk tim yang perlu membangun, meningkatkan skala, mengotomatisasi, atau memodernisasi software penting.",
+    "experienceEyebrow": "Pengalaman",
+    "experienceTitle": "Engineering dengan tanggung jawab penuh.",
+    "experienceCopy": "Pengembangan langsung dan kepemimpinan teknis di seluruh siklus hidup software.",
+    "educationEyebrow": "Pendidikan",
+    "educationTitle": "Tempat fondasi teknis dimulai.",
+    "educationCopy": "Pendidikan teknis formal yang berfokus pada pengembangan software, sistem, dan rekayasa aplikasi.",
+    "principlesEyebrow": "Prinsip kerja",
+    "principlesTitle": "Standar di balik setiap baris kode.",
+    "principlesCopy": "Engineering yang baik bukan hanya apa yang dirilis hari ini, tetapi apa yang tetap mudah dipahami, aman, dan adaptif di masa depan.",
+    "sendEmail": "Kirim email",
+    "callMe": "Hubungi saya",
+    "productionReady": "Siap production",
+    "privateProject": "Proyek privat",
+    "openProject": "Buka proyek",
+    "backToTop": "Kembali ke atas",
+    "scrollInspect": "Gulir untuk melihat",
+    "profileName": "nama",
+    "profileExperience": "pengalaman",
+    "profileFocus": "fokus",
+    "profileStatus": "status"
+  },
+  "seo": {
+    "description": "Muhammad Latif Harkat adalah Software Engineer dari Indonesia yang berfokus pada full-stack development, backend yang scalable, DevOps, cybersecurity, automation, dan arsitektur sistem.",
+    "socialDescription": "Software Engineer yang membangun aplikasi scalable, API berperforma tinggi, infrastruktur, dan security automation.",
+    "keywords": [
+      "Muhammad Latif Harkat",
+      "Software Engineer",
+      "Fullstack Engineer",
+      "Backend Developer",
+      "Golang",
+      "Next.js",
+      "Python",
+      "FastAPI",
+      "Cybersecurity",
+      "DevOps",
+      "Indonesia"
+    ]
+  },
+  "person": {
+    "name": "Muhammad Latif Harkat",
+    "nickname": "Latif",
+    "headline": "Software Engineer",
+    "roles": [
+      "Software Engineer dari Indonesia",
+      "Fullstack Engineer & Backend Developer",
+      "Next.js · Golang · Python · PHP",
+      "FastAPI · Laravel · Django · Redis",
+      "DevOps · Cybersecurity · System Architecture"
+    ],
+    "location": "Indonesia",
+    "shortLocation": "Indonesia",
+    "timezone": "GMT+7",
+    "workModes": "Remote · Hybrid · On-site",
+    "experience": "",
+    "email": "latipharkat48@gmail.com",
+    "phoneDisplay": "",
+    "phoneLink": "",
+    "github": "https://github.com/mevander88",
+    "githubLabel": "github.com/mevander88"
+  },
+  "hero": {
+    "description": "Saya membangun aplikasi full-stack dan sistem backend yang scalable dengan fokus pada API berperforma tinggi, infrastruktur, deployment, automation, cybersecurity, dan arsitektur yang mudah dipelihara.",
+    "primaryAction": "Lihat proyek saya",
+    "secondaryAction": "Lihat GitHub"
+  },
+  "about": {
+    "eyebrow": "Tentang saya",
+    "title": "Code. Build. Scale.",
+    "intro": "Saya adalah Software Engineer dari Indonesia yang berfokus pada full-stack development serta arsitektur frontend dan backend yang scalable.",
+    "description": "Saya membangun sistem backend dengan Golang, Python, PHP, dan Node.js; merancang REST API, microservices, serta service-oriented systems; mengoptimalkan database dan caching; mengotomatisasi workflow DevOps; dan mengembangkan security tools serta Android automation.",
+    "profile": {
+      "experience": "berorientasi production",
+      "focus": "sistem scalable",
+      "status": "tersedia"
+    },
+    "capabilities": [
+      {
+        "icon": "network",
+        "title": "Fullstack Engineering",
+        "description": "Arsitektur frontend dan backend yang scalable untuk aplikasi yang bersih, mudah dipelihara, dan siap production."
+      },
+      {
+        "icon": "gauge",
+        "title": "Backend Engineering",
+        "description": "API berperforma tinggi dan sistem backend menggunakan Golang, Python, PHP, dan Node.js."
+      },
+      {
+        "icon": "workflow",
+        "title": "DevOps & Automation",
+        "description": "Workflow CI/CD, container, cloud deployment, infrastruktur, ADB, dan task automation."
+      },
+      {
+        "icon": "shield-check",
+        "title": "Security Engineering",
+        "description": "Keamanan web dan API, analisis jaringan, vulnerability assessment, serta defensive security tooling."
+      }
+    ]
+  },
+  "statistics": [
+    { "value": 8, "suffix": "", "label": "Bahasa pemrograman", "icon": "code-2" },
+    { "value": 9, "suffix": "", "label": "Teknologi backend", "icon": "server-cog" },
+    { "value": 4, "suffix": "", "label": "Sistem database", "icon": "database" },
+    { "value": 8, "suffix": "", "label": "Disiplin engineering", "icon": "layers-3" }
+  ],
+  "achievements": [
+    {
+      "platform": "Google Search Console",
+      "title": "Pertumbuhan SEO Organik",
+      "description": "Menghasilkan lebih dari 200.000 tayangan pencarian organik dan 15.000 klik dalam 28 hari melalui riset SEO profesional, optimasi teknis, strategi konten, dan pengembangan backlink.",
+      "period": "28 hari",
+      "source": "SEO & Backlink",
+      "metrics": [
+        { "value": "200K+", "label": "Tayangan pencarian" },
+        { "value": "15K+", "label": "Klik organik" }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Anime Streaming & Comic Platform",
+      "description": "Platform web kompleks untuk streaming anime dan membaca komik, didukung scraping otomatis serta data-processing pipeline. Sistem mencakup content discovery, pencarian, komentar, like, interaksi pengguna, caching, optimasi SEO, dan media delivery yang scalable.",
+      "tech": ["Next.js", "GoFiber", "PostgreSQL", "Redis", "Web Scraping", "User Interaction"],
+      "url": "#",
+      "public": false
+    },
+    {
+      "title": "Anime & Comic Android Application",
+      "description": "Aplikasi Android untuk streaming anime dan membaca komik melalui GoFiber API berperforma tinggi. Aplikasi menggunakan data hasil scraping dan mendukung pencarian, content discovery, komentar, like, aktivitas pengguna, sinkronisasi data, serta optimasi performa berbasis Redis.",
+      "tech": ["Android", "GoFiber", "PostgreSQL", "Redis", "REST API", "Web Scraping"],
+      "url": "#",
+      "public": false
+    },
+    {
+      "title": "MutasiOPS",
+      "description": "Automation mutasi finansial enterprise yang terhubung ke banyak perangkat Android, dibangun untuk concurrency tinggi, monitoring real-time, workflow yang andal, dan pemrosesan transaksi yang efisien.",
+      "tech": ["ADB Automation", "Multi-device", "Real-time", "Workers", "Queues"],
+      "url": "#",
+      "public": false
+    },
+    {
+      "title": "WebDok",
+      "description": "Platform kompleks untuk agregasi data, pembukuan digital, dan manajemen bisnis yang mengumpulkan serta memproses informasi melalui multi-source scraping pipeline. Mencakup panel worker terpusat, queue processing, job monitoring, workflow transaksi, laporan keuangan, administrasi pengguna, analitik operasional, dan dashboard admin.",
+      "tech": ["Multi-source Scraping", "Worker Management", "Queue Processing", "Data Processing", "Monitoring Dashboard", "Financial Reporting"],
+      "url": "#",
+      "public": false
+    },
+    {
+      "title": "Automation & Security Tools",
+      "description": "Kumpulan tool praktis untuk manajemen infrastruktur: utility automation, software monitoring, internal security research tools, workflow OSINT, dan sistem produktivitas.",
+      "tech": ["OSINT", "Monitoring", "Network", "Automation"],
+      "url": "https://github.com/mevander88",
+      "public": true
+    },
+    {
+      "title": "WA Blast Platform",
+      "description": "Platform broadcast WhatsApp dan manajemen campaign untuk pengiriman pesan massal, segmentasi kontak, penjadwalan pesan, monitoring pengiriman, dan pemrosesan berbasis queue yang scalable.",
+      "tech": ["WhatsApp Integration", "Queue Processing", "Campaign Management", "REST API", "Redis"],
+      "url": "#",
+      "public": false
+    },
+    {
+      "title": "PLTS Management System",
+      "description": "Sistem manajemen pembangkit listrik tenaga surya untuk monitoring data operasional, pengelolaan aset dan aktivitas maintenance, analisis performa, serta penyajian insight teknis melalui dashboard terpusat.",
+      "tech": ["PLTS Monitoring", "Asset Management", "Analytics Dashboard", "Maintenance", "Data Processing"],
+      "url": "#",
+      "public": false
+    }
+  ],
+  "skills": {
+    "Bahasa Pemrograman": ["JavaScript", "TypeScript", "Python", "PHP", "C#", "Go", "Java", "Kotlin"],
+    "Frontend": ["React", "Next.js", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"],
+    "Pengembangan Mobile": ["Kotlin", "Flutter", "Android", "Firebase"],
+    "Backend": ["Node.js", "Express", "Flask", "FastAPI", "Django", "Laravel", "CodeIgniter", "ASP.NET", "Golang (GoFiber)"],
+    "Database": ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
+    "DevOps": ["Docker", "Nginx", "Linux", "GitHub Actions", "CI/CD", "PM2", "Cloud Deployment"],
+    "Keamanan Siber": ["Web Security", "API Security", "Network Analysis", "Automation Tools", "Security Research", "Vulnerability Assessment"],
+    "Professional SEO": ["SEO Research", "Technical SEO", "Keyword Research", "On-Page SEO", "Backlink Strategy", "Google Search Console", "Content Strategy", "Programmatic SEO"],
+    "Tools": ["Codex", "Git", "Postman", "Burp Suite", "VSCode", "WSL", "ADB", "Scrcpy"],
+    "Arsitektur": ["REST API", "Microservices", "Clean Architecture", "Service-Oriented Architecture"],
+    "Spesialisasi": ["Scalable Backend Systems", "High-Performance APIs", "Infrastructure and Deployment", "Automation and Security Tooling"]
+  },
+  "skillLogos": {
+    "JavaScript": "https://cdn.simpleicons.org/javascript/F7DF1E",
+    "TypeScript": "https://cdn.simpleicons.org/typescript/3178C6",
+    "Python": "https://cdn.simpleicons.org/python/3776AB",
+    "PHP": "https://cdn.simpleicons.org/php/777BB4",
+    "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
+    "Go": "https://cdn.simpleicons.org/go/00ADD8",
+    "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    "Kotlin": "https://cdn.simpleicons.org/kotlin/7F52FF",
+    "Flutter": "https://cdn.simpleicons.org/flutter/02569B",
+    "Android": "https://cdn.simpleicons.org/android/3DDC84",
+    "Firebase": "https://cdn.simpleicons.org/firebase/FFCA28",
+    "React": "https://cdn.simpleicons.org/react/61DAFB",
+    "Next.js": "https://cdn.simpleicons.org/nextdotjs/FFFFFF",
+    "HTML5": "https://cdn.simpleicons.org/html5/E34F26",
+    "CSS3": "https://cdn.simpleicons.org/css/663399",
+    "Tailwind CSS": "https://cdn.simpleicons.org/tailwindcss/06B6D4",
+    "Bootstrap": "https://cdn.simpleicons.org/bootstrap/7952B3",
+    "Node.js": "https://cdn.simpleicons.org/nodedotjs/5FA04E",
+    "Express": "https://cdn.simpleicons.org/express/FFFFFF",
+    "Flask": "https://cdn.simpleicons.org/flask/FFFFFF",
+    "FastAPI": "https://cdn.simpleicons.org/fastapi/009688",
+    "Django": "https://cdn.simpleicons.org/django/44B78B",
+    "Laravel": "https://cdn.simpleicons.org/laravel/FF2D20",
+    "CodeIgniter": "https://cdn.simpleicons.org/codeigniter/EF4223",
+    "ASP.NET": "https://cdn.simpleicons.org/dotnet/512BD4",
+    "Golang (GoFiber)": "https://cdn.simpleicons.org/go/00ADD8",
+    "PostgreSQL": "https://cdn.simpleicons.org/postgresql/4169E1",
+    "MySQL": "https://cdn.simpleicons.org/mysql/4479A1",
+    "MongoDB": "https://cdn.simpleicons.org/mongodb/47A248",
+    "Redis": "https://cdn.simpleicons.org/redis/FF4438",
+    "Docker": "https://cdn.simpleicons.org/docker/2496ED",
+    "Nginx": "https://cdn.simpleicons.org/nginx/009639",
+    "Linux": "https://cdn.simpleicons.org/linux/FCC624",
+    "GitHub Actions": "https://cdn.simpleicons.org/githubactions/2088FF",
+    "PM2": "https://cdn.simpleicons.org/pm2/2B037A",
+    "Git": "https://cdn.simpleicons.org/git/F05032",
+    "Postman": "https://cdn.simpleicons.org/postman/FF6C37",
+    "Burp Suite": "https://cdn.simpleicons.org/burpsuite/FF6633",
+    "VSCode": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+    "WSL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg",
+    "ADB": "https://cdn.simpleicons.org/android/3DDC84",
+    "Codex": "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/openai.svg",
+    "Google Search Console": "https://cdn.simpleicons.org/googlesearchconsole/458CF5"
+  },
+  "services": [
+    {
+      "icon": "panels-top-left",
+      "title": "Product Engineering",
+      "description": "Produk web full-stack, aplikasi enterprise, dan interface yang dibangun untuk workflow nyata."
+    },
+    {
+      "icon": "server-cog",
+      "title": "Backend & APIs",
+      "description": "Service berperforma tinggi, REST API, integrasi, queue, dan sistem real-time."
+    },
+    {
+      "icon": "blocks",
+      "title": "System Architecture",
+      "description": "Technical discovery, domain modeling, desain database, dan arsitektur yang scalable."
+    },
+    {
+      "icon": "cloud-cog",
+      "title": "Cloud & DevOps",
+      "description": "Deployment, CI/CD, infrastruktur Linux, observability, dan performance tuning."
+    },
+    {
+      "icon": "bot",
+      "title": "Automation",
+      "description": "Web scraping, bot, browser automation, ADB orchestration, dan task processing."
+    },
+    {
+      "icon": "scan-search",
+      "title": "Optimization",
+      "description": "Database profiling, strategi caching, penghapusan bottleneck, dan peningkatan reliability."
+    },
+    {
+      "icon": "shield-check",
+      "title": "Cybersecurity",
+      "description": "Keamanan web dan API, analisis jaringan, security research, dan vulnerability assessment."
+    },
+    {
+      "icon": "messages-square",
+      "title": "Technical Consulting",
+      "description": "Architecture review, perencanaan delivery, code review, dan kepemimpinan engineering."
+    }
+  ],
+  "experience": [
+    {
+      "period": "MANAJEMEN PROYEK",
+      "title": "Project Manager",
+      "company": "PT Mitra Pulsa Nasional",
+      "responsibilities": [
+        "Perencanaan proyek",
+        "Koordinasi development",
+        "Analisis kebutuhan",
+        "Dokumentasi teknis",
+        "Manajemen tugas",
+        "Monitoring progres",
+        "Quality assurance",
+        "Koordinasi deployment",
+        "Komunikasi stakeholder"
+      ]
+    },
+    {
+      "period": "FULL STACK DEVELOPMENT",
+      "title": "Full Stack Developer",
+      "company": "PT Sero Mula Mandiri",
+      "responsibilities": [
+        "Pengembangan frontend",
+        "Pengembangan backend",
+        "Pengembangan REST API",
+        "Integrasi database",
+        "Pemeliharaan sistem",
+        "Optimasi performa",
+        "Perbaikan bug",
+        "Deployment",
+        "Dukungan teknis"
+      ]
+    },
+    {
+      "period": "FREELANCE",
+      "title": "Freelance Full Stack Developer",
+      "company": "Independent Software Development",
+      "responsibilities": [
+        "Analisis kebutuhan klien",
+        "Pengembangan web full-stack",
+        "Pengembangan sistem backend",
+        "Integrasi API",
+        "Desain database",
+        "Solusi automation",
+        "Cloud deployment",
+        "Pemeliharaan aplikasi",
+        "Konsultasi teknis"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "SMK Informatika CBI",
+      "degree": "Sekolah Menengah Kejuruan",
+      "field": "Rekayasa Perangkat Lunak",
+      "originalField": "Rekayasa Perangkat Lunak",
+      "location": "Indonesia",
+      "description": "Mempelajari dasar pengembangan software, pemrograman, sistem database, pengembangan web, analisis sistem, dan rekayasa aplikasi."
+    }
+  ],
+  "principles": [
+    { "icon": "maximize-2", "title": "Arsitektur Scalable", "subtitle": "Bertumbuh tanpa rewrite" },
+    { "icon": "braces", "title": "Clean Code", "subtitle": "Kejelasan yang berkelanjutan" },
+    { "icon": "zap", "title": "Performa Tinggi", "subtitle": "Diukur lalu ditingkatkan" },
+    { "icon": "shield-check", "title": "Fokus Keamanan", "subtitle": "Dirancang sejak awal" },
+    { "icon": "puzzle", "title": "Problem Solver", "subtitle": "Akar masalah, bukan gejala" },
+    { "icon": "book-open-check", "title": "Pembelajar Cepat", "subtitle": "Adaptif tanpa mengganggu stabilitas" },
+    { "icon": "badge-check", "title": "Delivery Andal", "subtitle": "Tanggung jawab end-to-end" },
+    { "icon": "sparkles", "title": "Teknologi Modern", "subtitle": "Berguna, bukan sekadar tren" }
+  ],
+  "contact": {
+    "eyebrow": "Terhubung",
+    "title": "Jelajahi karya saya.",
+    "accentTitle": "Bangun sesuatu yang scalable.",
+    "description": "Terhubung melalui GitHub untuk melihat karya software engineering saya di bidang full-stack development, backend systems, DevOps, automation, cybersecurity, dan arsitektur sistem."
+  }
+}
