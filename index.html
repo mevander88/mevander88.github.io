@@ -1641,15 +1641,11 @@
     ];
 
     function archGeometry(definition){
-      if(definition.shape==="core")return new THREE.DodecahedronGeometry(.68,0);
-      if(definition.shape==="capsule")return new THREE.CapsuleGeometry(.35,.85,4,12);
-      if(definition.shape==="octa")return new THREE.OctahedronGeometry(.72,0);
-      if(definition.shape==="database")return new THREE.CylinderGeometry(.68,.68,.62,18,2);
-      if(definition.shape==="diamond")return new THREE.OctahedronGeometry(.7,0);
-      if(definition.shape==="ring")return new THREE.TorusGeometry(.55,.19,10,28);
-      if(definition.shape==="cloud")return new THREE.IcosahedronGeometry(.82,1);
-      if(definition.shape==="mobile")return new THREE.BoxGeometry(.72,1.15,.24);
-      return new THREE.BoxGeometry(1.45,.82,.22);
+      if(definition.primary)return new THREE.IcosahedronGeometry(.72,2);
+      if(definition.shape==="cloud")return new THREE.DodecahedronGeometry(.68,1);
+      const geometry=new THREE.CylinderGeometry(.58,.58,.26,6,1);
+      geometry.rotateX(Math.PI/2);
+      return geometry;
     }
     function archIconTexture(kind,color){
       const iconCanvas=document.createElement("canvas"); iconCanvas.width=iconCanvas.height=192;
@@ -1670,17 +1666,17 @@
       const color=archColors[definition.type];
       const geometry=archGeometry(definition);
       const material=new THREE.MeshPhysicalMaterial({
-        color:new THREE.Color(color).multiplyScalar(.34),emissive:color,emissiveIntensity:definition.primary ? .42 : .2,
-        metalness:.46,roughness:.28,transparent:true,opacity:.88,clearcoat:.6,clearcoatRoughness:.28
+        color:new THREE.Color(color).multiplyScalar(.24),emissive:color,emissiveIntensity:definition.primary ? .5 : .16,
+        metalness:.42,roughness:.2,transparent:true,opacity:.96,clearcoat:.75,clearcoatRoughness:.18
       });
       const mesh=new THREE.Mesh(geometry,material);
       mesh.position.set(...definition.position);
       mesh.userData={...definition,baseEmissive:material.emissiveIntensity};
-      const edge=new THREE.LineSegments(new THREE.EdgesGeometry(geometry),new THREE.LineBasicMaterial({color,transparent:true,opacity:.72}));
+      const edge=new THREE.LineSegments(new THREE.EdgesGeometry(geometry),new THREE.LineBasicMaterial({color,transparent:true,opacity:.42}));
       mesh.add(edge); archWorld.add(mesh); archNodes.push(mesh); archNodeMap.set(definition.name,mesh);
       const iconMaterial=new THREE.SpriteMaterial({map:archIconTexture(definition.icon,color),transparent:true,depthTest:false,depthWrite:false,opacity:.96});
-      const icon=new THREE.Sprite(iconMaterial); icon.position.set(...definition.position); icon.position.z+=definition.shape==="ring" ? .28 : .48; icon.renderOrder=8;
-      const iconSize=definition.primary ? 1.02 : definition.wide ? .88 : .72; icon.scale.set(iconSize,iconSize,1); archWorld.add(icon);
+      const icon=new THREE.Sprite(iconMaterial); icon.position.set(...definition.position); icon.position.z+=.33; icon.renderOrder=8;
+      const iconSize=definition.primary ? .92 : .64; icon.scale.set(iconSize,iconSize,1); archWorld.add(icon);
       return mesh;
     }
     archDefinitions.forEach(createArchNode);
@@ -1696,14 +1692,14 @@
     });
     const archLineGeometry=new THREE.BufferGeometry();
     archLineGeometry.setAttribute("position",new THREE.Float32BufferAttribute(archLinePositions,3));
-    const archLines=new THREE.LineSegments(archLineGeometry,new THREE.LineBasicMaterial({color:0x61d8ff,transparent:true,opacity:.34,blending:THREE.AdditiveBlending}));
+    const archLines=new THREE.LineSegments(archLineGeometry,new THREE.LineBasicMaterial({color:0x61d8ff,transparent:true,opacity:.16,blending:THREE.AdditiveBlending}));
     archWorld.add(archLines);
 
-    [-.05,-1.25,-2.65].forEach((y,index)=>{
-      const ring=new THREE.Mesh(new THREE.TorusGeometry(3.95-index*.35,.012,5,80),new THREE.MeshBasicMaterial({color:[0x61d8ff,0x74f7b8,0x8b7cff][index],transparent:true,opacity:.16}));
+    [-.12,-2.35].forEach((y,index)=>{
+      const ring=new THREE.Mesh(new THREE.TorusGeometry(3.82-index*.32,.01,5,80),new THREE.MeshBasicMaterial({color:[0x61d8ff,0x8b7cff][index],transparent:true,opacity:.1}));
       ring.position.y=y; ring.rotation.x=Math.PI/2; archWorld.add(ring);
     });
-    const archCore=new THREE.Mesh(new THREE.OctahedronGeometry(.32,0),new THREE.MeshPhysicalMaterial({color:0xffffff,emissive:0x74f7b8,emissiveIntensity:1.3,metalness:.2,roughness:.15}));
+    const archCore=new THREE.Mesh(new THREE.IcosahedronGeometry(.28,2),new THREE.MeshPhysicalMaterial({color:0xffffff,emissive:0x74f7b8,emissiveIntensity:1.5,metalness:.25,roughness:.1}));
     archCore.position.set(0,.75,.45); archWorld.add(archCore);
     const archAmbient=new THREE.HemisphereLight(0xbfffee,0x030507,1.8); archScene.add(archAmbient);
     const archKey=new THREE.PointLight(0x61d8ff,28,18,2); archKey.position.set(-4,4,6); archScene.add(archKey);
@@ -1724,14 +1720,16 @@
       if(document.hidden||!archVisible||now-archLastFrame<renderInterval)return; archLastFrame=now;
       archRotation.x+=(archRotation.targetX-archRotation.x)*.09; archRotation.y+=(archRotation.targetY-archRotation.y)*.09;
       archZoom+=(archTargetZoom-archZoom)*.09; archCamera.position.z=archZoom;
-      if(!reduceMotion)archRotation.targetY+=.00075;
+      if(!reduceMotion)archRotation.targetY+=.005;
       archWorld.rotation.x=archRotation.x; archWorld.rotation.y=archRotation.y;
-      archCore.rotation.x+=.018; archCore.rotation.y+=.025;
-      archNodes.forEach(mesh=>{
-        const selected=mesh===archSelected,target=selected?1.1:1;
-        const scale=mesh.scale.x+(target-mesh.scale.x)*.12; mesh.scale.setScalar(scale);
-        mesh.material.emissiveIntensity+=((selected ? .72 : mesh.userData.baseEmissive)-mesh.material.emissiveIntensity)*.12;
+      archCore.rotation.x+=.045; archCore.rotation.y+=.065;
+      archNodes.forEach((mesh,index)=>{
+        const selected=mesh===archSelected,signal=(Math.sin(now*.006+index*.85)+1)*.5;
+        const target=(selected?1.06:1)+signal*.014,scale=mesh.scale.x+(target-mesh.scale.x)*.13; mesh.scale.setScalar(scale);
+        const emission=mesh.userData.baseEmissive+signal*.1+(selected ? .26 : 0);
+        mesh.material.emissiveIntensity+=(emission-mesh.material.emissiveIntensity)*.14;
       });
+      archLines.material.opacity=.12+(Math.sin(now*.004)+1)*.045;
       archRenderer.render(archScene,archCamera);
     }
     renderArchitecture();
