@@ -672,7 +672,7 @@
   <header class="site-nav" id="nav">
     <div class="container nav-inner">
       <a class="brand" id="brandLink" href="#home" aria-label="Home">
-        <span class="brand-mark"><img src="/assets/icons/icon-192.png" alt="" width="34" height="34"></span>
+        <span class="brand-mark"><img src="/assets/icons/icon-192.png" alt="Muhammad Latif Harkat portfolio logo" width="34" height="34"></span>
         <span class="brand-name" id="brandName"></span>
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Main navigation">
@@ -1166,7 +1166,7 @@
           const abbr = item.split(/[\s.-]/).map(word => word[0]).join("").slice(0, 3).toUpperCase();
           const logo = skillLogos[item];
           const icon = '<div class="skill-icon' + (logo ? " has-logo" : "") + '">' +
-            (logo ? '<img src="' + logo + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : "") +
+            (logo ? '<img src="' + logo + '" alt="' + item + ' technology logo" loading="lazy" referrerpolicy="no-referrer">' : "") +
             '<span>' + abbr + '</span></div>';
           return '<div class="skill-card">' + icon + '<strong>' +
             item + '</strong><small>' + statusLabel + '</small></div>';
