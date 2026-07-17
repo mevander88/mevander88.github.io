@@ -551,6 +551,7 @@
     }
     @media (hover: none), (pointer: coarse) {
       .cursor-glow { width: 210px; height: 210px; background: radial-gradient(circle,rgba(116,247,184,.18),rgba(97,216,255,.07) 30%,transparent 70%); }
+      .terminal, .floating-chip, .contact-panel { backdrop-filter: none; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -611,7 +612,7 @@
           <canvas id="hero3d" aria-hidden="true"></canvas>
           <div class="scene-hud" aria-hidden="true">
             <div class="scene-hud-title">Live system graph</div>
-            <div class="scene-hud-data"><span>54 nodes</span><span>3 orbits</span><span>WebGL</span></div>
+            <div class="scene-hud-data"><span id="sceneNodeCount">54 nodes</span><span>3 orbits</span><span>WebGL</span></div>
           </div>
           <div class="floating-chip chip-go">GO / FIBER</div>
           <div class="floating-chip chip-next">NEXT.JS 15</div>
@@ -1208,14 +1209,20 @@
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
     let dots = [], dpr = Math.min(devicePixelRatio || 1, 2);
+    const lowPowerDevice = matchMedia("(pointer: coarse)").matches || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || navigator.connection?.saveData;
+    const particleFrameInterval = 1000 / (lowPowerDevice ? 20 : 30);
+    let lastParticleFrame = 0;
     function resizeCanvas() {
       canvas.width = innerWidth*dpr; canvas.height = innerHeight*dpr;
       canvas.style.width = innerWidth+"px"; canvas.style.height = innerHeight+"px";
       ctx.setTransform(dpr,0,0,dpr,0,0);
-      const count = Math.min(65, Math.floor(innerWidth/20));
+      const count = Math.min(lowPowerDevice ? 32 : 52, Math.floor(innerWidth/(lowPowerDevice ? 28 : 22)));
       dots = Array.from({length:count},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.12,vy:(Math.random()-.5)*.12,r:Math.random()*1.2+.25}));
     }
-    function drawParticles() {
+    function drawParticles(now = 0) {
+      requestAnimationFrame(drawParticles);
+      if (document.hidden || now - lastParticleFrame < particleFrameInterval) return;
+      lastParticleFrame = now;
       ctx.clearRect(0,0,innerWidth,innerHeight);
       dots.forEach((d,i) => {
         d.x+=d.vx; d.y+=d.vy;
@@ -1223,7 +1230,6 @@
         ctx.fillStyle="rgba(164,180,196,.36)"; ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,Math.PI*2);ctx.fill();
         for(let j=i+1;j<dots.length;j++){const o=dots[j],dx=d.x-o.x,dy=d.y-o.y,dist=Math.hypot(dx,dy);if(dist<110){ctx.strokeStyle="rgba(116,247,184,"+((1-dist/110)*.06)+")";ctx.beginPath();ctx.moveTo(d.x,d.y);ctx.lineTo(o.x,o.y);ctx.stroke();}}
       });
-      requestAnimationFrame(drawParticles);
     }
     resizeCanvas();
     if (!matchMedia("(prefers-reduced-motion: reduce)").matches) drawParticles();
@@ -1235,12 +1241,13 @@
     const canvas = document.getElementById("hero3d");
     const host = document.getElementById("parallaxVisual");
     const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const lowPower3d = matchMedia("(pointer: coarse)").matches || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || navigator.connection?.saveData;
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(42, 1, .1, 100);
     camera.position.set(0, .2, 8.6);
 
-    const renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:"high-performance"});
-    renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));
+    const renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:!lowPower3d,powerPreference:"high-performance"});
+    renderer.setPixelRatio(Math.min(devicePixelRatio,lowPower3d ? 1 : 1.3));
     renderer.setClearColor(0x000000,0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
@@ -1248,7 +1255,7 @@
     world.position.set(-1.15,.15,0);
     scene.add(world);
 
-    const coreGeometry = new THREE.IcosahedronGeometry(1.62,2);
+    const coreGeometry = new THREE.IcosahedronGeometry(1.62,lowPower3d ? 1 : 2);
     const core = new THREE.Mesh(coreGeometry,new THREE.MeshPhysicalMaterial({
       color:0x102b26,metalness:.25,roughness:.22,transmission:.62,transparent:true,opacity:.46,depthWrite:false,
       emissive:0x06251b,emissiveIntensity:.72,side:THREE.DoubleSide
@@ -1269,7 +1276,7 @@
     world.add(inner);
 
     const knot = new THREE.Mesh(
-      new THREE.TorusKnotGeometry(.58,.15,96,12,2,3),
+      new THREE.TorusKnotGeometry(.58,.15,lowPower3d ? 56 : 84,lowPower3d ? 8 : 10,2,3),
       new THREE.MeshBasicMaterial({color:0x61d8ff,wireframe:true,transparent:true,opacity:.56,blending:THREE.AdditiveBlending})
     );
     world.add(knot);
@@ -1277,7 +1284,7 @@
     const rings = new THREE.Group();
     [2.08,2.45,2.82].forEach((radius,index) => {
       const ring = new THREE.Mesh(
-        new THREE.TorusGeometry(radius,.012,8,160),
+        new THREE.TorusGeometry(radius,.012,6,lowPower3d ? 72 : 110),
         new THREE.MeshBasicMaterial({color:[0x74f7b8,0x61d8ff,0xffc86a][index],transparent:true,opacity:.28,blending:THREE.AdditiveBlending})
       );
       ring.rotation.set(Math.PI/(2.5+index*.35),index*.72,index*.38);
@@ -1289,7 +1296,7 @@
     const satelliteColors = [0x74f7b8,0x61d8ff,0xffc86a,0xff8aa5];
     satelliteColors.forEach((color,index) => {
       const satellite = new THREE.Mesh(
-        new THREE.SphereGeometry(.075+index*.008,14,14),
+        new THREE.SphereGeometry(.075+index*.008,lowPower3d ? 8 : 12,lowPower3d ? 8 : 12),
         new THREE.MeshBasicMaterial({color,transparent:true,opacity:.95,blending:THREE.AdditiveBlending})
       );
       satellite.userData = {radius:2.15+index*.22,speed:.34+index*.07,offset:index*1.55,tilt:(index-.8)*.35};
@@ -1297,7 +1304,8 @@
     });
     world.add(satellites);
 
-    const nodeCount = 54;
+    const nodeCount = lowPower3d ? 36 : 54;
+    document.getElementById("sceneNodeCount").textContent = nodeCount + " nodes";
     const positions = new Float32Array(nodeCount*3);
     const nodeVectors = [];
     for(let i=0;i<nodeCount;i++){
@@ -1350,10 +1358,19 @@
     }
     const resizeObserver = new ResizeObserver(resize3d);
     resizeObserver.observe(host); resize3d();
+    let hero3dVisible = true;
+    const hero3dObserver = new IntersectionObserver(entries => {
+      hero3dVisible = entries[0]?.isIntersecting ?? true;
+    }, {rootMargin:"120px 0px"});
+    hero3dObserver.observe(host);
 
     const clock = new THREE.Clock();
-    function render3d(){
-      if(document.hidden){ requestAnimationFrame(render3d); return; }
+    const renderInterval = 1000 / (lowPower3d ? 24 : 45);
+    let last3dFrame = 0;
+    function render3d(now=0){
+      requestAnimationFrame(render3d);
+      if(document.hidden || !hero3dVisible || now-last3dFrame<renderInterval)return;
+      last3dFrame=now;
       const t = clock.getElapsedTime();
       pointer.x += (target.x-pointer.x)*.035;
       pointer.y += (target.y-pointer.y)*.035;
@@ -1373,7 +1390,6 @@
         world.position.y = baseWorldY+Math.sin(t*.7)*.08-window.scrollY*.00012;
       }
       renderer.render(scene,camera);
-      requestAnimationFrame(render3d);
     }
     render3d();
   </script>
