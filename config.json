@@ -72,6 +72,9 @@
       "FastAPI",
       "Cybersecurity",
       "DevOps",
+      "PayMaru",
+      "Payment Gateway",
+      "QRIS",
       "Indonesia"
     ]
   },
@@ -155,6 +158,13 @@
     }
   ],
   "projects": [
+    {
+      "title": "PayMaru Payment Gateway SaaS",
+      "description": "A B2B API-first payment gateway platform for QRIS, hosted payment pages, embedded QR images, ledger wallets, signed webhooks, client/admin dashboards, e-wallet withdrawals, worker queues, and a modular monolith architecture designed to scale toward enterprise use.",
+      "tech": ["Next.js", "Golang Fiber", "PostgreSQL", "Redis", "QRIS", "Webhook"],
+      "url": "https://paymaru.biz.id",
+      "public": true
+    },
     {
       "title": "Anime Streaming & Comic Platform",
       "description": "A complex web platform for streaming anime and reading comics, supported by automated scraping and data-processing pipelines. The system includes content discovery, search, comments, likes, user interactions, caching, SEO optimization, and scalable media delivery.",
