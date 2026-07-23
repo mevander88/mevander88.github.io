@@ -1121,7 +1121,7 @@
         const link = project.public
           ? 'href="' + project.url + '" target="_blank" rel="noopener noreferrer"'
           : 'href="#contact"';
-        return '<article class="project reveal"><span class="project-index">' + number + " / " + total +
+        return '<article class="project reveal visible"><span class="project-index">' + number + " / " + total +
           '</span><div class="project-main"><h3>' + project.title + '</h3><div class="tags">' + tags +
           '</div></div><p class="project-desc">' + project.description + '</p><a class="project-arrow" ' +
           link + ' aria-label="' + label + '" title="' + label + '"><i data-lucide="' +
@@ -1264,7 +1264,7 @@
     function loadPortfolio(language) {
       currentLanguage = language;
       const configFile = language === "id" ? "./config.id.json" : "./config.json";
-      const configVersion = "20260723-paymaru";
+      const configVersion = "20260723-paymaru-visible";
       return fetch(configFile + "?v=" + configVersion, {cache: "no-store"})
         .then(response => {
           if (!response.ok) throw new Error("Unable to load " + configFile);
