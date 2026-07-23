@@ -817,7 +817,24 @@
           <div><span class="eyebrow" id="selectedWorkEyebrow">Selected work</span><h2 class="section-title" id="selectedWorkTitle">Complex systems, made usable.</h2></div>
           <p class="section-copy" id="selectedWorkCopy"></p>
         </div>
-        <div class="project-list" id="projectList"></div>
+        <div class="project-list" id="projectList">
+          <article class="project">
+            <span class="project-index">01 / 08</span>
+            <div class="project-main">
+              <h3>PayMaru Payment Gateway SaaS</h3>
+              <div class="tags">
+                <span class="tag">Next.js</span>
+                <span class="tag">Golang Fiber</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Redis</span>
+                <span class="tag">QRIS</span>
+                <span class="tag">Webhook</span>
+              </div>
+            </div>
+            <p class="project-desc">Platform payment gateway B2B berbasis API untuk QRIS, hosted payment page, embedded QR image, wallet ledger, webhook signature, dashboard client/admin, withdraw e-wallet, worker queue, dan arsitektur modular monolith yang siap dikembangkan ke skala enterprise.</p>
+            <a class="project-arrow" href="https://paymaru.biz.id" target="_blank" rel="noopener noreferrer" aria-label="Buka proyek: PayMaru Payment Gateway SaaS" title="Buka proyek: PayMaru Payment Gateway SaaS"><i data-lucide="arrow-up-right"></i></a>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -1244,7 +1261,8 @@
     function loadPortfolio(language) {
       currentLanguage = language;
       const configFile = language === "id" ? "./config.id.json" : "./config.json";
-      return fetch(configFile, {cache: "no-store"})
+      const configVersion = "20260723-paymaru";
+      return fetch(configFile + "?v=" + configVersion, {cache: "no-store"})
         .then(response => {
           if (!response.ok) throw new Error("Unable to load " + configFile);
           return response.json();
