@@ -416,6 +416,7 @@
       position: relative; display: grid; grid-template-columns: minmax(0,1fr) 44px;
       grid-template-rows: auto auto 1fr; gap: 22px 16px; align-items: start; min-height: 330px;
       padding: 28px; border: 1px solid var(--line); overflow: hidden;
+      color: inherit; text-decoration: none;
       background:
         linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
         linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),
@@ -442,17 +443,32 @@
     .project:hover::before { opacity: 1; }
     .project:hover { transform: translateY(-6px); border-color: color-mix(in srgb,var(--project-accent) 36%,transparent); box-shadow: 0 26px 70px rgba(0,0,0,.3); }
     .project:hover::after { transform: scaleX(1); }
+    .project.has-media { min-height: 0; }
     .project-index {
       position: relative; z-index: 1; width: fit-content; padding: 5px 8px;
       border: 1px solid color-mix(in srgb,var(--project-accent) 30%,transparent);
       background: color-mix(in srgb,var(--project-accent) 7%,transparent);
       color: var(--project-accent); font: 11px ui-monospace,monospace;
     }
-    .project-main, .project-desc, .project-arrow { position: relative; z-index: 1; }
+    .project-media, .project-main, .project-desc, .project-arrow, .project-status { position: relative; z-index: 1; }
+    .project-media {
+      grid-column: 1 / -1; overflow: hidden; aspect-ratio: 16 / 9; margin: -10px -10px 0;
+      border: 1px solid color-mix(in srgb,var(--project-accent) 18%,var(--line));
+      background: rgba(7,9,13,.42);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 18px 50px rgba(0,0,0,.2);
+    }
+    .project-media img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: top center; transform: scale(1.01); transition: transform .45s ease, filter .45s ease; }
+    .project:hover .project-media img { transform: scale(1.045); filter: saturate(1.08) contrast(1.04); }
     .project-main { grid-column: 1 / -1; }
     .project h3 { margin: 0 0 14px; max-width: 460px; padding-bottom: .06em; font-size: clamp(23px,3vw,34px); line-height: 1.15; font-weight: 640; }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag { padding: 5px 8px; border: 1px solid var(--line); color: #aeb8c6; background: rgba(7,9,13,.46); font: 10px ui-monospace,monospace; }
+    .project-status {
+      grid-column: 1 / -1; width: fit-content; display: inline-flex; align-items: center; gap: 7px;
+      padding: 6px 9px; border: 1px solid var(--line); background: rgba(7,9,13,.42);
+      color: #aeb8c6; font: 700 10px ui-monospace,monospace; text-transform: uppercase; letter-spacing: .08em;
+    }
+    .project-status svg { width: 14px; height: 14px; color: var(--project-accent); }
     .project-desc { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: 14px; align-self: end; }
     .project-arrow { grid-column: 2; grid-row: 1; width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--line); background: rgba(7,9,13,.34); transition: transform .25s,border-color .25s,color .25s,background .25s; }
     .project:hover .project-arrow { transform: translate(3px,-3px); color: var(--project-accent); border-color: color-mix(in srgb,var(--project-accent) 40%,transparent); background: color-mix(in srgb,var(--project-accent) 8%,transparent); }
@@ -821,8 +837,10 @@
           <p class="section-copy" id="selectedWorkCopy"></p>
         </div>
         <div class="project-list" id="projectList">
-          <article class="project">
+          <a class="project has-media" href="https://paymaru.biz.id" target="_blank" rel="noopener noreferrer" aria-label="Buka proyek: PayMaru Payment Gateway SaaS" title="Buka proyek: PayMaru Payment Gateway SaaS">
             <span class="project-index">01 / 08</span>
+            <span class="project-arrow"><i data-lucide="arrow-up-right"></i></span>
+            <div class="project-media"><img src="./assets/paymaru-screenshot.webp" alt="Screenshot website payment gateway PayMaru" loading="lazy" decoding="async"></div>
             <div class="project-main">
               <h3>PayMaru Payment Gateway SaaS</h3>
               <div class="tags">
@@ -834,9 +852,9 @@
                 <span class="tag">Webhook</span>
               </div>
             </div>
+            <div class="project-status"><i data-lucide="external-link"></i><span>Buka proyek</span></div>
             <p class="project-desc">Platform payment gateway B2B berbasis API untuk QRIS, hosted payment page, embedded QR image, wallet ledger, webhook signature, dashboard client/admin, withdraw e-wallet, worker queue, dan arsitektur modular monolith yang siap dikembangkan ke skala enterprise.</p>
-            <a class="project-arrow" href="https://paymaru.biz.id" target="_blank" rel="noopener noreferrer" aria-label="Buka proyek: PayMaru Payment Gateway SaaS" title="Buka proyek: PayMaru Payment Gateway SaaS"><i data-lucide="arrow-up-right"></i></a>
-          </article>
+          </a>
         </div>
       </div>
     </section>
@@ -1118,14 +1136,19 @@
         const total = String(config.projects.length).padStart(2, "0");
         const tags = project.tech.map(item => '<span class="tag">' + item + '</span>').join("");
         const label = project.public ? config.ui.openProject + ": " + project.title : config.ui.privateProject + ": " + project.title;
-        const link = project.public
-          ? 'href="' + project.url + '" target="_blank" rel="noopener noreferrer"'
-          : 'href="#contact"';
-        return '<article class="project reveal visible"><span class="project-index">' + number + " / " + total +
-          '</span><div class="project-main"><h3>' + project.title + '</h3><div class="tags">' + tags +
-          '</div></div><p class="project-desc">' + project.description + '</p><a class="project-arrow" ' +
-          link + ' aria-label="' + label + '" title="' + label + '"><i data-lucide="' +
-          (project.public ? "arrow-up-right" : "lock-keyhole") + '"></i></a></article>';
+        const statusText = project.public ? config.ui.openProject : (config.ui.internalCompanyProject || config.ui.privateProject);
+        const media = project.image
+          ? '<div class="project-media"><img src="' + project.image + '" alt="' + (project.imageAlt || project.title) + '" loading="lazy" decoding="async"></div>'
+          : "";
+        const tagName = project.public ? "a" : "article";
+        const attrs = project.public
+          ? ' href="' + project.url + '" target="_blank" rel="noopener noreferrer" aria-label="' + label + '" title="' + label + '"'
+          : ' aria-label="' + label + '" title="' + label + '"';
+        return '<' + tagName + ' class="project reveal visible' + (project.image ? " has-media" : "") + '"' + attrs + '><span class="project-index">' + number + " / " + total +
+          '</span><span class="project-arrow"><i data-lucide="' + (project.public ? "arrow-up-right" : "lock-keyhole") + '"></i></span>' +
+          media + '<div class="project-main"><h3>' + project.title + '</h3><div class="tags">' + tags +
+          '</div></div><div class="project-status"><i data-lucide="' + (project.public ? "external-link" : "building-2") + '"></i><span>' + statusText +
+          '</span></div><p class="project-desc">' + project.description + '</p></' + tagName + '>';
       }).join("");
 
       renderSkills(config.skills, config.skillLogos || {}, config.ui.productionReady);
@@ -1264,7 +1287,7 @@
     function loadPortfolio(language) {
       currentLanguage = language;
       const configFile = language === "id" ? "./config.id.json" : "./config.json";
-      const configVersion = "20260723-paymaru-visible";
+      const configVersion = "20260724-paymaru-project-screenshot";
       return fetch(configFile + "?v=" + configVersion, {cache: "no-store"})
         .then(response => {
           if (!response.ok) throw new Error("Unable to load " + configFile);

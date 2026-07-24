@@ -50,6 +50,7 @@
     "callMe": "Call me",
     "productionReady": "Production ready",
     "privateProject": "Private project",
+    "internalCompanyProject": "Internal company project · private",
     "openProject": "Open project",
     "backToTop": "Back to top",
     "scrollInspect": "Scroll to inspect",
@@ -162,6 +163,8 @@
       "title": "PayMaru Payment Gateway SaaS",
       "description": "A B2B API-first payment gateway platform for QRIS, hosted payment pages, embedded QR images, ledger wallets, signed webhooks, client/admin dashboards, e-wallet withdrawals, worker queues, and a modular monolith architecture designed to scale toward enterprise use.",
       "tech": ["Next.js", "Golang Fiber", "PostgreSQL", "Redis", "QRIS", "Webhook"],
+      "image": "./assets/paymaru-screenshot.webp",
+      "imageAlt": "Screenshot of PayMaru payment gateway website",
       "url": "https://paymaru.biz.id",
       "public": true
     },
@@ -197,8 +200,8 @@
       "title": "Automation & Security Tools",
       "description": "A practical toolkit for infrastructure management: automation utilities, monitoring software, internal security research tools, OSINT workflows, and productivity systems.",
       "tech": ["OSINT", "Monitoring", "Network", "Automation"],
-      "url": "https://github.com/mevander88",
-      "public": true
+      "url": "#",
+      "public": false
     },
     {
       "title": "WA Blast Platform",
